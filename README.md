@@ -10,3 +10,5 @@ the project was made based on 2 other projects
 the SharpSDL (https://github.com/hasali19/SharpSDL)
 and the SDL2 # (https://github.com/flibitijibibo/SDL2-CS)
 With some modifications in both
+
+[![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SoftCircuits.Silk.svg?style=flat-square)](https://www.nuget.org/packages/SoftCircuits.Silk/)
