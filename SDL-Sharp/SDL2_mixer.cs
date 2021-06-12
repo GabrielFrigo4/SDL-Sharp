@@ -159,13 +159,13 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to a Mix_Music* */
 		[DllImport(nativeLibName, EntryPoint = "Mix_LoadMUS", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Chunk* INTERNAL_Mix_LoadMUS(
+		private static extern unsafe Music INTERNAL_Mix_LoadMUS(
 			byte* file
 		);
-		public static unsafe Chunk* LoadMUS(string file)
+		public static unsafe Music LoadMUS(string file)
 		{
 			byte* utf8File = SDL.Utf8Encode(file);
-			Chunk* handle = INTERNAL_Mix_LoadMUS(
+			Music handle = INTERNAL_Mix_LoadMUS(
 				utf8File
 			);
 			Marshal.FreeHGlobal((IntPtr) utf8File);
@@ -227,7 +227,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.5 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicTitle", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_GetMusicTitle(Music music);
+		private static extern IntPtr INTERNAL_Mix_GetMusicTitle(Music music);
 		public static string GetMusicTitle(Music music)
 		{
 			return SDL.UTF8_ToManaged(
@@ -239,7 +239,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.5 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicTitleTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_GetMusicTitleTag(Music music);
+		private static extern IntPtr INTERNAL_Mix_GetMusicTitleTag(Music music);
 		public static string GetMusicTitleTag(Music music)
 		{
 			return SDL.UTF8_ToManaged(
@@ -251,7 +251,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.5 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicArtistTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_GetMusicArtistTag(Music music);
+		private static extern IntPtr INTERNAL_Mix_GetMusicArtistTag(Music music);
 		public static string GetMusicArtistTag(Music music)
 		{
 			return SDL.UTF8_ToManaged(
@@ -263,7 +263,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.5 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicAlbumTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_GetMusicAlbumTag(Music music);
+		private static extern IntPtr INTERNAL_Mix_GetMusicAlbumTag(Music music);
 		public static string GetMusicAlbumTag(Music music)
 		{
 			return SDL.UTF8_ToManaged(
@@ -275,7 +275,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.5 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicCopyrightTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_GetMusicCopyrightTag(Music music);
+		private static extern IntPtr INTERNAL_Mix_GetMusicCopyrightTag(Music music);
 		public static string GetMusicCopyrightTag(Music music)
 		{
 			return SDL.UTF8_ToManaged(
@@ -387,7 +387,7 @@ namespace SDL_Sharp
 
 		/* music refers to a Mix_Music* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayMusic")]
-		public static extern int PlayMusic(IntPtr music, int loops);
+		public static extern int PlayMusic(Music music, int loops);
 
 		/* music refers to a Mix_Music* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInMusic")]

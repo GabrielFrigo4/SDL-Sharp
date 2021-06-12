@@ -18,6 +18,17 @@ and contains the necessary DLLs for the project</Description>
     <Product>SDL-Sharp</Product>
     <Copyright>Free</Copyright>
     <Platforms>x86;x64</Platforms>
+    <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
+    <PackageIcon></PackageIcon>
+    <PackageIconUrl />
+    <PackageReleaseNotes>add URL of project
+add functions: 
+SDL.GetTicks()
+add constructor:
+Rect
+Point
+Color
+we fix other functions</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -9,6 +9,14 @@ namespace SDL_Sharp
         public int Y;
         public int Width;
         public int Height;
+
+        public Rect(int X, int Y, int Width, int Height)
+        {
+            this.X = X;
+            this.Y = Y;
+            this.Width = Width;
+            this.Height = Height;
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -16,5 +24,11 @@ namespace SDL_Sharp
     {
         public int X;
         public int Y;
+
+        public Point(int X, int Y)
+        {
+            this.X = X;
+            this.Y = Y;
+        }
     }
 }

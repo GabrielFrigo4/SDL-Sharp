@@ -202,6 +202,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_Delay", SetLastError = true)]
         public static extern void Delay(uint ms);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetTicks", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint GetTicks();
+
         [DllImport(LibraryName, EntryPoint = "SDL_memcpy", SetLastError = true)]
         public static extern void* MemCopy(IntPtr dst, IntPtr src, int len);
 

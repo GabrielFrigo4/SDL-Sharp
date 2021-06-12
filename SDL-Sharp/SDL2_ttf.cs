@@ -218,7 +218,7 @@ namespace SDL_Sharp
 
 		/* font refers to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_FontFaceFamilyName", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Font INTERNAL_TTF_FontFaceFamilyName(
+		private static extern IntPtr INTERNAL_TTF_FontFaceFamilyName(
 			Font font
 		);
 		public static string FontFaceFamilyName(Font font)
@@ -230,7 +230,7 @@ namespace SDL_Sharp
 
 		/* font refers to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_FontFaceStyleName", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Font INTERNAL_TTF_FontFaceStyleName(
+		private static extern IntPtr INTERNAL_TTF_FontFaceStyleName(
 			Font font
 		);
 		public static string FontFaceStyleName(Font font)
