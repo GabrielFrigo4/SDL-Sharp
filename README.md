@@ -1,5 +1,5 @@
 is a SDL2 for c#
-The wrapper provides bindings for the following libraries(contains the necessary DLLs for the project):
+The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project):
 - SDL2 (2.0.14)
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
