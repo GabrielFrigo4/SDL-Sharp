@@ -15,7 +15,8 @@ and the SDL2 # (https://github.com/flibitijibibo/SDL2-CS)
 With some modifications in both
 
 This project aims to make SDL2 non-aggressive in c#
-an SDL2 code # would look like this:
+
+SDL2 code # would look like this:
 
 //////
 
