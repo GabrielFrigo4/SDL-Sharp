@@ -35,6 +35,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 in SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
 So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
 However Surface, Chunck and others are not pointers, so the functions return a Surface* (example)
+
 and to be able to use pointers (not IntPtr) in C#, you have to enable "Unsafe Code" and put these pointers (void*) inside an 
 unsafe
 {
