@@ -34,7 +34,7 @@ and on SDL-Sharp like this:
 
 SDL.Init(SdlInitFlags.Video);
 
-Window window = SDL.CreateWindow(title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, height, width, windowFlags);
+Window window = SDL.CreateWindow(title, SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, height, width, WindowFlags.Shown);
 
 Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
 
