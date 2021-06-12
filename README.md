@@ -21,7 +21,7 @@ an SDL2 code # would look like this:
 
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
-IntPtr window = SDL.SDL_CreateWindow(title, SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, height, width, windowFlags);
+IntPtr window = SDL.SDL_CreateWindow(title, SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, height, width, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 
 IntPtr renderer = SDL.SDL_CreateRenderer(window,
                                       -1,
