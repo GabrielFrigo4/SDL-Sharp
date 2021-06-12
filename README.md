@@ -1,4 +1,4 @@
-is a SDL2 for c#
+Is a SDL2 for c#
 The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project):
 - SDL2 (2.0.14)
 - SDL2_image (2.0.5)
@@ -30,7 +30,7 @@ IntPtr renderer = SDL.SDL_CreateRenderer(window,
                                       
 //////
 
-and on SDL-Sharp like this:
+And on SDL-Sharp like this:
 
 SDL.Init(SdlInitFlags.Video);
 
@@ -40,7 +40,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 //////
 
-in SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
+In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
 
 So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
 
