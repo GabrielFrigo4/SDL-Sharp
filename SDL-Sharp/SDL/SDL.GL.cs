@@ -60,6 +60,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GL_BindTexture", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GL_BindTexture(Texture texture, float* texw, float* texh);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GL_BindTexture", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GL_BindTexture(Texture texture, out float texw, out float texh);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GL_CreateContext", CallingConvention = CallingConvention.Cdecl)]
         public static extern GLContext GL_CreateContext(Window window);
 
@@ -72,6 +75,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GL_GetAttribute", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GL_GetAttribute(GLAttr attr, int* value);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GL_GetAttribute", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GL_GetAttribute(GLAttr attr, out int value);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GL_GetCurrentContext", CallingConvention = CallingConvention.Cdecl)]
         public static extern GLContext GL_GetCurrentContext();
 
@@ -80,6 +86,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_GL_GetDrawableSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GL_GetDrawableSize(Window window, int* width, int* height);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GL_GetDrawableSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GL_GetDrawableSize(Window window, out int width, out int height);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GL_GetProcAddress", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         public static extern IntPtr GL_GetProcAddress(string proc);

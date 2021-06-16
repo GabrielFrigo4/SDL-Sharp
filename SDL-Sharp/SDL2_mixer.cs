@@ -48,9 +48,9 @@ namespace SDL_Sharp
 		 * running with. You will likely want to check this somewhere in your
 		 * program!
 		 */
-		public const int MIXER_MAJOR_VERSION =	2;
-		public const int MIXER_MINOR_VERSION =	0;
-		public const int MIXER_PATCHLEVEL =		5;
+		public const int MAJOR_VERSION =	2;
+		public const int MINOR_VERSION =	0;
+		public const int PATCHLEVEL =		5;
 
 		/* In C, you can redefine this value before including SDL_mixer.h.
 		 * We're not going to allow this in SDL2#, since the value of this
@@ -59,8 +59,8 @@ namespace SDL_Sharp
 		public const int CHANNELS = 8;
 
 		public static readonly int DEFAULT_FREQUENCY = 44100;
-		public static readonly uint DEFAULT_FORMAT =
-			BitConverter.IsLittleEndian ? (uint)AudioFormatFlags.S16LSB : (uint)AudioFormatFlags.S16MSB;
+		public static readonly ushort DEFAULT_FORMAT =
+			BitConverter.IsLittleEndian ? (ushort)AudioFormatFlags.S16LSB : (ushort)AudioFormatFlags.S16MSB;
 		public static readonly int DEFAULT_CHANNELS = 2;
 		public static readonly byte MAX_VOLUME = 128;
 
@@ -99,9 +99,16 @@ namespace SDL_Sharp
 
 		public static void GetVersion(out Version X)
 		{
-			X.Major = MIXER_MAJOR_VERSION;
-			X.Minor = MIXER_MINOR_VERSION;
-			X.Patch = MIXER_PATCHLEVEL;
+			X.Major = MAJOR_VERSION;
+			X.Minor = MINOR_VERSION;
+			X.Patch = PATCHLEVEL;
+		}
+
+		public unsafe static void GetVersion(Version* X)
+		{
+			X->Major = MAJOR_VERSION;
+			X->Minor = MINOR_VERSION;
+			X->Patch = PATCHLEVEL;
 		}
 
 		[DllImport(nativeLibName, EntryPoint = "MIX_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
@@ -140,12 +147,18 @@ namespace SDL_Sharp
 			out ushort format,
 			out int channels
 		);
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuerySpec")]
+		public unsafe static extern int QuerySpec(
+			int* frequency,
+			ushort* format,
+			int* channels
+		);
 
 		/* src refers to an SDL_RWops*, IntPtr to a Mix_Chunk* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV_RW")]
 		public unsafe static extern Chunk* LoadWAV_RW(
-			IntPtr src,
+			RWops src,
 			int freesrc
 		);
 		
@@ -153,7 +166,7 @@ namespace SDL_Sharp
 		/* This is an RWops macro in the C header. */
 		public unsafe static Chunk* LoadWAV(string file)
 		{
-			IntPtr rwops = SDL.RWFromFile(file, "rb");
+			RWops rwops = SDL.RWFromFile(file, "rb");
 			return LoadWAV_RW(rwops, 1);
 		}
 
@@ -443,7 +456,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.5 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetVolumeMusicStream")]
-		public static extern int GetVolumeMusicStream(IntPtr music);
+		public static extern int GetVolumeMusicStream(Music music);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltChannel")]
 		public static extern int HaltChannel(int channel);
@@ -619,13 +632,13 @@ namespace SDL_Sharp
 		Opus = 0x00000040
 	}
 
-	public struct Chunk
+	public unsafe struct Chunk
 	{
 		public int Allocated;
-		public IntPtr Abuf; /* Uint8* */
+		public byte* Abuf; /* Uint8* */
 		public uint Alen;
 		public byte Volume;
-	}
+    }
 
 	public struct Music
     {

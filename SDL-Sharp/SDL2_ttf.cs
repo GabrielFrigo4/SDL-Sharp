@@ -74,6 +74,13 @@ namespace SDL_Sharp
 			X.Patch = PATCHLEVEL;
 		}
 
+		public unsafe static void GetVersion(Version* X)
+		{
+			X->Major = MAJOR_VERSION;
+			X->Minor = MINOR_VERSION;
+			X->Patch = PATCHLEVEL;
+		}
+
 		[DllImport(nativeLibName, EntryPoint = "TTF_LinkedVersion", CallingConvention = CallingConvention.Cdecl)]
 		private static extern IntPtr INTERNAL_TTF_LinkedVersion();
 		public static Version LinkedVersion()
@@ -261,6 +268,16 @@ namespace SDL_Sharp
 			out int maxy,
 			out int advance
 		);
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics")]
+		public unsafe static extern int GlyphMetrics(
+			Font font,
+			ushort ch,
+			int* minx,
+			int* maxx,
+			int* miny,
+			int* maxy,
+			int* advance
+		);
 
 		/* font refers to a TTF_Font*
 		 * Only available in 2.0.16 or higher.
@@ -275,6 +292,16 @@ namespace SDL_Sharp
 			out int maxy,
 			out int advance
 		);
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics32")]
+		public unsafe static extern int GlyphMetrics32(
+			Font font,
+			uint ch,
+			int* minx,
+			int* maxx,
+			int* miny,
+			int* maxy,
+			int* advance
+		);
 
 		/* font refers to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
@@ -284,6 +311,14 @@ namespace SDL_Sharp
 				string text,
 			out int w,
 			out int h
+		);
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
+		public unsafe static extern int SizeText(
+			Font font,
+			[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+			int* w,
+			int* h
 		);
 
 		/* font refers to a TTF_Font* */
@@ -310,6 +345,30 @@ namespace SDL_Sharp
 			Marshal.FreeHGlobal((IntPtr) utf8Text);
 			return result;
 		}
+		[DllImport(nativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
+		private static extern unsafe int INTERNAL_TTF_SizeUTF8(
+			Font font,
+			byte* text,
+			int* w,
+			int* h
+		);
+		public static unsafe int SizeUTF8(
+			Font font,
+			string text,
+			int* w,
+			int* h
+		)
+		{
+			byte* utf8Text = SDL.Utf8Encode(text);
+			int result = INTERNAL_TTF_SizeUTF8(
+				font,
+				utf8Text,
+				w,
+				h
+			);
+			Marshal.FreeHGlobal((IntPtr)utf8Text);
+			return result;
+		}
 
 		/* font refers to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
@@ -319,6 +378,15 @@ namespace SDL_Sharp
 				string text,
 			out int w,
 			out int h
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
+		public unsafe static extern int SizeUNICODE(
+			Font font,
+			[In()] [MarshalAs(UnmanagedType.LPWStr)]
+						string text,
+			int* w,
+			int* h
 		);
 
 		/* font refers to a TTF_Font*
@@ -332,6 +400,15 @@ namespace SDL_Sharp
 			int measure_width,
 			out int extent,
 			out int count
+		);
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureText")]
+		public unsafe static extern int MeasureText(
+			Font font,
+			[In()] [MarshalAs(UnmanagedType.LPStr)]
+						string text,
+			int measure_width,
+			int* extent,
+			int* count
 		);
 
 		/* font refers to a TTF_Font*
@@ -363,6 +440,33 @@ namespace SDL_Sharp
 			Marshal.FreeHGlobal((IntPtr) utf8Text);
 			return result;
 		}
+		[DllImport(nativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
+		private static extern unsafe int INTERNAL_TTF_MeasureUTF8(
+			Font font,
+			byte* text,
+			int measure_width,
+			int* extent,
+			int* count
+		);
+		public static unsafe int MeasureUTF8(
+			Font font,
+			string text,
+			int measure_width,
+			int* extent,
+			int* count
+		)
+		{
+			byte* utf8Text = SDL.Utf8Encode(text);
+			int result = INTERNAL_TTF_MeasureUTF8(
+				font,
+				utf8Text,
+				measure_width,
+				extent,
+				count
+			);
+			Marshal.FreeHGlobal((IntPtr)utf8Text);
+			return result;
+		}
 
 		/* font refers to a TTF_Font*
 		 * Only available in 2.0.16 or higher.
@@ -375,6 +479,16 @@ namespace SDL_Sharp
 			int measure_width,
 			out int extent,
 			out int count
+		);
+
+		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureUNICODE")]
+		public unsafe static extern int MeasureUNICODE(
+			Font font,
+			[In()] [MarshalAs(UnmanagedType.LPWStr)]
+						string text,
+			int measure_width,
+			int* extent,
+			int* count
 		);
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */

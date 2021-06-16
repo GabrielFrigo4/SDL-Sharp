@@ -16,6 +16,8 @@ namespace SDL_Sharp
     {
         [DllImport(LibraryName, EntryPoint = "SDL_GetVersion", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetVersion(Version* version);
+        [DllImport(LibraryName, EntryPoint = "SDL_GetVersion", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetVersion(out Version version);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetRevision", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetRevision();

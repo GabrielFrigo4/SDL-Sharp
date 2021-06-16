@@ -205,6 +205,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowBordersSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetWindowBordersSize(Window window, int* top, int* left, int* bottom, int* right);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowBordersSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetWindowBordersSize(Window window, out int top, out int left, out int bottom, out int right);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowBrightness", CallingConvention = CallingConvention.Cdecl)]
         public static extern float GetWindowBrightness(Window window);
 
@@ -226,11 +229,20 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowMaximumSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetWindowMaximumSize(Window window, int* w, int* h);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowMaximumSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetWindowMaximumSize(Window window, out int w, out int h);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowMinimumSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetWindowMinimumSize(Window window, int* w, int* h);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowMinimumSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetWindowMinimumSize(Window window, out int w, out int h);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowOpacity", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetWindowOpacity(Window window, float* opacity);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowOpacity", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetWindowOpacity(Window window, out float opacity);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowPixelFormat", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint GetWindowPixelFormat(Window window);
@@ -238,8 +250,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowPosition", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetWindowPosition(Window window, int* x, int* y);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowPosition", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetWindowPosition(Window window, out int x, out int y);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetWindowSize(Window window, int* w, int* h);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetWindowSize(Window window, out int w, out int h);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowTitle", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetWindowTitle(Window window);
