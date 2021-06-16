@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>SDL_Sharp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>2.0.14</Version>
+    <Version>1.0.0</Version>
     <Description>is a SDL2 for c#
 The wrapper provides bindings for the following libraries:
 - SDL2 (2.0.14)
@@ -21,14 +21,8 @@ and contains the necessary DLLs for the project</Description>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <PackageIconUrl />
-    <PackageReleaseNotes>add URL of project
-add functions: 
-SDL.GetTicks()
-add constructor:
-Rect
-Point
-Color
-we fix other functions</PackageReleaseNotes>
+    <PackageReleaseNotes>functions fixed and structs
+add new unsafe and safe functions</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

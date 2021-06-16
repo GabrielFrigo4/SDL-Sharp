@@ -48,15 +48,22 @@ namespace SDL_Sharp
 		 * running with. You will likely want to check this somewhere in your
 		 * program!
 		 */
-		public const int IMAGE_MAJOR_VERSION = 2;
-		public const int IMAGE_MINOR_VERSION = 0;
-		public const int IMAGE_PATCHLEVEL = 6;
+		public const int MAJOR_VERSION = 2;
+		public const int MINOR_VERSION = 0;
+		public const int PATCHLEVEL = 6;
 
 		public static void GetVersion(out Version X)
 		{
-			X.Major = IMAGE_MAJOR_VERSION;
-			X.Minor = IMAGE_MINOR_VERSION;
-			X.Patch = IMAGE_PATCHLEVEL;
+			X.Major = MAJOR_VERSION;
+			X.Minor = MINOR_VERSION;
+			X.Patch = PATCHLEVEL;
+		}
+
+		public unsafe static void GetVersion(Version* X)
+		{
+			X->Major = MAJOR_VERSION;
+			X->Minor = MINOR_VERSION;
+			X->Patch = PATCHLEVEL;
 		}
 
 		[DllImport(nativeLibName, EntryPoint = "IMG_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
@@ -97,7 +104,7 @@ namespace SDL_Sharp
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Load_RW")]
 		public static extern IntPtr Load_RW(
-			IntPtr src,
+			RWops src,
 			int freesrc
 		);
 
@@ -105,12 +112,12 @@ namespace SDL_Sharp
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, EntryPoint = "IMG_LoadTyped_RW", CallingConvention = CallingConvention.Cdecl)]
 		private static extern unsafe Surface* INTERNAL_IMG_LoadTyped_RW(
-			IntPtr src,
+			RWops src,
 			int freesrc,
 			byte* type
 		);
 		public static unsafe Surface* LoadTyped_RW(
-			IntPtr src,
+			RWops src,
 			int freesrc,
 			string type
 		)
@@ -152,7 +159,7 @@ namespace SDL_Sharp
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadTexture_RW")]
 		public static extern Texture LoadTexture_RW(
 			Renderer renderer,
-			IntPtr src,
+			RWops src,
 			int freesrc
 		);
 
@@ -164,13 +171,13 @@ namespace SDL_Sharp
 		[DllImport(nativeLibName, EntryPoint = "IMG_LoadTextureTyped_RW", CallingConvention = CallingConvention.Cdecl)]
 		private static extern unsafe Texture INTERNAL_IMG_LoadTextureTyped_RW(
 			Renderer renderer,
-			IntPtr src,
+			RWops src,
 			int freesrc,
 			byte* type
 		);
 		public static unsafe Texture LoadTextureTyped_RW(
 			Renderer renderer,
-			IntPtr src,
+			RWops src,
 			int freesrc,
 			string type
 		)
@@ -215,7 +222,7 @@ namespace SDL_Sharp
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SavePNG_RW")]
 		public unsafe static extern int SavePNG_RW(
 			Surface* surface,
-			IntPtr dst,
+			RWops dst,
 			int freedst
 		);
 
@@ -243,7 +250,7 @@ namespace SDL_Sharp
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SaveJPG_RW")]
 		public unsafe static extern int SaveJPG_RW(
 			Surface* surface,
-			IntPtr dst,
+			RWops dst,
 			int freedst,
 			int quality
 		);
@@ -268,7 +275,7 @@ namespace SDL_Sharp
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimation_RW")]
 		public unsafe static extern Animation* LoadAnimation_RW(
-			IntPtr src,
+			RWops src,
 			int freesrc
 		);
 
@@ -276,7 +283,7 @@ namespace SDL_Sharp
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimationTyped_RW")]
 		public unsafe static extern Animation* LoadAnimationTyped_RW(
-			IntPtr src,
+			RWops src,
 			int freesrc,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string type
@@ -289,7 +296,7 @@ namespace SDL_Sharp
 		/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadGIFAnimation_RW")]
-		public unsafe static extern Animation* LoadGIFAnimation_RW(IntPtr src);
+		public unsafe static extern Animation* LoadGIFAnimation_RW(RWops src);
 
 		#endregion
 
@@ -305,11 +312,11 @@ namespace SDL_Sharp
 		Webp = 0x00000008
 	}
 
-	public struct Animation
+	public unsafe struct Animation
 	{
 		public int Width;
 		public int Height;
-		public IntPtr Frames; /* SDL_Surface** */
-		public IntPtr Delays; /* int* */
+		public Surface* Frames; /* SDL_Surface** */
+		public int* Delays; /* int* */
 	}
 }
