@@ -105,6 +105,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_CreateWindowAndRenderer", CallingConvention = CallingConvention.Cdecl)]
         public static extern int CreateWindowAndRenderer(int width, int height, WindowFlags window_flags, Window* window, Renderer* renderer);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_CreateWindowAndRenderer", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int CreateWindowAndRenderer(int width, int height, WindowFlags window_flags, out Window window, out Renderer renderer);
+
         [DllImport(LibraryName, EntryPoint = "SDL_DestroyRenderer", CallingConvention = CallingConvention.Cdecl)]
         public static extern void DestroyRenderer(Renderer renderer);
 
@@ -119,6 +122,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDrawColor", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRenderDrawColor(Renderer renderer, byte* r, byte* g, byte* b, byte* a);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDrawColor", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetRenderDrawColor(Renderer renderer, out byte r, out byte g, out  byte b, out byte a);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDriverInfo", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRenderDriverInfo(int index, RendererInfo* info);
@@ -135,8 +141,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetRendererOutputSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRendererOutputSize(Renderer renderer, int* w, int* h);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRendererOutputSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetRendererOutputSize(Renderer renderer, out int w, out int h);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetTextureAlphaMod", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTextureAlphaMod(Texture texture, byte* alpha);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetTextureAlphaMod", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetTextureAlphaMod(Texture texture, out byte alpha);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetTextureBlendMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTextureBlendMode(Texture texture, BlendMode* blendMode);
@@ -144,11 +156,20 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetTextureColorMod", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTextureColorMod(Texture texture, byte* r, byte* g, byte* b);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetTextureColorMod", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetTextureColorMod(Texture texture, out byte r, out byte g, out byte b);
+
         [DllImport(LibraryName, EntryPoint = "SDL_LockTexture", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LockTexture(Texture texture, Rect* rect, void** pixels, int* pitch);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_LockTexture", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int LockTexture(Texture texture, ref Rect rect, out void* pixels, out int pitch);
+
         [DllImport(LibraryName, EntryPoint = "SDL_QueryTexture", CallingConvention = CallingConvention.Cdecl)]
         public static extern int QueryTexture(Texture texture, uint* format, TextureAccess* access, int* w, int* h);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_QueryTexture", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int QueryTexture(Texture texture, out uint format, out TextureAccess access, out int w, out int h);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderClear", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderClear(Renderer renderer);
@@ -156,8 +177,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_RenderCopy", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderCopy(Renderer renderer, Texture texture, Rect* srcrect, Rect* dstrect);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderCopy", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderCopy(Renderer renderer, Texture texture, out Rect srcrect, out Rect dstrect);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderCopyEx", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderCopyEx(Renderer renderer, Texture texture, Rect* srcrect, Rect* dstrect, double angle, Point* center, RendererFlip flip);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderCopyEx", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderCopyEx(Renderer renderer, Texture texture, ref Rect srcrect, ref Rect dstrect, double angle, ref Point center, RendererFlip flip);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawLine", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderDrawLine(Renderer renderer, int x1, int y1, int x2, int y2);
@@ -165,26 +192,47 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawLines", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderDrawLines(Renderer renderer, Point* points, int count);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawLines", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderDrawLines(Renderer renderer, [In] Point[] points, int count);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawPoint", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderDrawPoint(Renderer renderer, int x, int y);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawPoints", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderDrawPoints(Renderer renderer, Point* points, int count);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawPoints", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderDrawPoints(Renderer renderer, [In] Point[] points, int count);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawRect", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderDrawRect(Renderer renderer, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawRect", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderDrawRect(Renderer renderer, ref Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawRects", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderDrawRects(Renderer renderer, Rect* rects, int count);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderDrawRects", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderDrawRects(Renderer renderer, [In] Rect[] rects, int count);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderFillRect", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderFillRect(Renderer renderer, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderFillRect", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderFillRect(Renderer renderer, ref Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderFillRects", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderFillRects(Renderer renderer, Rect* rects, int count);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderFillRects", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderFillRects(Renderer renderer, [In] Rect[] rects, int count);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderGetClipRect", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RenderGetClipRect(Renderer renderer, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderGetClipRect", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RenderGetClipRect(Renderer renderer, out Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderGetIntegerScale", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool RenderGetIntegerScale(Renderer renderer);
@@ -192,11 +240,20 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_RenderGetLogicalSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RenderGetLogicalSize(Renderer renderer, int* w, int* h);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderGetLogicalSize", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RenderGetLogicalSize(Renderer renderer, out int w, out int h);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderGetScale", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RenderGetScale(Renderer renderer, float* scaleX, float* scaleY);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderGetScale", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RenderGetScale(Renderer renderer, out float scaleX, out float scaleY);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderGetViewport", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RenderGetViewport(Renderer renderer, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderGetViewport", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RenderGetViewport(Renderer renderer, out Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderIsClipEnabled", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool RenderIsClipEnabled(Renderer renderer);
@@ -207,8 +264,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_RenderReadPixels", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderReadPixels(Renderer renderer, Rect* rect, uint format, void* pixels, int pitch);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderReadPixels", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderReadPixels(Renderer renderer, ref Rect rect, uint format, void* pixels, int pitch);
+
         [DllImport(LibraryName, EntryPoint = "SDL_RenderSetClipRect", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderSetClipRect(Renderer renderer, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderSetClipRect", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderSetClipRect(Renderer renderer, ref Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderSetIntegerScale", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderSetIntegerScale(Renderer renderer, bool enable);
@@ -221,6 +284,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderSetViewport", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderSetViewport(Renderer renderer, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_RenderSetViewport", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int RenderSetViewport(Renderer renderer, ref Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderTargetSupported", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool RenderTargetSupported(Renderer renderer);
@@ -249,7 +315,10 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_UpdateTexture", CallingConvention = CallingConvention.Cdecl)]
         public static extern int UpdateTexture(Texture texture, Rect* rect, void* pixels, int pitch);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_UpdateTexture", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int UpdateTexture(Texture texture, ref Rect rect, void* pixels, int pitch);
+
         [DllImport(LibraryName, EntryPoint = "SDL_UpdateYUVTexture", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int UpdateYUVTexture(Texture texture, Rect* rect, byte* Yplane, int Ypitch, byte* Uplane, int Upitch, byte* Vplane, int Vpitch);
+        public static extern int UpdateYUVTexture(Texture texture, ref Rect rect, byte* Yplane, int Ypitch, byte* Uplane, int Upitch, byte* Vplane, int Vpitch);
     }
 }
