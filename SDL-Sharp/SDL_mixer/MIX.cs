@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 
 namespace SDL_Sharp
 {
-	public static class MIX
+	public unsafe static partial class MIX
 	{
 		#region SDL2# Variables
 
@@ -104,7 +104,7 @@ namespace SDL_Sharp
 			X.Patch = PATCHLEVEL;
 		}
 
-		public unsafe static void GetVersion(Version* X)
+		public static void GetVersion(Version* X)
 		{
 			X->Major = MAJOR_VERSION;
 			X->Minor = MINOR_VERSION;
@@ -148,7 +148,7 @@ namespace SDL_Sharp
 			out int channels
 		);
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuerySpec")]
-		public unsafe static extern int QuerySpec(
+		public static extern int QuerySpec(
 			int* frequency,
 			ushort* format,
 			int* channels
@@ -157,14 +157,14 @@ namespace SDL_Sharp
 		/* src refers to an SDL_RWops*, IntPtr to a Mix_Chunk* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV_RW")]
-		public unsafe static extern Chunk* LoadWAV_RW(
+		public static extern Chunk* LoadWAV_RW(
 			RWops src,
 			int freesrc
 		);
 		
 		/* IntPtr refers to a Mix_Chunk* */
 		/* This is an RWops macro in the C header. */
-		public unsafe static Chunk* LoadWAV(string file)
+		public static Chunk* LoadWAV(string file)
 		{
 			RWops rwops = SDL.RWFromFile(file, "rb");
 			return LoadWAV_RW(rwops, 1);
@@ -172,10 +172,10 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to a Mix_Music* */
 		[DllImport(nativeLibName, EntryPoint = "Mix_LoadMUS", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Music INTERNAL_Mix_LoadMUS(
+		private static extern Music INTERNAL_Mix_LoadMUS(
 			byte* file
 		);
-		public static unsafe Music LoadMUS(string file)
+		public static Music LoadMUS(string file)
 		{
 			byte* utf8File = SDL.Utf8Encode(file);
 			Music handle = INTERNAL_Mix_LoadMUS(
@@ -187,14 +187,14 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]
-		public unsafe static extern Chunk* QuickLoad_WAV(
+		public static extern Chunk* QuickLoad_WAV(
 			[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1)]
 				byte[] mem
 		);
 
 		/* IntPtr refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_RAW")]
-		public unsafe static extern Chunk* QuickLoad_RAW(
+		public static extern Chunk* QuickLoad_RAW(
 			[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 1)]
 				byte[] mem,
 			uint len
@@ -202,7 +202,7 @@ namespace SDL_Sharp
 
 		/* chunk refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeChunk")]
-		public unsafe static extern void FreeChunk(Chunk* chunk);
+		public static extern void FreeChunk(Chunk* chunk);
 
 		/* music refers to a Mix_Music* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeMusic")]
@@ -381,7 +381,7 @@ namespace SDL_Sharp
 		public static extern int GroupNewer(int tag);
 
 		/* chunk refers to a Mix_Chunk* */
-		public unsafe static int PlayChannel(
+		public static int PlayChannel(
 			int channel,
 			Chunk* chunk,
 			int loops
@@ -391,7 +391,7 @@ namespace SDL_Sharp
 
 		/* chunk refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannelTimed")]
-		public unsafe static extern int PlayChannelTimed(
+		public static extern int PlayChannelTimed(
 			int channel,
 			Chunk* chunk,
 			int loops,
@@ -420,7 +420,7 @@ namespace SDL_Sharp
 		);
 
 		/* chunk refers to a Mix_Chunk* */
-		public unsafe static int FadeInChannel(
+		public static int FadeInChannel(
 			int channel,
 			Chunk* chunk,
 			int loops,
@@ -431,7 +431,7 @@ namespace SDL_Sharp
 
 		/* chunk refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
-		public static unsafe extern int FadeInChannelTimed(
+		public static extern int FadeInChannelTimed(
 			int channel,
 			Chunk* chunk,
 			int loops,
@@ -444,7 +444,7 @@ namespace SDL_Sharp
 
 		/* chunk refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeChunk")]
-		public static unsafe extern int VolumeChunk(
+		public static extern int VolumeChunk(
 			Chunk* chunk,
 			int volume
 		);
@@ -546,10 +546,10 @@ namespace SDL_Sharp
 		public static extern int PlayingMusic();
 
 		[DllImport(nativeLibName, EntryPoint = "Mix_SetMusicCMD", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_Mix_SetMusicCMD(
+		private static extern int INTERNAL_Mix_SetMusicCMD(
 			byte* command
 		);
-		public static unsafe int SetMusicCMD(string command)
+		public static int SetMusicCMD(string command)
 		{
 			byte* utf8Cmd = SDL.Utf8Encode(command);
 			int result = INTERNAL_Mix_SetMusicCMD(
@@ -566,10 +566,10 @@ namespace SDL_Sharp
 		public static extern int GetSynchroValue();
 
 		[DllImport(nativeLibName, EntryPoint = "Mix_SetSoundFonts", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_Mix_SetSoundFonts(
+		private static extern int INTERNAL_Mix_SetSoundFonts(
 			byte* paths
 		);
-		public static unsafe int SetSoundFonts(string paths)
+		public static int SetSoundFonts(string paths)
 		{
 			byte* utf8Paths = SDL.Utf8Encode(paths);
 			int result = INTERNAL_Mix_SetSoundFonts(
@@ -613,7 +613,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetChunk")]
-		public unsafe static extern Chunk* GetChunk(int channel);
+		public static extern Chunk* GetChunk(int channel);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_CloseAudio")]
 		public static extern void CloseAudio();
@@ -632,53 +632,12 @@ namespace SDL_Sharp
 		Opus = 0x00000040
 	}
 
-	public unsafe struct Chunk
+	[StructLayout(LayoutKind.Sequential)]
+	public struct Chunk
 	{
 		public int Allocated;
-		public byte* Abuf; /* Uint8* */
+		public IntPtr Abuf; /* Uint8* */
 		public uint Alen;
 		public byte Volume;
     }
-
-	public struct Music
-    {
-		private readonly IntPtr ptr;
-
-		public Music(IntPtr ptr)
-		{
-			this.ptr = ptr;
-		}
-
-		public static implicit operator IntPtr(Music music)
-		{
-			return music.ptr;
-		}
-
-		public static implicit operator Music(IntPtr ptr)
-		{
-			return new Music(ptr);
-		}
-	}
-
-	public enum Fading
-	{
-		Fading,
-		Fading_out,
-		Fading_in
-	}
-
-	public enum MusicType
-	{
-		None,
-		Cmd,
-		Wav,
-		Mod,
-		Mid,
-		Ogg,
-		Mp3,
-		Mp3_mad_unused,
-		Flac,
-		ModPlug_unused,
-		Opus
-	}
 }

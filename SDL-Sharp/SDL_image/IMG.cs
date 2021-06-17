@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 
 namespace SDL_Sharp
 {
-	public static class IMG
+	public static unsafe partial class IMG
 	{
 		#region SDL2# Variables
 
@@ -87,13 +87,13 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface* */
 		[DllImport(nativeLibName, EntryPoint = "IMG_Load", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe IntPtr INTERNAL_IMG_Load(
+		private static extern Surface* INTERNAL_IMG_Load(
 			byte* file
 		);
-		public static unsafe IntPtr Load(string file)
+		public static Surface* Load(string file)
 		{
 			byte* utf8File = SDL.Utf8Encode(file);
-			IntPtr handle = INTERNAL_IMG_Load(
+			Surface* handle = INTERNAL_IMG_Load(
 				utf8File
 			);
 			Marshal.FreeHGlobal((IntPtr)utf8File);
@@ -103,7 +103,7 @@ namespace SDL_Sharp
 		/* src refers to an SDL_RWops*, IntPtr to an SDL_Surface* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Load_RW")]
-		public static extern IntPtr Load_RW(
+		public static extern Surface* Load_RW(
 			RWops src,
 			int freesrc
 		);
@@ -111,12 +111,12 @@ namespace SDL_Sharp
 		/* src refers to an SDL_RWops*, IntPtr to an SDL_Surface* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, EntryPoint = "IMG_LoadTyped_RW", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_IMG_LoadTyped_RW(
+		private static extern Surface* INTERNAL_IMG_LoadTyped_RW(
 			RWops src,
 			int freesrc,
 			byte* type
 		);
-		public static unsafe Surface* LoadTyped_RW(
+		public static Surface* LoadTyped_RW(
 			RWops src,
 			int freesrc,
 			string type
@@ -133,11 +133,11 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Texture*, renderer to an SDL_Renderer* */
 		[DllImport(nativeLibName, EntryPoint = "IMG_LoadTexture", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Texture INTERNAL_IMG_LoadTexture(
+		private static extern Texture INTERNAL_IMG_LoadTexture(
 			Renderer renderer,
 			byte* file
 		);
-		public static unsafe Texture LoadTexture(
+		public static Texture LoadTexture(
 			Renderer renderer,
 			string file
 		)
@@ -169,13 +169,13 @@ namespace SDL_Sharp
 		 */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, EntryPoint = "IMG_LoadTextureTyped_RW", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Texture INTERNAL_IMG_LoadTextureTyped_RW(
+		private static extern Texture INTERNAL_IMG_LoadTextureTyped_RW(
 			Renderer renderer,
 			RWops src,
 			int freesrc,
 			byte* type
 		);
-		public static unsafe Texture LoadTextureTyped_RW(
+		public static Texture LoadTextureTyped_RW(
 			Renderer renderer,
 			RWops src,
 			int freesrc,
@@ -195,18 +195,18 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_ReadXPMFromArray")]
-		public unsafe static extern Surface* ReadXPMFromArray(
+		public static extern Surface* ReadXPMFromArray(
 			[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]
 				string[] xpm
 		);
 
 		/* surface refers to an SDL_Surface* */
 		[DllImport(nativeLibName, EntryPoint = "IMG_SavePNG", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_IMG_SavePNG(
+		private static extern int INTERNAL_IMG_SavePNG(
 			Surface* surface,
 			byte* file
 		);
-		public static unsafe int SavePNG(Surface* surface, string file)
+		public static int SavePNG(Surface* surface, string file)
 		{
 			byte* utf8File = SDL.Utf8Encode(file);
 			int result = INTERNAL_IMG_SavePNG(
@@ -220,7 +220,7 @@ namespace SDL_Sharp
 		/* surface refers to an SDL_Surface*, dst to an SDL_RWops* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SavePNG_RW")]
-		public unsafe static extern int SavePNG_RW(
+		public static extern int SavePNG_RW(
 			Surface* surface,
 			RWops dst,
 			int freedst
@@ -228,12 +228,12 @@ namespace SDL_Sharp
 
 		/* surface refers to an SDL_Surface* */
 		[DllImport(nativeLibName, EntryPoint = "IMG_SaveJPG", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_IMG_SaveJPG(
+		private static extern int INTERNAL_IMG_SaveJPG(
 			Surface* surface,
 			byte* file,
 			int quality
 		);
-		public static unsafe int SaveJPG(Surface* surface, string file, int quality)
+		public static int SaveJPG(Surface* surface, string file, int quality)
 		{
 			byte* utf8File = SDL.Utf8Encode(file);
 			int result = INTERNAL_IMG_SaveJPG(
@@ -248,7 +248,7 @@ namespace SDL_Sharp
 		/* surface refers to an SDL_Surface*, dst to an SDL_RWops* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SaveJPG_RW")]
-		public unsafe static extern int SaveJPG_RW(
+		public static extern int SaveJPG_RW(
 			Surface* surface,
 			RWops dst,
 			int freedst,
@@ -274,7 +274,7 @@ namespace SDL_Sharp
 		/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimation_RW")]
-		public unsafe static extern Animation* LoadAnimation_RW(
+		public static extern Animation* LoadAnimation_RW(
 			RWops src,
 			int freesrc
 		);
@@ -282,7 +282,7 @@ namespace SDL_Sharp
 		/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimationTyped_RW")]
-		public unsafe static extern Animation* LoadAnimationTyped_RW(
+		public static extern Animation* LoadAnimationTyped_RW(
 			RWops src,
 			int freesrc,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -291,12 +291,12 @@ namespace SDL_Sharp
 
 		/* anim refers to an IMG_Animation* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_FreeAnimation")]
-		public unsafe static extern void FreeAnimation(Animation* anim);
+		public static extern void FreeAnimation(Animation* anim);
 
 		/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 		/* THIS IS A PUBLIC RWops FUNCTION! */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadGIFAnimation_RW")]
-		public unsafe static extern Animation* LoadGIFAnimation_RW(RWops src);
+		public static extern Animation* LoadGIFAnimation_RW(RWops src);
 
 		#endregion
 
@@ -310,13 +310,5 @@ namespace SDL_Sharp
 		Png = 0x00000002,
 		Tif = 0x00000004,
 		Webp = 0x00000008
-	}
-
-	public unsafe struct Animation
-	{
-		public int Width;
-		public int Height;
-		public Surface* Frames; /* SDL_Surface** */
-		public int* Delays; /* int* */
 	}
 }

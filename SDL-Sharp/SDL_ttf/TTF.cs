@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 
 namespace SDL_Sharp
 {
-	public static class TTF
+	public unsafe static partial class TTF
 	{
 		#region SDL2# Variables
 
@@ -106,7 +106,7 @@ namespace SDL_Sharp
 			byte* file,
 			int ptsize
 		);
-		public static unsafe Font OpenFont(string file, int ptsize)
+		public static Font OpenFont(string file, int ptsize)
 		{
 			byte* utf8File = SDL.Utf8Encode(file);
 			Font handle = INTERNAL_TTF_OpenFont(
@@ -128,12 +128,12 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_OpenFontIndex", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Font INTERNAL_TTF_OpenFontIndex(
+		private static extern Font INTERNAL_TTF_OpenFontIndex(
 			byte* file,
 			int ptsize,
 			long index
 		);
-		public static unsafe Font OpenFontIndex(
+		public static Font OpenFontIndex(
 			string file,
 			int ptsize,
 			long index
@@ -269,7 +269,7 @@ namespace SDL_Sharp
 			out int advance
 		);
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics")]
-		public unsafe static extern int GlyphMetrics(
+		public static extern int GlyphMetrics(
 			Font font,
 			ushort ch,
 			int* minx,
@@ -293,7 +293,7 @@ namespace SDL_Sharp
 			out int advance
 		);
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics32")]
-		public unsafe static extern int GlyphMetrics32(
+		public static extern int GlyphMetrics32(
 			Font font,
 			uint ch,
 			int* minx,
@@ -313,7 +313,7 @@ namespace SDL_Sharp
 			out int h
 		);
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
-		public unsafe static extern int SizeText(
+		public static extern int SizeText(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -323,13 +323,13 @@ namespace SDL_Sharp
 
 		/* font refers to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_TTF_SizeUTF8(
+		private static extern int INTERNAL_TTF_SizeUTF8(
 			Font font,
 			byte* text,
 			out int w,
 			out int h
 		);
-		public static unsafe int SizeUTF8(
+		public static int SizeUTF8(
 			Font font,
 			string text,
 			out int w,
@@ -346,13 +346,13 @@ namespace SDL_Sharp
 			return result;
 		}
 		[DllImport(nativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_TTF_SizeUTF8(
+		private static extern int INTERNAL_TTF_SizeUTF8(
 			Font font,
 			byte* text,
 			int* w,
 			int* h
 		);
-		public static unsafe int SizeUTF8(
+		public static int SizeUTF8(
 			Font font,
 			string text,
 			int* w,
@@ -381,7 +381,7 @@ namespace SDL_Sharp
 		);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
-		public unsafe static extern int SizeUNICODE(
+		public static extern int SizeUNICODE(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 						string text,
@@ -402,7 +402,7 @@ namespace SDL_Sharp
 			out int count
 		);
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureText")]
-		public unsafe static extern int MeasureText(
+		public static extern int MeasureText(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 						string text,
@@ -415,14 +415,14 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_TTF_MeasureUTF8(
+		private static extern int INTERNAL_TTF_MeasureUTF8(
 			Font font,
 			byte* text,
 			int measure_width,
 			out int extent,
 			out int count
 		);
-		public static unsafe int MeasureUTF8(
+		public static int MeasureUTF8(
 			Font font,
 			string text,
 			int measure_width,
@@ -441,14 +441,14 @@ namespace SDL_Sharp
 			return result;
 		}
 		[DllImport(nativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe int INTERNAL_TTF_MeasureUTF8(
+		private static extern int INTERNAL_TTF_MeasureUTF8(
 			Font font,
 			byte* text,
 			int measure_width,
 			int* extent,
 			int* count
 		);
-		public static unsafe int MeasureUTF8(
+		public static int MeasureUTF8(
 			Font font,
 			string text,
 			int measure_width,
@@ -482,7 +482,7 @@ namespace SDL_Sharp
 		);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureUNICODE")]
-		public unsafe static extern int MeasureUNICODE(
+		public static extern int MeasureUNICODE(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 						string text,
@@ -493,7 +493,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Solid")]
-		public unsafe static extern Surface* RenderText_Solid(
+		public static extern Surface* RenderText_Solid(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -502,12 +502,12 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Solid", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_TTF_RenderUTF8_Solid(
+		private static extern Surface* INTERNAL_TTF_RenderUTF8_Solid(
 			Font font,
 			byte* text,
 			Color fg
 		);
-		public static unsafe Surface* RenderUTF8_Solid(
+		public static Surface* RenderUTF8_Solid(
 			Font font,
 			string text,
 			Color fg
@@ -524,7 +524,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Solid")]
-		public unsafe static extern Surface* RenderUNICODE_Solid(
+		public static extern Surface* RenderUNICODE_Solid(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 				string text,
@@ -535,7 +535,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Solid_Wrapped")]
-		public unsafe static extern Surface* RenderText_Solid_Wrapped(
+		public static extern Surface* RenderText_Solid_Wrapped(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -547,7 +547,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Solid_Wrapped", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
+		private static extern Surface* INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
 			Font font,
 			byte* text,
 			Color fg,
@@ -574,7 +574,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Solid_Wrapped")]
-		public static extern unsafe Surface* RenderUNICODE_Solid_Wrapped(
+		public static extern Surface* RenderUNICODE_Solid_Wrapped(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 				string text,
@@ -584,7 +584,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Solid")]
-		public static extern unsafe Surface* RenderGlyph_Solid(
+		public static extern Surface* RenderGlyph_Solid(
 			Font font,
 			ushort ch,
 			Color fg
@@ -594,7 +594,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Solid")]
-		public static extern unsafe Surface* RenderGlyph32_Solid(
+		public static extern Surface* RenderGlyph32_Solid(
 			Font font,
 			uint ch,
 			Color fg
@@ -602,7 +602,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Shaded")]
-		public static extern unsafe Surface* RenderText_Shaded(
+		public static extern Surface* RenderText_Shaded(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -612,13 +612,13 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Shaded", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_TTF_RenderUTF8_Shaded(
+		private static extern Surface* INTERNAL_TTF_RenderUTF8_Shaded(
 			Font font,
 			byte* text,
 			Color fg,
 			Color bg
 		);
-		public static unsafe Surface* RenderUTF8_Shaded(
+		public static Surface* RenderUTF8_Shaded(
 			Font font,
 			string text,
 			Color fg,
@@ -637,7 +637,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Shaded")]
-		public static extern unsafe Surface* _RenderUNICODE_Shaded(
+		public static extern Surface* _RenderUNICODE_Shaded(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 				string text,
@@ -647,7 +647,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Shaded_Wrapped")]
-		public static extern unsafe Surface* RenderText_Shaded_Wrapped(
+		public static extern Surface* RenderText_Shaded_Wrapped(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -660,14 +660,14 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Shaded_Wrapped", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
+		private static extern Surface* INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
 			Font font,
 			byte* text,
 			Color fg,
 			Color bg,
 			uint wrapLength
 		);
-		public static unsafe Surface* RenderUTF8_Shaded_Wrapped(
+		public static Surface* RenderUTF8_Shaded_Wrapped(
 			Font font,
 			string text,
 			Color fg,
@@ -688,7 +688,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Shaded_Wrapped")]
-		public static extern unsafe Surface* RenderUNICODE_Shaded_Wrapped(
+		public static extern Surface* RenderUNICODE_Shaded_Wrapped(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 				string text,
@@ -699,7 +699,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Shaded")]
-		public static extern unsafe Surface* RenderGlyph_Shaded(
+		public static extern Surface* RenderGlyph_Shaded(
 			Font font,
 			ushort ch,
 			Color fg,
@@ -710,7 +710,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Shaded")]
-		public static extern unsafe Surface* RenderGlyph32_Shaded(
+		public static extern Surface* RenderGlyph32_Shaded(
 			Font font,
 			uint ch,
 			Color fg,
@@ -719,7 +719,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Blended")]
-		public static extern unsafe Surface* RenderText_Blended(
+		public static extern Surface* RenderText_Blended(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -728,12 +728,12 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Blended", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_TTF_RenderUTF8_Blended(
+		private static extern Surface* INTERNAL_TTF_RenderUTF8_Blended(
 			Font font,
 			byte* text,
 			Color fg
 		);
-		public static unsafe Surface* RenderUTF8_Blended(
+		public static Surface* RenderUTF8_Blended(
 			Font font,
 			string text,
 			Color fg
@@ -750,7 +750,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Blended")]
-		public static extern unsafe Surface* RenderUNICODE_Blended(
+		public static extern Surface* RenderUNICODE_Blended(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 				string text,
@@ -759,7 +759,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Blended_Wrapped")]
-		public static extern unsafe Surface* RenderText_Blended_Wrapped(
+		public static extern Surface* RenderText_Blended_Wrapped(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPStr)]
 				string text,
@@ -769,13 +769,13 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Blended_Wrapped", CallingConvention = CallingConvention.Cdecl)]
-		private static extern unsafe Surface* INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
+		private static extern Surface* INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
 			Font font,
 			byte* text,
 			Color fg,
 			uint wrapped
 		);
-		public static unsafe Surface* RenderUTF8_Blended_Wrapped(
+		public static Surface* RenderUTF8_Blended_Wrapped(
 			Font font,
 			string text,
 			Color fg,
@@ -794,7 +794,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Blended_Wrapped")]
-		public static extern unsafe Surface* RenderUNICODE_Blended_Wrapped(
+		public static extern Surface* RenderUNICODE_Blended_Wrapped(
 			Font font,
 			[In()] [MarshalAs(UnmanagedType.LPWStr)]
 				string text,
@@ -804,7 +804,7 @@ namespace SDL_Sharp
 
 		/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Blended")]
-		public static extern unsafe Surface* RenderGlyph_Blended(
+		public static extern Surface* RenderGlyph_Blended(
 			Font font,
 			ushort ch,
 			Color fg
@@ -814,7 +814,7 @@ namespace SDL_Sharp
 		 * Only available in 2.0.16 or higher.
 		 */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Blended")]
-		public static extern unsafe Surface* RenderGlyph32_Blended(
+		public static extern Surface* RenderGlyph32_Blended(
 			Font font,
 			uint ch,
 			Color fg
@@ -869,6 +869,7 @@ namespace SDL_Sharp
 		#endregion
 	}
 
+	[StructLayout(LayoutKind.Sequential)]
 	public struct Font
     {
 		private readonly IntPtr ptr;
