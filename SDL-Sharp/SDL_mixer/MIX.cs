@@ -170,21 +170,6 @@ namespace SDL_Sharp
 			return LoadWAV_RW(rwops, 1);
 		}
 
-		/* IntPtr refers to a Mix_Music* */
-		[DllImport(nativeLibName, EntryPoint = "Mix_LoadMUS", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_LoadMUS(
-			byte* file
-		);
-		public static Music LoadMUS(string file)
-		{
-			byte* utf8File = SDL.Utf8Encode(file);
-			Music handle = INTERNAL_Mix_LoadMUS(
-				utf8File
-			);
-			Marshal.FreeHGlobal((IntPtr) utf8File);
-			return handle;
-		}
-
 		/* IntPtr refers to a Mix_Chunk* */
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]
 		public static extern Chunk* QuickLoad_WAV(
@@ -204,10 +189,6 @@ namespace SDL_Sharp
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeChunk")]
 		public static extern void FreeChunk(Chunk* chunk);
 
-		/* music refers to a Mix_Music* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeMusic")]
-		public static extern void FreeMusic(Music music);
-
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetNumChunkDecoders")]
 		public static extern int GetNumChunkDecoders();
 
@@ -222,79 +203,6 @@ namespace SDL_Sharp
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetNumMusicDecoders")]
 		public static extern int GetNumMusicDecoders();
-
-		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicDecoder", CallingConvention = CallingConvention.Cdecl)]
-		private static extern Music INTERNAL_Mix_GetMusicDecoder(int index);
-		public static string GetMusicDecoder(int index)
-		{
-			return SDL.UTF8_ToManaged(
-				INTERNAL_Mix_GetMusicDecoder(index)
-			);
-		}
-
-		/* music refers to a Mix_Music* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicType")]
-		public static extern MusicType GetMusicType(Music music);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicTitle", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_Mix_GetMusicTitle(Music music);
-		public static string GetMusicTitle(Music music)
-		{
-			return SDL.UTF8_ToManaged(
-				INTERNAL_Mix_GetMusicTitle(music)
-			);
-		}
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicTitleTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_Mix_GetMusicTitleTag(Music music);
-		public static string GetMusicTitleTag(Music music)
-		{
-			return SDL.UTF8_ToManaged(
-				INTERNAL_Mix_GetMusicTitleTag(music)
-			);
-		}
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicArtistTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_Mix_GetMusicArtistTag(Music music);
-		public static string GetMusicArtistTag(Music music)
-		{
-			return SDL.UTF8_ToManaged(
-				INTERNAL_Mix_GetMusicArtistTag(music)
-			);
-		}
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicAlbumTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_Mix_GetMusicAlbumTag(Music music);
-		public static string GetMusicAlbumTag(Music music)
-		{
-			return SDL.UTF8_ToManaged(
-				INTERNAL_Mix_GetMusicAlbumTag(music)
-			);
-		}
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, EntryPoint = "Mix_GetMusicCopyrightTag", CallingConvention = CallingConvention.Cdecl)]
-		private static extern IntPtr INTERNAL_Mix_GetMusicCopyrightTag(Music music);
-		public static string GetMusicCopyrightTag(Music music)
-		{
-			return SDL.UTF8_ToManaged(
-				INTERNAL_Mix_GetMusicCopyrightTag(music)
-			);
-		}
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPostMix")]
 		public static extern void SetPostMix(
@@ -398,27 +306,6 @@ namespace SDL_Sharp
 			int ticks
 		);
 
-		/* music refers to a Mix_Music* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayMusic")]
-		public static extern int PlayMusic(Music music, int loops);
-
-		/* music refers to a Mix_Music* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInMusic")]
-		public static extern int FadeInMusic(
-			Music music,
-			int loops,
-			int ms
-		);
-
-		/* music refers to a Mix_Music* */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInMusicPos")]
-		public static extern int FadeInMusicPos(
-			Music music,
-			int loops,
-			int ms,
-			double position
-		);
-
 		/* chunk refers to a Mix_Chunk* */
 		public static int FadeInChannel(
 			int channel,
@@ -451,12 +338,6 @@ namespace SDL_Sharp
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeMusic")]
 		public static extern int VolumeMusic(int volume);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetVolumeMusicStream")]
-		public static extern int GetVolumeMusicStream(Music music);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltChannel")]
 		public static extern int HaltChannel(int channel);
@@ -508,36 +389,6 @@ namespace SDL_Sharp
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetMusicPosition")]
 		public static extern int SetMusicPosition(double position);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicPosition")]
-		public static extern double GetMusicPosition(Music music);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_MusicDuration")]
-		public static extern double MusicDuration(Music music);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicLoopStartTime")]
-		public static extern double GetMusicLoopStartTime(Music music);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicLoopEndTime")]
-		public static extern double GetMusicLoopEndTime(Music music);
-
-		/* music refers to a Mix_Music*
-		 * Only available in 2.0.5 or higher.
-		 */
-		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicLoopLengthTime")]
-		public static extern double GetMusicLoopLengthTime(Music music);
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Playing")]
 		public static extern int Playing(int channel);
