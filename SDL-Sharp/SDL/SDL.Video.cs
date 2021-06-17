@@ -134,6 +134,9 @@ namespace SDL_Sharp
         public static extern Window CreateWindow(string title, int x, int y, int width, int height, WindowFlags flags);
 
         [DllImport(LibraryName, EntryPoint = "SDL_CreateWindowFrom", CallingConvention = CallingConvention.Cdecl)]
+        public static extern Window CreateWindowFrom(void* nativeWindow);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_CreateWindowFrom", CallingConvention = CallingConvention.Cdecl)]
         public static extern Window CreateWindowFrom(IntPtr nativeWindow);
 
         [DllImport(LibraryName, EntryPoint = "SDL_DestroyWindow", CallingConvention = CallingConvention.Cdecl)]
@@ -148,8 +151,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetClosestDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern DisplayMode* GetClosestDisplayMode(int displayIndex, DisplayMode* mode, DisplayMode* closest);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetClosestDisplayMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GetClosestDisplayMode(int displayIndex, ref DisplayMode mode, out DisplayMode closest);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetCurrentDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetCurrentDisplayMode(int displayIndex, DisplayMode* mode);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetCurrentDisplayMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetCurrentDisplayMode(int displayIndex, out DisplayMode mode);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetCurrentVideoDriver", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetCurrentVideoDriver();
@@ -162,11 +171,20 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetDesktopDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetDesktopDisplayMode(int displayIndex, DisplayMode* mode);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetDesktopDisplayMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetDesktopDisplayMode(int displayIndex, out DisplayMode mode);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayBounds", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetDisplayBounds(int displayIndex, Rect* rect);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayBounds", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetDisplayBounds(int displayIndex, out Rect rect);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayDPI", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetDisplayDPI(int displayIndex, float* ddpi, float* hdpi, float* vdpi);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayDPI", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetDisplayDPI(int displayIndex, out float ddpi, out float hdpi, out float vdpi);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetDisplayMode(int displayIndex, int modeIndex, DisplayMode* mode);
@@ -181,6 +199,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayUsableBounds", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetDisplayUsableBounds(int displayIndex, Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayUsableBounds", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetDisplayUsableBounds(int displayIndex, out Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetGrabbedWindow", CallingConvention = CallingConvention.Cdecl)]
         public static extern Window GetGrabbedWindow();
@@ -214,11 +235,19 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowData", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         public static extern void* GetWindowData(Window window, string name);
 
+        public static IntPtr GetWindowDataPtr(Window window, string name)
+        {
+            return (IntPtr)GetWindowData(window,name);
+        }
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowDisplayIndex", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetWindowDisplayIndex(Window window);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetWindowDisplayMode(Window window, DisplayMode* mode);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowDisplayMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetWindowDisplayMode(Window window, out DisplayMode mode);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowFlags", CallingConvention = CallingConvention.Cdecl)]
         public static extern WindowFlags GetWindowFlags(Window window);
@@ -294,8 +323,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowData", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
         public static extern void* SetWindowData(Window window, string name, void* userdata);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_SetWindowData", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+        public static extern IntPtr SetWindowData(Window window, string name, IntPtr userdata);
+
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetWindowDisplayMode(Window window, DisplayMode* mode);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_SetWindowDisplayMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetWindowDisplayMode(Window window, ref DisplayMode mode);
 
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowFullscreen", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetWindowFullscreen(Window window, WindowFlags flags);
@@ -303,11 +338,25 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowGammaRamp", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetWindowGammaRamp(Window window, ushort* red, ushort* green, ushort* blue);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_SetWindowGammaRamp", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetWindowGammaRamp(
+            Window window,
+            [In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeConst = 256)]
+                ushort[] red,
+            [In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeConst = 256)]
+                ushort[] green,
+            [In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeConst = 256)]
+                ushort[] blue
+        );
+
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowGrab", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetWindowGrab(Window window, bool grabbed);
 
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowHitTest", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetWindowHitTest(Window window, HitTest callback, void* data);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_SetWindowHitTest", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetWindowHitTest(Window window, HitTest callback, IntPtr data);
 
         [DllImport(LibraryName, EntryPoint = "SDL_SetWindowInputFocus", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetWindowInputFocus(Window window);
