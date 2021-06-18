@@ -454,14 +454,23 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_AddEventWatch", CallingConvention = CallingConvention.Cdecl)]
         public static extern void AddEventWatch(EventFilter filter, void* userdata);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_AddEventWatch", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void AddEventWatch(EventFilter filter, IntPtr userdata);
+
         [DllImport(LibraryName, EntryPoint = "SDL_DelEventWatch", CallingConvention = CallingConvention.Cdecl)]
         public static extern void DelEventWatch(EventFilter filter, void* userdata);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_DelEventWatch", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void DelEventWatch(EventFilter filter, IntPtr userdata);
 
         [DllImport(LibraryName, EntryPoint = "SDL_EventState", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte EventState(EventType Type, int state);
 
         [DllImport(LibraryName, EntryPoint = "SDL_FilterEvents", CallingConvention = CallingConvention.Cdecl)]
         public static extern void FilterEvents(EventFilter filter, void* userdata);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_FilterEvents", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void FilterEvents(EventFilter filter, IntPtr userdata);
 
         [DllImport(LibraryName, EntryPoint = "SDL_FlushEvent", CallingConvention = CallingConvention.Cdecl)]
         public static extern void FlushEvent(EventType Type);
@@ -476,6 +485,20 @@ namespace SDL_Sharp
         {
             IntPtr ptr;
             bool result = GetEventFilter(&ptr, userdata);
+            if (result)
+                filter = Marshal.GetDelegateForFunctionPointer<EventFilter>(ptr);
+            else
+                filter = null;
+            return result;
+        }
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetEventFilter", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool GetEventFilter(out IntPtr filter, out IntPtr userdata);
+
+        public static bool GetEventFilter(out EventFilter filter, out IntPtr userdata)
+        {
+            IntPtr ptr;
+            bool result = GetEventFilter(out ptr, out userdata);
             if (result)
                 filter = Marshal.GetDelegateForFunctionPointer<EventFilter>(ptr);
             else

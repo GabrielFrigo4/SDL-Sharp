@@ -78,6 +78,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_CreateCursor", CallingConvention = CallingConvention.Cdecl)]
         public static extern Cursor CreateCursor(byte* data, byte* mask, int w, int h, int hotX, int hotY);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_CreateCursor", CallingConvention = CallingConvention.Cdecl)]
+        public static extern Cursor CreateCursor(IntPtr data, IntPtr mask, int w, int h, int hotX, int hotY);
+
         [DllImport(LibraryName, EntryPoint = "SDL_CreateSystemCursor", CallingConvention = CallingConvention.Cdecl)]
         public static extern Cursor CreateSystemCursor(SystemCursor id);
 
@@ -93,17 +96,26 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetGlobalMouseState", CallingConvention = CallingConvention.Cdecl)]
         public static extern ButtonMask GetGlobalMouseState(int* x, int* y);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetGlobalMouseState", CallingConvention = CallingConvention.Cdecl)]
+        public static extern ButtonMask GetGlobalMouseState(out int x, out int y);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetMouseFocus", CallingConvention = CallingConvention.Cdecl)]
         public static extern Window GetMouseFocus();
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetMouseState", CallingConvention = CallingConvention.Cdecl)]
         public static extern ButtonMask GetMouseState(int* x, int* y);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetMouseState", CallingConvention = CallingConvention.Cdecl)]
+        public static extern ButtonMask GetMouseState(out int x, out int y);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetRelativeMouseMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GetRelativeMouseMode();
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetRelativeMouseState", CallingConvention = CallingConvention.Cdecl)]
         public static extern ButtonMask GetRelativeMouseState(int* x, int* y);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRelativeMouseState", CallingConvention = CallingConvention.Cdecl)]
+        public static extern ButtonMask GetRelativeMouseState(out int x, out int y);
 
         [DllImport(LibraryName, EntryPoint = "SDL_SetCursor", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetCursor(Cursor cursor);

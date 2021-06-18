@@ -175,6 +175,16 @@ namespace SDL_Sharp
             return audSpec;
         }
 
+        [DllImport(LibraryName, EntryPoint = "SDL_LoadWAV_RW", CallingConvention = CallingConvention.Cdecl)]
+        public static extern AudioSpec* LoadWavRW(RWops src, int freesrc, ref AudioSpec audioSpec, out IntPtr buf, out int len);
+
+        public static AudioSpec* LoadWavFromFile(String file, ref AudioSpec spec, out IntPtr buf, out int len)
+        {
+            var src = RWFromFile(file, "rb");
+            var audSpec = LoadWavRW(src, 1, ref spec, out buf, out len);
+            return audSpec;
+        }
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetNumAudioDrivers", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern int GetNumAudioDrivers();
 
@@ -184,7 +194,10 @@ namespace SDL_Sharp
 
 
         [DllImport(LibraryName, EntryPoint = "SDL_OpenAudioDevice", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true, SetLastError = true)]
-        public static extern uint OpenAudioDevice(string device, int iscapture, AudioSpec* desired, IntPtr obtained, int allowChanges);
+        public static extern uint OpenAudioDevice(string device, int iscapture, AudioSpec* desired, AudioSpec* obtained, int allowChanges);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_OpenAudioDevice", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true, SetLastError = true)]
+        public static extern uint OpenAudioDevice(string device, int iscapture, ref AudioSpec desired, out AudioSpec obtained, int allowChanges);
 
         [DllImport(LibraryName, EntryPoint = "SDL_CloseAudioDevice", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
         public static extern uint CloseAudioDevice(uint deviceId);
@@ -199,6 +212,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_QueueAudio", SetLastError = true)]
         public static extern int QueueAudio(uint device, byte* buf, int length);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_QueueAudio", SetLastError = true)]
+        public static extern int QueueAudio(uint device, IntPtr buf, int length);
+
         [DllImport(LibraryName, EntryPoint = "SDL_Delay", SetLastError = true)]
         public static extern void Delay(uint ms);
 
@@ -208,9 +224,15 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_memcpy", SetLastError = true)]
         public static extern void* MemCopy(IntPtr dst, IntPtr src, int len);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_memcpy", SetLastError = true)]
+        public static extern IntPtr MemCopyPtr(IntPtr dst, IntPtr src, int len);
+
 
         [DllImport(LibraryName, EntryPoint = "SDL_WriteToDataQueue", SetLastError = true)]
         public static extern void* WriteToDataQueue(IntPtr queue, IntPtr src, int len);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_WriteToDataQueue", SetLastError = true)]
+        public static extern IntPtr WriteToDataQueuePtr(IntPtr queue, IntPtr src, int len);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetQueuedAudioSize", SetLastError = true)]
         public static extern uint GetQueuedAudioSize(uint deviceId);

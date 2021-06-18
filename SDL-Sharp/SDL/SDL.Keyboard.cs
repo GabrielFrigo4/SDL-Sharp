@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp
@@ -33,6 +34,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetKeyboardState", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetKeyboardState(int* numKeys);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetKeyboardState", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GetKeyboardState(out int numKeys);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetModState", CallingConvention = CallingConvention.Cdecl)]
         public static extern KeyModifier GetModState();
 
@@ -64,6 +68,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_SetTextInputRect", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SetTextInputRect(Rect* rect);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_SetTextInputRect", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void SetTextInputRect(ref Rect rect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_StartTextInput", CallingConvention = CallingConvention.Cdecl)]
         public static extern void StartTextInput();

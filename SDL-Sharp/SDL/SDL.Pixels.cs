@@ -63,6 +63,13 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_CalculateGammaRamp", CallingConvention = CallingConvention.Cdecl)]
         public static extern void CalculateGammaRamp(float gamma, ushort* ramp);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_CalculateGammaRamp", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CalculateGammaRamp(
+            float gamma,
+            [Out()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2, SizeConst = 256)]
+                ushort[] ramp
+        );
+
         [DllImport(LibraryName, EntryPoint = "SDL_FreeFormat", CallingConvention = CallingConvention.Cdecl)]
         public static extern void FreeFormat(PixelFormat* format);
 
@@ -77,8 +84,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetRGB", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetRGB(uint pixel, PixelFormat* format, byte* r, byte* g, byte* b);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRGB", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetRGB(uint pixel, PixelFormat* format, out byte r, out byte g, out byte b);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetRGBA", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetRGBA(uint pixel, PixelFormat* format, byte* r, byte* g, byte* b, byte* a);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRGBA", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GetRGBA(uint pixel, PixelFormat* format, out byte r, out byte g, out byte b, out byte a);
 
         [DllImport(LibraryName, EntryPoint = "SDL_MapRGB", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint MapRGB(PixelFormat* format, byte r, byte g, byte b);
@@ -92,8 +105,14 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_PixelFormatEnumToMasks", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool PixelFormatEnumToMasks(uint format, int* bpp, uint* Rmask, uint* Gmask, uint* Bmask, uint* Amask);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_PixelFormatEnumToMasks", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool PixelFormatEnumToMasks(uint format, out int bpp, out uint Rmask, out uint Gmask, out uint Bmask, out uint Amask);
+
         [DllImport(LibraryName, EntryPoint = "SDL_SetPaletteColors", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetPaletteColors(Palette* palette, Color* colors, int firstcolor, int ncolors);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_SetPaletteColors", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetPaletteColors(Palette* palette, [In] Color[] colors, int firstcolor, int ncolors);
 
         [DllImport(LibraryName, EntryPoint = "SDL_SetPixelFormatPalette", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SetPixelFormatPalette(PixelFormat* format, Palette* palette);

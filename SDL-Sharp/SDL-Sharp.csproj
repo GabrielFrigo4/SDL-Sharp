@@ -21,8 +21,8 @@ and contains the necessary DLLs for the project</Description>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <PackageIconUrl />
-    <PackageReleaseNotes>functions fixed and structs
-add new unsafe and safe functions</PackageReleaseNotes>
+    <PackageReleaseNotes>Minor tweaks and fixes
+add new Functions</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
