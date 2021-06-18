@@ -63,5 +63,8 @@ namespace SDL_Sharp
     {
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowWMInfo", CallingConvention = CallingConvention.Cdecl)]
         public static extern bool GetWindowWMInfo(Window window, SysWMInfo* info);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowWMInfo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool GetWindowWMInfo(Window window, ref SysWMInfo info);
     }
 }

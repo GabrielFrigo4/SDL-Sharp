@@ -99,6 +99,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_JoystickGetBall", CallingConvention = CallingConvention.Cdecl)]
         public static extern int JoystickGetBall(Joystick joystick, int ball, int* dx, int* dy);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_JoystickGetBall", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int JoystickGetBall(Joystick joystick, int ball, out int dx, out int dy);
+
         [DllImport(LibraryName, EntryPoint = "SDL_JoystickGetButton", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte JoystickGetButton(Joystick joystick, int button);
 
@@ -113,6 +116,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_JoystickGetGUIDString", CallingConvention = CallingConvention.Cdecl)]
         public static extern void JoystickGetGUIDString(Guid guid, byte* pszGUID, int cbGUID);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_JoystickGetGUIDString", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void JoystickGetGUIDString(Guid guid, byte[] pszGUID, int cbGUID);
 
         [DllImport(LibraryName, EntryPoint = "SDL_JoystickGetHat", CallingConvention = CallingConvention.Cdecl)]
         public static extern Hat JoystickGetHat(Joystick joystick, int hat);

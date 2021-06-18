@@ -120,6 +120,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDrawBlendMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRenderDrawBlendMode(Renderer renderer, BlendMode* blendMode);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDrawBlendMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetRenderDrawBlendMode(Renderer renderer, out BlendMode blendMode);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDrawColor", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRenderDrawColor(Renderer renderer, byte* r, byte* g, byte* b, byte* a);
 
@@ -129,6 +132,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDriverInfo", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRenderDriverInfo(int index, RendererInfo* info);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRenderDriverInfo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetRenderDriverInfo(int index, out RendererInfo info);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetRenderTarget", CallingConvention = CallingConvention.Cdecl)]
         public static extern Texture GetRenderTarget(Renderer* renderer);
 
@@ -137,6 +143,9 @@ namespace SDL_Sharp
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetRendererInfo", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRendererInfo(Renderer renderer, RendererInfo* info);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_GetRendererInfo", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetRendererInfo(Renderer renderer, out RendererInfo info);
 
         [DllImport(LibraryName, EntryPoint = "SDL_GetRendererOutputSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetRendererOutputSize(Renderer renderer, int* w, int* h);
@@ -153,6 +162,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetTextureBlendMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTextureBlendMode(Texture texture, BlendMode* blendMode);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetTextureBlendMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetTextureBlendMode(Texture texture, out BlendMode blendMode);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetTextureColorMod", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetTextureColorMod(Texture texture, byte* r, byte* g, byte* b);
 
@@ -163,7 +175,7 @@ namespace SDL_Sharp
         public static extern int LockTexture(Texture texture, Rect* rect, void** pixels, int* pitch);
 
         [DllImport(LibraryName, EntryPoint = "SDL_LockTexture", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int LockTexture(Texture texture, ref Rect rect, out void* pixels, out int pitch);
+        public static extern int LockTexture(Texture texture, ref Rect rect, out IntPtr pixels, out int pitch);
 
         [DllImport(LibraryName, EntryPoint = "SDL_QueryTexture", CallingConvention = CallingConvention.Cdecl)]
         public static extern int QueryTexture(Texture texture, uint* format, TextureAccess* access, int* w, int* h);
@@ -178,7 +190,7 @@ namespace SDL_Sharp
         public static extern int RenderCopy(Renderer renderer, Texture texture, Rect* srcrect, Rect* dstrect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderCopy", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int RenderCopy(Renderer renderer, Texture texture, out Rect srcrect, out Rect dstrect);
+        public static extern int RenderCopy(Renderer renderer, Texture texture, ref Rect srcrect, ref Rect dstrect);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderCopyEx", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderCopyEx(Renderer renderer, Texture texture, Rect* srcrect, Rect* dstrect, double angle, Point* center, RendererFlip flip);
@@ -265,7 +277,7 @@ namespace SDL_Sharp
         public static extern int RenderReadPixels(Renderer renderer, Rect* rect, uint format, void* pixels, int pitch);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderReadPixels", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int RenderReadPixels(Renderer renderer, ref Rect rect, uint format, void* pixels, int pitch);
+        public static extern int RenderReadPixels(Renderer renderer, ref Rect rect, uint format, IntPtr pixels, int pitch);
 
         [DllImport(LibraryName, EntryPoint = "SDL_RenderSetClipRect", CallingConvention = CallingConvention.Cdecl)]
         public static extern int RenderSetClipRect(Renderer renderer, Rect* rect);
@@ -316,9 +328,12 @@ namespace SDL_Sharp
         public static extern int UpdateTexture(Texture texture, Rect* rect, void* pixels, int pitch);
 
         [DllImport(LibraryName, EntryPoint = "SDL_UpdateTexture", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int UpdateTexture(Texture texture, ref Rect rect, void* pixels, int pitch);
+        public static extern int UpdateTexture(Texture texture, ref Rect rect, IntPtr pixels, int pitch);
 
         [DllImport(LibraryName, EntryPoint = "SDL_UpdateYUVTexture", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int UpdateYUVTexture(Texture texture, ref Rect rect, byte* Yplane, int Ypitch, byte* Uplane, int Upitch, byte* Vplane, int Vpitch);
+        public static extern int UpdateYUVTexture(Texture texture, Rect* rect, byte* Yplane, int Ypitch, byte* Uplane, int Upitch, byte* Vplane, int Vpitch);
+
+        [DllImport(LibraryName, EntryPoint = "SDL_UpdateYUVTexture", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int UpdateYUVTexture(Texture texture, ref Rect rect, IntPtr Yplane, int Ypitch, IntPtr Uplane, int Upitch, IntPtr Vplane, int Vpitch);
     }
 }
