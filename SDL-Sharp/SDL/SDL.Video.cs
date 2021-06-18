@@ -189,6 +189,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayMode", CallingConvention = CallingConvention.Cdecl)]
         public static extern int GetDisplayMode(int displayIndex, int modeIndex, DisplayMode* mode);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayMode", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetDisplayMode(int displayIndex, int modeIndex, out DisplayMode mode);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayName", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetDisplayName(int displayIndex);
 
