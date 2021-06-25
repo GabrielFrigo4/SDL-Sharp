@@ -21,8 +21,10 @@ and contains the necessary DLLs for the project</Description>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <PackageIconUrl />
-    <PackageReleaseNotes>Minor tweaks and fixes
-add new Functions</PackageReleaseNotes>
+    <PackageReleaseNotes>add using:
+SDL_Sharp.Ttf
+SDL_Sharp.Mix
+SDL_Sharp.Img</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
