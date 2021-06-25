@@ -31,7 +31,7 @@ using System;
 using System.Runtime.InteropServices;
 #endregion
 
-namespace SDL_Sharp
+namespace SDL_Sharp.Mix
 {
 	public unsafe static partial class MIX
 	{
