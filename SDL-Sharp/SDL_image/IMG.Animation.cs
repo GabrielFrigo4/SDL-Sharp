@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace SDL_Sharp
+namespace SDL_Sharp.Img
 {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Animation
