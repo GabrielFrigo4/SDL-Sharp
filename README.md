@@ -21,7 +21,7 @@ This project aims to make SDL2 non-aggressive in c#
 
 SDL2 code # would look like this:
 
-//////
+////// [exemple 1]
 
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
@@ -32,7 +32,7 @@ IntPtr renderer = SDL.SDL_CreateRenderer(window,
                                       SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
                                       SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
                                       
-//////
+////// [exemple 2]
 
 And on SDL-Sharp like this:
 
@@ -44,7 +44,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 //////
 
-///
+/// [OpenGL & OpenAL]
 
 |to use openGL, you need to initialize Import(SDL.GL_GetProcAddress);|
 
