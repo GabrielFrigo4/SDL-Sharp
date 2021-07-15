@@ -16,14 +16,10 @@ The wrapper provides bindings for the following libraries:
 - OpenGL Mathematics (GLM)
 - SharpFont (FreeType)
 and contains the necessary DLLs for the project</Description>
-    <PackageReleaseNotes>add link:
-- OpenAL
-- OpenGL Math (GLM)
-- SharpFont (FreeType)
-add using:
-SDL_Sharp.OpenAL
-SDL_Sharp.GLM
-SharpFont</PackageReleaseNotes>
+    <PackageReleaseNotes>SDL_Sharp.GLM -&gt; SDL_Sharp.OpenGL.Mathematics
+Add funcs in OpenAL.AL:
+uint alGenSource();
+uint alGenBuffer();</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
   </PropertyGroup>
 
