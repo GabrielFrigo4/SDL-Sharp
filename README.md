@@ -7,6 +7,7 @@ The wrapper provides bindings for the following libraries (contains the necessar
 - OpenGL (4.6 core) in SDL_Sharp.OpenGL
 - OpenAL (1.1) in SDL_Sharp.OpenAL
 - OpenGL Mathematics (GLM) in SDL_Sharp.GLM
+- SharpFont (FreeType) in SharpFont
 
 nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
 nuget 64-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/)
