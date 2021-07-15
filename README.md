@@ -4,7 +4,7 @@ The wrapper provides bindings for the following libraries (contains the necessar
 - SDL2_image (2.0.5) in SDL_Sharp.Img
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mix
 - SDL2_ttf (2.0.15) in SDL_Sharp.Ttf
-- OpenGL(4.6 core) in SDL_Sharp.OpenGL
+- OpenGL (4.6 core) in SDL_Sharp.OpenGL
 
 |to use openGL, you need to initialize Import(SDL.GL_GetProcAddress);|
 
