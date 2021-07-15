@@ -1,6 +1,6 @@
 using System;
 
-namespace SDL_Sharp.GML 
+namespace SDL_Sharp.OpenGL.Mathematics
 {
     /// <summary>
     /// The glm class contains static functions as exposed in the glm namespace of the 

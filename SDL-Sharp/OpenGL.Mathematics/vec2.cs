@@ -1,6 +1,6 @@
 using System;
 
-namespace SDL_Sharp.GML
+namespace SDL_Sharp.OpenGL.Mathematics
 {
     /// <summary>
     /// Represents a two dimensional vector.

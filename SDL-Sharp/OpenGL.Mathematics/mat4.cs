@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace SDL_Sharp.GML
+namespace SDL_Sharp.OpenGL.Mathematics
 {
     /// <summary>
     /// Represents a 4x4 matrix.

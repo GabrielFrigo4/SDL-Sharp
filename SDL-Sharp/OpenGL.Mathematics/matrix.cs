@@ -1,4 +1,4 @@
-﻿namespace SDL_Sharp.GML
+﻿namespace SDL_Sharp.OpenGL.Mathematics
 {
     // ReSharper disable InconsistentNaming
     public static partial class glm

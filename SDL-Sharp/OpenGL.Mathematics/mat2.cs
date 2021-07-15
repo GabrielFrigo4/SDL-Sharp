@@ -1,50 +1,56 @@
 using System;
 using System.Linq;
 
-namespace SDL_Sharp.GML
+namespace SDL_Sharp.OpenGL.Mathematics
 {
     /// <summary>
-    /// Represents a 3x3 matrix.
+    /// Represents a 2x2 matrix.
     /// </summary>
-    public struct mat3
+    public struct mat2
     {
         #region Construction
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="mat3"/> struct.
+        /// Initializes a new instance of the <see cref="mat2"/> struct.
         /// This matrix is the identity matrix scaled by <paramref name="scale"/>.
         /// </summary>
         /// <param name="scale">The scale.</param>
-        public mat3(float scale)
+        public mat2(float scale)
         {
             cols = new[]
             {
-                new vec3(scale, 0.0f, 0.0f),
-                new vec3(0.0f, scale, 0.0f),
-                new vec3(0.0f, 0.0f, scale)
+                new vec2(scale, 0.0f),
+                new vec2(0.0f, scale)
             };
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="mat3"/> struct.
+        /// Initializes a new instance of the <see cref="mat2"/> struct.
         /// The matrix is initialised with the <paramref name="cols"/>.
         /// </summary>
         /// <param name="cols">The colums of the matrix.</param>
-        public mat3(vec3[] cols)
+        public mat2(vec2[] cols)
         {
             this.cols = new[]
             {
                 cols[0],
-                cols[1],
-                cols[2]
+                cols[1]
             };
         }
 
-        public mat3(vec3 a, vec3 b, vec3 c)
+        public mat2(vec2 a, vec2 b)
         {
             this.cols = new[]
             {
-                a, b, c
+                a, b
+            };
+        }
+
+        public mat2(float a, float b, float c, float d)
+        {
+            this.cols = new[]
+            {
+                new vec2(a,b), new vec2(c,d)
             };
         }
 
@@ -52,15 +58,14 @@ namespace SDL_Sharp.GML
         /// Creates an identity matrix.
         /// </summary>
         /// <returns>A new identity matrix.</returns>
-        public static mat3 identity()
+        public static mat2 identity()
         {
-            return new mat3
+            return new mat2
             {
                 cols = new[]
                 {
-                    new vec3(1,0,0),
-                    new vec3(0,1,0),
-                    new vec3(0,0,1)
+                    new vec2(1,0),
+                    new vec2(0,1)
                 }
             };
         }
@@ -70,14 +75,14 @@ namespace SDL_Sharp.GML
         #region Index Access
 
         /// <summary>
-        /// Gets or sets the <see cref="vec3"/> column at the specified index.
+        /// Gets or sets the <see cref="vec2"/> column at the specified index.
         /// </summary>
         /// <value>
-        /// The <see cref="vec3"/> column.
+        /// The <see cref="vec2"/> column.
         /// </value>
         /// <param name="column">The column index.</param>
         /// <returns>The column at index <paramref name="column"/>.</returns>
-        public vec3 this[int column]
+        public vec2 this[int column]
         {
             get { return cols[column]; }
             set { cols[column] = value; }
@@ -113,17 +118,6 @@ namespace SDL_Sharp.GML
             return cols.SelectMany(v => v.to_array()).ToArray();
         }
 
-        /// <summary>
-        /// Returns the <see cref="mat3"/> portion of this matrix.
-        /// </summary>
-        /// <returns>The <see cref="mat3"/> portion of this matrix.</returns>
-        public mat2 to_mat2()
-        {
-            return new mat2(new[] {
-      new vec2(cols[0][0], cols[0][1]),
-      new vec2(cols[1][0], cols[1][1])});
-        }
-
         #endregion
 
         #region Multiplication
@@ -134,12 +128,11 @@ namespace SDL_Sharp.GML
         /// <param name="lhs">The LHS matrix.</param>
         /// <param name="rhs">The RHS vector.</param>
         /// <returns>The product of <paramref name="lhs"/> and <paramref name="rhs"/>.</returns>
-        public static vec3 operator *(mat3 lhs, vec3 rhs)
+        public static vec2 operator *(mat2 lhs, vec2 rhs)
         {
-            return new vec3(
-                lhs[0, 0] * rhs[0] + lhs[1, 0] * rhs[1] + lhs[2, 0] * rhs[2],
-                lhs[0, 1] * rhs[0] + lhs[1, 1] * rhs[1] + lhs[2, 1] * rhs[2],
-                lhs[0, 2] * rhs[0] + lhs[1, 2] * rhs[1] + lhs[2, 2] * rhs[2]
+            return new vec2(
+                lhs[0, 0] * rhs[0] + lhs[1, 0] * rhs[1],
+                lhs[0, 1] * rhs[0] + lhs[1, 1] * rhs[1]
             );
         }
 
@@ -149,39 +142,37 @@ namespace SDL_Sharp.GML
         /// <param name="lhs">The LHS matrix.</param>
         /// <param name="rhs">The RHS matrix.</param>
         /// <returns>The product of <paramref name="lhs"/> and <paramref name="rhs"/>.</returns>
-        public static mat3 operator *(mat3 lhs, mat3 rhs)
+        public static mat2 operator *(mat2 lhs, mat2 rhs)
         {
-            return new mat3(new[]
+            return new mat2(new[]
             {
-          lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1] + lhs[2][0] * rhs[2],
-          lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1] + lhs[2][1] * rhs[2],
-          lhs[0][2] * rhs[0] + lhs[1][2] * rhs[1] + lhs[2][2] * rhs[2]
+          lhs[0][0] * rhs[0] + lhs[1][0] * rhs[1],
+          lhs[0][1] * rhs[0] + lhs[1][1] * rhs[1]
             });
         }
 
-        public static mat3 operator *(mat3 lhs, float s)
+        public static mat2 operator *(mat2 lhs, float s)
         {
-            return new mat3(new[]
+            return new mat2(new[]
             {
                 lhs[0]*s,
-                lhs[1]*s,
-                lhs[2]*s
+                lhs[1]*s
             });
         }
 
         #endregion
 
         #region ToString support
-         
+
         public override string ToString()
         {
             return String.Format(
-                "[{0}, {1}, {2}; {3}, {4}, {5}; {6}, {7}, {8}]",
-                this[0, 0], this[1, 0], this[2, 0],
-                this[0, 1], this[1, 1], this[2, 1],
-                this[0, 2], this[1, 2], this[2, 2]
+                "[{0}, {1}; {2}, {3}]",
+                this[0, 0], this[1, 0],
+                this[0, 1], this[1, 1]
             );
         }
+        
         #endregion
 
         #region comparision
@@ -195,10 +186,10 @@ namespace SDL_Sharp.GML
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (obj.GetType() == typeof(mat3))
+            if (obj.GetType() == typeof(mat2))
             {
-                var mat = (mat3)obj;
-                if (mat[0] == this[0] && mat[1] == this[1] && mat[2] == this[2])
+                var mat = (mat2)obj;
+                if (mat[0] == this[0] && mat[1] == this[1])
                     return true;
             }
 
@@ -212,7 +203,7 @@ namespace SDL_Sharp.GML
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator ==(mat3 m1, mat3 m2)
+        public static bool operator ==(mat2 m1, mat2 m2)
         {
             return m1.Equals(m2);
         }
@@ -225,7 +216,7 @@ namespace SDL_Sharp.GML
         /// <returns>
         /// The result of the operator.
         /// </returns>
-        public static bool operator !=(mat3 m1, mat3 m2)
+        public static bool operator !=(mat2 m1, mat2 m2)
         {
             return !m1.Equals(m2);
         }
@@ -238,13 +229,14 @@ namespace SDL_Sharp.GML
         /// </returns>
         public override int GetHashCode()
         {
-            return this[0].GetHashCode() ^ this[1].GetHashCode() ^ this[2].GetHashCode();
+            return this[0].GetHashCode() ^ this[1].GetHashCode();
         }
+        
         #endregion
 
         /// <summary>
         /// The columms of the matrix.
         /// </summary>
-        private vec3[] cols;
+        private vec2[] cols;
     }
 }

@@ -49,5 +49,18 @@ namespace SDL_Sharp.OpenAL
 
 		[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl)]
 		public static extern void alSpeedOfSound(float value);
+
+		public static uint alGenBuffer()
+        {
+			uint buffer;
+			alGenBuffers(1, out buffer);
+			return buffer;
+		}
+		public static uint alGenSource()
+		{
+			uint source;
+			alGenBuffers(1, out source);
+			return source;
+		}
 	}
 }

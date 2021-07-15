@@ -24,6 +24,7 @@ add using:
 SDL_Sharp.OpenAL
 SDL_Sharp.GLM
 SharpFont</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
