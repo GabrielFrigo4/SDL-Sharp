@@ -5,6 +5,8 @@ The wrapper provides bindings for the following libraries (contains the necessar
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mix
 - SDL2_ttf (2.0.15) in SDL_Sharp.Ttf
 - OpenGL (4.6 core) in SDL_Sharp.OpenGL
+- OpenAL (1.1) in SDL_Sharp.OpenAL
+- OpenGL Mathematics (GLM) in SDL_Sharp.GLM
 
 nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
 nuget 64-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/)
@@ -45,6 +47,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 |to use openGL, you need to initialize Import(SDL.GL_GetProcAddress);|
 not to repeat the GL for each function and struct, use the |using static SDL_Sharp.OpenGL.GL;|
+it is also possible to use the same strategy with openAL AL and ALC |using static SDL_Sharp.OpenAL.AL;|
 
 
 In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
