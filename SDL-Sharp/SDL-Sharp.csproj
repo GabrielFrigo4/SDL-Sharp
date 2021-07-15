@@ -12,14 +12,18 @@ The wrapper provides bindings for the following libraries:
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
 - SDL2_ttf (2.0.15)
-- OpenGL (4.6 Core )
+- OpenGL (4.6 Core)
+- OpenGL Mathematics (GLM)
+- SharpFont (FreeType)
 and contains the necessary DLLs for the project</Description>
     <PackageReleaseNotes>add link:
 - OpenAL
 - OpenGL Math (GLM)
+- SharpFont (FreeType)
 add using:
 SDL_Sharp.OpenAL
-SDL_Sharp.GLM</PackageReleaseNotes>
+SDL_Sharp.GLM
+SharpFont</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
