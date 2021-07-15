@@ -47,6 +47,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 |to use openGL, you need to initialize Import(SDL.GL_GetProcAddress);|
 not to repeat the GL for each function and struct, use the |using static SDL_Sharp.OpenGL.GL;|
+
 it is also possible to use the same strategy with openAL AL and ALC |using static SDL_Sharp.OpenAL.AL;|
 
 
