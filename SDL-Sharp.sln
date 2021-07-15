@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDL-Sharp", "SDL-Sharp\SDL-Sharp.csproj", "{24E60482-4AE7-4228-9E4A-80D9F27B2774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SDL-Sharp", "SDL-Sharp\SDL-Sharp.csproj", "{24E60482-4AE7-4228-9E4A-80D9F27B2774}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,8 +19,8 @@ Global
 		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Debug|x86.Build.0 = Debug|x86
 		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Release|x64.ActiveCfg = Release|x64
 		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Release|x64.Build.0 = Release|x64
-		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Release|x86.ActiveCfg = Release|x64
-		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Release|x86.Build.0 = Release|x64
+		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Release|x86.ActiveCfg = Release|x86
+		{24E60482-4AE7-4228-9E4A-80D9F27B2774}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
