@@ -3,52 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>SDL_Sharp</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
-    <Description>is a SDL2 for c#
-The wrapper provides bindings for the following libraries:
-- SDL2 (2.0.14)
-- SDL2_image (2.0.5)
-- SDL2_mixer (2.0.4)
-- SDL2_ttf (2.0.15)
-- OpenGL (4.6 Core )
-and contains the necessary DLLs for the project</Description>
-    <Authors>Gabriel Frigo</Authors>
-    <NeutralLanguage>en</NeutralLanguage>
-    <Company>Gabriel Frigo</Company>
-    <Product>SDL-Sharp</Product>
-    <Copyright>Free</Copyright>
-    <Platforms>x86;x64</Platforms>
-    <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <PackageIcon></PackageIcon>
-    <PackageIconUrl />
-<<<<<<< HEAD
-    <PackageReleaseNotes>add OpenGL link
-add using:
-
-SDL_Sharp.OpenGL</PackageReleaseNotes>
-=======
-    <PackageReleaseNotes>add using:
-SDL_Sharp.Ttf
-SDL_Sharp.Mix
-SDL_Sharp.Img</PackageReleaseNotes>
->>>>>>> 2c1a7ba1394cf72510bbea526a4f515b302b7e53
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
 </Project>
