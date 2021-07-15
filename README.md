@@ -5,8 +5,8 @@ The wrapper provides bindings for the following libraries (contains the necessar
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mix
 - SDL2_ttf (2.0.15) in SDL_Sharp.Ttf
 - OpenGL (4.6 core) in SDL_Sharp.OpenGL
-- OpenAL (1.1) in SDL_Sharp.OpenAL
 - OpenGL Mathematics (GLM) in SDL_Sharp.GLM
+- OpenAL (1.1) in SDL_Sharp.OpenAL
 - SharpFont (FreeType) in SharpFont
 
 nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
