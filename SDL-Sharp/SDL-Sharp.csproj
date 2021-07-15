@@ -11,6 +11,7 @@ The wrapper provides bindings for the following libraries:
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
 - SDL2_ttf (2.0.15)
+- OpenGL (4.6 Core )
 and contains the necessary DLLs for the project</Description>
     <Authors>Gabriel Frigo</Authors>
     <NeutralLanguage>en</NeutralLanguage>
@@ -21,10 +22,17 @@ and contains the necessary DLLs for the project</Description>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <PackageIconUrl />
+<<<<<<< HEAD
+    <PackageReleaseNotes>add OpenGL link
+add using:
+
+SDL_Sharp.OpenGL</PackageReleaseNotes>
+=======
     <PackageReleaseNotes>add using:
 SDL_Sharp.Ttf
 SDL_Sharp.Mix
 SDL_Sharp.Img</PackageReleaseNotes>
+>>>>>>> 2c1a7ba1394cf72510bbea526a4f515b302b7e53
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
