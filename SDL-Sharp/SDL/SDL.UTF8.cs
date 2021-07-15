@@ -73,6 +73,10 @@ namespace SDL_Sharp
 			return buffer;
 		}
 
+		/* Get a Free func! */
+		[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl)]
+		static extern void Free(IntPtr memblock);
+
 		/* This is public because SDL_DropEvent needs it! */
 		public static unsafe string UTF8_ToManaged(IntPtr s, bool freePtr = false)
 		{
@@ -118,9 +122,6 @@ namespace SDL_Sharp
 			int strLen = System.Text.Encoding.UTF8.GetChars((byte*)s, len, chars, len);
 			string result = new string(chars, 0, strLen);
 #endif
-
-			[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl)]
-			static extern void Free(IntPtr memblock);
 
 			/* Some SDL functions will malloc, we have to free! */
 			if (freePtr)
