@@ -3,6 +3,31 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>SDL_Sharp</RootNamespace>
+    <Platforms>x64;x86</Platforms>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Description>is a SDL2 for c#
+The wrapper provides bindings for the following libraries:
+- SDL2 (2.0.14)
+- SDL2_image (2.0.5)
+- SDL2_mixer (2.0.4)
+- SDL2_ttf (2.0.15)
+- OpenGL (4.6 Core )
+and contains the necessary DLLs for the project</Description>
+    <PackageReleaseNotes>add link:
+- OpenAL
+- OpenGL Math (GLM)
+add using:
+SDL_Sharp.OpenAL
+SDL_Sharp.GLM</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
 </Project>
