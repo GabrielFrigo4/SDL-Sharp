@@ -14,12 +14,10 @@ The wrapper provides bindings for the following libraries:
 - SDL2_ttf (2.0.15)
 - OpenGL (4.6 Core)
 - OpenGL Mathematics (GLM)
+- OpenAL (1.1)
 - SharpFont (FreeType)
 and contains the necessary DLLs for the project</Description>
-    <PackageReleaseNotes>SDL_Sharp.GLM -&gt; SDL_Sharp.OpenGL.Mathematics
-Add funcs in OpenAL.AL:
-uint alGenSource();
-uint alGenBuffer();</PackageReleaseNotes>
+    <PackageReleaseNotes>NOVIDADES AQUIIIIIIIII!!!!!!!!</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <Version>1.0.0</Version>
   </PropertyGroup>
