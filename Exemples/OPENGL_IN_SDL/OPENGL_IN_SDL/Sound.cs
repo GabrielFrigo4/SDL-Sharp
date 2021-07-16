@@ -69,8 +69,7 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public Sound(string path, float volume)
         {
-            //source// = alGenSource();
-            alGenSources(1, out source);
+            source = alGenSource();
             buffer = LoadSound(path);
             alSourcef(source, AL_GAIN, 1);
             alSourcef(source, AL_PITCH, 1);
@@ -177,9 +176,7 @@ namespace OPENGL_IN_SDL
 
         unsafe static uint LoadSound(string path)
         {
-            //uint buffer = alGenBuffer();
-            uint buffer;
-            alGenBuffers(1, out buffer);
+            uint buffer = alGenBuffer();
             buffers.Add(buffer);
 
             int channels, bits_per_sample, sample_rate;
