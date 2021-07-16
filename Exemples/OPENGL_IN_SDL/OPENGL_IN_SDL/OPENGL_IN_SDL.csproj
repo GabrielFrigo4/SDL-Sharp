@@ -33,10 +33,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="SDL-Sharp\SDL-Sharp.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="SDL2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
