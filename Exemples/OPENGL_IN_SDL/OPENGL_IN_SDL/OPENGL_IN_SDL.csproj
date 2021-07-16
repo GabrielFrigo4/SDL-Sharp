@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -33,10 +35,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Files\triangle.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Files\triangle.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="SDL2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="sound.wav">
+    <None Update="Files\sound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
