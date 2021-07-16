@@ -35,7 +35,7 @@ namespace SDL_Sharp.OpenAL
 {
 	public static partial class ALC
 	{
-		private const string nativeLibName = "OpenAL32.dll";
+		private const string nativeLibName = "OpenAL32";
 
 		/* typedef int ALenum; */
 		public const int ALC_FALSE =			0x0000;

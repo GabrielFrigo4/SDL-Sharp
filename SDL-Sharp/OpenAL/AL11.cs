@@ -62,5 +62,15 @@ namespace SDL_Sharp.OpenAL
 			alGenBuffers(1, out source);
 			return source;
 		}
+
+		public static void alDeleteSource(uint source)
+        {
+			alDeleteSources(1, ref source);
+        }
+
+		public static void alDeleteBuffer(uint buffer)
+		{
+			alDeleteBuffers(1, ref buffer);
+		}
 	}
 }
