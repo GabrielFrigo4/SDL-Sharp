@@ -1,6 +1,5 @@
 ﻿using SDL_Sharp.OpenGL.Mathematics;
-using static SDL_Sharp.OpenAL.AL;
-using static SDL_Sharp.OpenAL.ALC;
+using SDL_Sharp.OpenAL;
 using System.Collections.Generic;
 using System.Threading;
 using System.IO;
@@ -14,7 +13,7 @@ namespace OPENGL_IN_SDL
         float x = 0, y = 0, z = 0;
         uint source, buffer;
         short loop;
-        public vec3 GetPos { get { return new vec3(x, y, z); } }
+        public Vector3 GetPos { get { return new Vector3(x, y, z); } }
 
         //thread funcs and vars
         static object locker = new object();
@@ -53,8 +52,8 @@ namespace OPENGL_IN_SDL
         void Update()
         {
             int state;
-            alGetSourcei(source, AL_SOURCE_STATE, out state);
-            if (state == AL_STOPPED && loop != 0)
+            AL.GetSource(source, ALSourcei.SourceType, out state);
+            if ((ALSourceState)state == ALSourceState.Stopped && loop != 0)
             {
                 Play(loop);
                 if (loop > 0)
@@ -69,11 +68,11 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public Sound(string path, float volume)
         {
-            source = alGenSource();
+            source = AL.GenSource();
             buffer = LoadSound(path);
-            alSourcef(source, AL_GAIN, 1);
-            alSourcef(source, AL_PITCH, 1);
-            alSource3f(source, AL_POSITION, 0, 0, 0);
+            AL.Source(source, ALSourcef.Gain, 1);
+            AL.Source(source, ALSourcef.Pitch, 1);
+            AL.Source(source, ALSource3f.Position, 0, 0, 0);
             Volume(volume);
             newSounds.Add(this);
         }
@@ -83,7 +82,7 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public void Volume(float volume)
         {
-            alSourcef(source, AL_GAIN, volume);
+            AL.Source(source, ALSourcef.Gain, volume);
         }
 
         /// <summary>
@@ -92,8 +91,8 @@ namespace OPENGL_IN_SDL
         public void Play(short loop)
         {
             this.loop = loop;
-            alSourcei(source, AL_BUFFER, (int)buffer);
-            alSourcePlay(source);
+            AL.Source(source, ALSourcei.Buffer, (int)buffer);
+            AL.SourcePlay(source);
         }
 
         /// <summary>
@@ -104,7 +103,7 @@ namespace OPENGL_IN_SDL
             this.x = x;
             this.y = y;
             this.z = z;
-            alSource3f(source, AL_POSITION, x, y, z);
+            AL.Source(source, ALSource3f.Position, x, y, z);
         }
 
         /// <summary>
@@ -112,7 +111,7 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public void Stop()
         {
-            alSourceStop(source);
+            AL.SourceStop(source);
             loop = 0;
         }
 
@@ -126,7 +125,7 @@ namespace OPENGL_IN_SDL
 
         void Depose()
         {
-            alDeleteSource(source);
+            AL.DeleteSource(source);
         }
 
         ~Sound()
@@ -144,9 +143,9 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public static void Init()
         {
-            Device = alcOpenDevice(null);
-            Context = alcCreateContext(Device, new int[0]);
-            alcMakeContextCurrent(Context);
+            Device = ALC.OpenDevice(null);
+            Context = ALC.CreateContext(Device, new int[0]);
+            ALC.MakeContextCurrent(Context);
 
             mainThread = Thread.CurrentThread;
             thread = new Thread(new ThreadStart(UpdateSound));
@@ -161,8 +160,8 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public static void SetListenerData()
         {
-            alListener3f(AL_POSITION, 0f, 0f, 0f);
-            alListener3f(AL_VELOCITY, 0f, 0f, 0f);
+            AL.Listener(ALListener3f.Position, 0f, 0f, 0f);
+            AL.Listener(ALListener3f.Velocity, 0f, 0f, 0f);
         }
 
         /// <summary>
@@ -170,19 +169,23 @@ namespace OPENGL_IN_SDL
         /// </summary>
         public static void SetListenerPosition(float x, float y, float z)
         {
-            alListener3f(AL_POSITION, x, y, z);
-            alListener3f(AL_VELOCITY, 0f, 0f, 0f);
+            AL.Listener(ALListener3f.Position, x, y, z);
+            AL.Listener(ALListener3f.Velocity, 0f, 0f, 0f);
         }
 
         unsafe static uint LoadSound(string path)
         {
-            uint buffer = alGenBuffer();
+            uint buffer = AL.GenBuffer();
             buffers.Add(buffer);
 
             int channels, bits_per_sample, sample_rate;
             byte[] sound_data = LoadWave(File.Open(path, FileMode.Open), out channels, out bits_per_sample, out sample_rate);
 
-            alBufferData(buffer, GetSoundFormat(bits_per_sample), sound_data, sound_data.Length, sample_rate * channels);
+            fixed(void* pointer = sound_data)
+            {
+                IntPtr ptr = new IntPtr(pointer);
+                AL.BufferData(buffer, GetSoundFormat(bits_per_sample), ptr, sound_data.Length, sample_rate * channels);
+            }
 
             return buffer;
         }
@@ -194,9 +197,9 @@ namespace OPENGL_IN_SDL
         {
             foreach (uint buffer in buffers)
             {
-                alDeleteBuffer(buffer);
+                AL.DeleteBuffer(buffer);
             }
-            alcCloseDevice(Device);
+            ALC.CloseDevice(Device);
         }
 
         //SoundMaster
@@ -245,12 +248,12 @@ namespace OPENGL_IN_SDL
             }
         }
 
-        static int GetSoundFormat(int bits)
+        static ALFormat GetSoundFormat(int bits)
         {
             switch (bits)
             {
-                case 8: return AL_FORMAT_MONO8;
-                case 16: return AL_FORMAT_MONO16;
+                case 8: return ALFormat.Mono8;
+                case 16: return ALFormat.Mono16;
                 default: throw new NotSupportedException("The specified sound format is not supported.");
             }
         }
