@@ -30,196 +30,196 @@ namespace SDL_Sharp.OpenAL
 	public static partial class AL {
 
 		public static void Enable(ALCapability capability) {
-			ALDelegates.alEnable((int)capability);
+			AL32.alEnable((int)capability);
 		}
 		public static void Disable(ALCapability capability) {
-			ALDelegates.alDisable((int)capability);
+			AL32.alDisable((int)capability);
 		} 
 		public static bool IsEnabled(ALCapability capability) {
-			return ALDelegates.alIsEnabled((int)capability);
+			return AL32.alIsEnabled((int)capability);
 		} 
 		public static unsafe string GetString(ALGetString param) {
-			sbyte * bptr = ALDelegates.alGetString((int)param);
+			sbyte * bptr = AL32.alGetString((int)param);
 			return new string(bptr);
 		}
 		public static void GetBoolean(ALGetInteger param, bool[] data) {
-			ALDelegates.alGetBooleanv((int)param, data);
+			AL32.alGetBooleanv((int)param, data);
 		}
 		public static void GetInteger(ALGetInteger param, int[] data) {
-			ALDelegates.alGetIntegerv((int)param, data);
+			AL32.alGetIntegerv((int)param, data);
 		}
 		public static void GetFloat(ALGetFloat param, float[] data) {
-			ALDelegates.alGetFloatv((int)param, data);
+			AL32.alGetFloatv((int)param, data);
 		}
 		public static bool GetBoolean(ALGetInteger param) {
-			return ALDelegates.alGetBoolean((int)param);
+			return AL32.alGetBoolean((int)param);
 		}
 		public static int GetInteger(ALGetInteger param) {
-			return ALDelegates.alGetInteger((int)param);
+			return AL32.alGetInteger((int)param);
 		}
 		public static float GetFloat(ALGetFloat param) {
-			return ALDelegates.alGetFloat((int)param);
+			return AL32.alGetFloat((int)param);
 		}
 		public static double GetDouble(int param) {
-			return ALDelegates.alGetDouble(param);
+			return AL32.alGetDouble(param);
 		}
 		public static int GetError() {
-			return ALDelegates.alGetError();
+			return AL32.alGetError();
 		}
 		public static bool IsExtensionPresent(string extname) {
-			return ALDelegates.alIsExtensionPresent(extname);
+			return AL32.alIsExtensionPresent(extname);
 		}
 		public static IntPtr GetProcAddress(string fname) {
-			return ALDelegates.alGetProcAddress(fname);
+			return AL32.alGetProcAddress(fname);
 		}
 		public static int GetEnumValue(string ename) {
-			return ALDelegates.alGetEnumValue(ename);
+			return AL32.alGetEnumValue(ename);
 		}
 		public static void Listener(ALListenerf param, float value) {
-			ALDelegates.alListenerf((int)param, value);
+			AL32.alListenerf((int)param, value);
 		}
 		public static void Listener(ALListener3f param, float value1, float value2, float value3) {
-			ALDelegates.alListener3f((int)param, value1, value2, value3);
+			AL32.alListener3f((int)param, value1, value2, value3);
 		}
 		public static void Listener(ALListenerfv param, float[] values) {
-			ALDelegates.alListenerfv((int)param, values);
+			AL32.alListenerfv((int)param, values);
 		} 
 		public static void GetListener(ALListenerf param, out float value) {
-			ALDelegates.alGetListenerf((int)param, out value);
+			AL32.alGetListenerf((int)param, out value);
 		}
 		public static void GetListener(ALListener3f param, out float value1, out float value2, out float value3) {
-			ALDelegates.alGetListener3f((int)param, out value1, out value2, out value3);
+			AL32.alGetListener3f((int)param, out value1, out value2, out value3);
 		}
 		public static void GetListener(ALListenerfv param, float[] values) {
-			ALDelegates.alGetListenerfv((int)param, values);
+			AL32.alGetListenerfv((int)param, values);
 		}
 		public static void GenSources(int n, uint[] sources) {
-			ALDelegates.alGenSources(n, sources);
+			AL32.alGenSources(n, sources);
 		} 
 		public static void GenSources(int n, out uint source) {
-			ALDelegates.alGenSource(n, out source);
+			AL32.alGenSource(n, out source);
 		}
 		public static uint GenSource()
 		{
-			ALDelegates.alGenSource(1, out uint source);
+			AL32.alGenSource(1, out uint source);
 			return source;
 		}
 		public static void DeleteSources(int n, uint[] sources) {
-			ALDelegates.alDeleteSources(n, sources);
+			AL32.alDeleteSources(n, sources);
 		}
 		public static void DeleteSources(int n, ref uint source) {
-			ALDelegates.alDeleteSource(n, ref source);
+			AL32.alDeleteSource(n, ref source);
 		}
 		public static void DeleteSource(uint source)
 		{
-			ALDelegates.alDeleteSource(1, ref source);
+			AL32.alDeleteSource(1, ref source);
 		}
 		public static bool IsSource(uint sid) {
-			return ALDelegates.alIsSource(sid);
+			return AL32.alIsSource(sid);
 		} 
 		public static void Source(uint sid, ALSourcef param, float value) {
-			ALDelegates.alSourcef(sid, (int)param, value);
+			AL32.alSourcef(sid, (int)param, value);
 		} 
 		public static void Source(uint sid, ALSource3f param, float value1, float value2, float value3) {
-			ALDelegates.alSource3f(sid, (int)param, value1, value2, value3);
+			AL32.alSource3f(sid, (int)param, value1, value2, value3);
 		}
 		public static void Source(uint sid, ALSourcei param, int value) {
-			ALDelegates.alSourcei(sid, (int)param, value);
+			AL32.alSourcei(sid, (int)param, value);
 		} 
 		public static void Source(uint sid, ALSource3i param, int value1, int value2, int value3) {
-			ALDelegates.alSource3i(sid, (int)param, value1, value2, value3);
+			AL32.alSource3i(sid, (int)param, value1, value2, value3);
 		}
 		public static void Source(uint sid, ALSourceb param, bool value) {
-			ALDelegates.alSourcei(sid, (int)param, value ? 1 : 0);
+			AL32.alSourcei(sid, (int)param, value ? 1 : 0);
 		}
 		public static void GetSource(uint sid, ALSourcef param, out float value) {
-			ALDelegates.alGetSourcef(sid, (int)param, out value);
+			AL32.alGetSourcef(sid, (int)param, out value);
 		}
 		public static void GetSource(uint sid, ALSource3f param, out float value1, out float value2, out float value3) {
-			ALDelegates.alGetSource3f(sid, (int)param, out value1, out value2, out value3);
+			AL32.alGetSource3f(sid, (int)param, out value1, out value2, out value3);
 		}
 		public static void GetSource(uint sid, ALSourcei param, out int value) {
-			ALDelegates.alGetSourcei(sid, (int)param, out value);
+			AL32.alGetSourcei(sid, (int)param, out value);
 		}
 		public static void GetSource(uint sid, ALSource3i param, out int value1, out int value2, out int value3) {
-			ALDelegates.alGetSource3i(sid, (int)param, out value1, out value2, out value3);
+			AL32.alGetSource3i(sid, (int)param, out value1, out value2, out value3);
 		}
 		public static void GetSource(uint sid, ALSourceb param, out bool value) {
 			int ivalue;
-			ALDelegates.alGetSourcei(sid, (int)param, out ivalue);
+			AL32.alGetSourcei(sid, (int)param, out ivalue);
 			value = (ivalue != 0);
 		}
 		public static void SourcePlay(int ns, uint[]sids) {
-			ALDelegates.alSourcePlayv(ns, sids);
+			AL32.alSourcePlayv(ns, sids);
 		}
 		public static void SourceStop(int ns, uint[]sids) {
-			ALDelegates.alSourceStopv(ns, sids);
+			AL32.alSourceStopv(ns, sids);
 		}
 		public static void SourceRewind(int ns, uint[]sids) {
-			ALDelegates.alSourceRewindv(ns, sids);
+			AL32.alSourceRewindv(ns, sids);
 		}
 		public static void SourcePause(int ns, uint[]sids) {
-			ALDelegates.alSourcePausev(ns, sids);
+			AL32.alSourcePausev(ns, sids);
 		}
 		public static void SourcePlay(uint sid) {
-			ALDelegates.alSourcePlay(sid);
+			AL32.alSourcePlay(sid);
 		}
 		public static void SourceStop(uint sid) {
-			ALDelegates.alSourceStop(sid);
+			AL32.alSourceStop(sid);
 		}
 		public static void SourceRewind(uint sid) {
-			ALDelegates.alSourceRewind(sid);
+			AL32.alSourceRewind(sid);
 		}
 		public static void SourcePause(uint sid) {
-			ALDelegates.alSourcePause(sid);
+			AL32.alSourcePause(sid);
 		}
 		public static void SourceQueueBuffers(uint sid, int numEntries, uint[]bids) {
-			ALDelegates.alSourceQueueBuffers(sid, numEntries, bids);
+			AL32.alSourceQueueBuffers(sid, numEntries, bids);
 		}
 		public static void SourceUnqueueBuffers(uint sid, int numEntries, uint[]bids) {
-			ALDelegates.alSourceUnqueueBuffers(sid, numEntries, bids);
+			AL32.alSourceUnqueueBuffers(sid, numEntries, bids);
 		}
 		public static void GenBuffers(int n, uint[] buffers) {
-			ALDelegates.alGenBuffers(n, buffers);
+			AL32.alGenBuffers(n, buffers);
 		}
 		public static void GenBuffers(int n, out uint buffer) {
-			ALDelegates.alGenBuffer(n, out buffer);
+			AL32.alGenBuffer(n, out buffer);
 		}
 		public static uint GenBuffer()
 		{
-			ALDelegates.alGenBuffer(1, out uint buffer);
+			AL32.alGenBuffer(1, out uint buffer);
 			return buffer;
 		}
 		public static void DeleteBuffers(int n, uint[] buffers) {
-			ALDelegates.alDeleteBuffers(n, buffers);
+			AL32.alDeleteBuffers(n, buffers);
 		}
 		public static void DeleteBuffers(int n, ref uint buffer) {
-			ALDelegates.alDeleteBuffer(n, ref buffer);
+			AL32.alDeleteBuffer(n, ref buffer);
 		}
 		public static void DeleteBuffer(uint buffer)
 		{
-			ALDelegates.alDeleteBuffer(1, ref buffer);
+			AL32.alDeleteBuffer(1, ref buffer);
 		}
 		public static bool IsBuffer(uint bid) {
-			return ALDelegates.alIsBuffer(bid);
+			return AL32.alIsBuffer(bid);
 		}
 		public static void BufferData(uint bid, ALFormat format, IntPtr data, int size, int freq) {
-			ALDelegates.alBufferData(bid, (int)format, data, size, freq);
+			AL32.alBufferData(bid, (int)format, data, size, freq);
 		}
 		public static void GetBuffer(uint bid, ALGetBufferi param, out int value) {
-			ALDelegates.alGetBufferi(bid, (int)param, out value);
+			AL32.alGetBufferi(bid, (int)param, out value);
 		}
 		public static void DopplerFactor(float value) {
-			ALDelegates.alDopplerFactor(value);
+			AL32.alDopplerFactor(value);
 		}
 		public static void DopplerVelocity(float value) {
-			ALDelegates.alDopplerVelocity(value);
+			AL32.alDopplerVelocity(value);
 		}
 		public static void SpeedOfSound(float value) {
-			ALDelegates.alSpeedOfSound(value);
+			AL32.alSpeedOfSound(value);
 		}
 		public static void DistanceModel(int distanceModel) {
-			ALDelegates.alDistanceModel(distanceModel);
+			AL32.alDistanceModel(distanceModel);
 		}
 	}
 }

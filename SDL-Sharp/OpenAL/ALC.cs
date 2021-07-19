@@ -11,32 +11,32 @@ namespace SDL_Sharp.OpenAL
     {
         public static bool CloseDevice(IntPtr device)
         {
-            return ALCDelegates.alcCloseDevice(device);
+            return ALC32.alcCloseDevice(device);
         }
 
         public static IntPtr OpenDevice([MarshalAs(UnmanagedType.LPStr)] string devicename)
         {
-            return ALCDelegates.alcOpenDevice(devicename);
+            return ALC32.alcOpenDevice(devicename);
         }
 
         public static bool IsExtensionPresent(IntPtr device, [MarshalAs(UnmanagedType.LPStr)] string extname)
         {
-            return ALCDelegates.alcIsExtensionPresent(device, extname);
+            return ALC32.alcIsExtensionPresent(device, extname);
         }
 
         public static void GetInteger(IntPtr device, int param, int size, [MarshalAs(UnmanagedType.LPArray)] int[] data)
         {
-            ALCDelegates.alcGetIntegerv(device, param, size, data);
+            ALC32.alcGetIntegerv(device, param, size, data);
         }
 
         public static IntPtr CreateContext(IntPtr device, [MarshalAs(UnmanagedType.LPArray)] int[] attrlist)
         {
-            return ALCDelegates.alcCreateContext(device, attrlist);
+            return ALC32.alcCreateContext(device, attrlist);
         }
 
         public static bool MakeContextCurrent(IntPtr context)
         {
-            return ALCDelegates.alcMakeContextCurrent(context);
+            return ALC32.alcMakeContextCurrent(context);
         }
     }
 }
