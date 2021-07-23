@@ -7,6 +7,8 @@ namespace OPENGL_IN_SDL
 {
     class Program
     {
+        static Window window;
+
         static void Main(string[] args)
         {
             //Init SDL & Sound
@@ -15,10 +17,7 @@ namespace OPENGL_IN_SDL
             sound.Play(-1);
 
             SDL.Init(SdlInitFlags.Video);
-            Window window;
-            Renderer renderer;
             window = SDL.CreateWindow("OPENGL_IN_SDL",SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800,600,WindowFlags.OpenGL);
-            renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
             //Init SDL & Sound
 
             //Init OpenGL
@@ -46,19 +45,35 @@ namespace OPENGL_IN_SDL
 
             Event e;
             var running = true;
+            const float timeStep = 60f/1000f;
+            float accumulator = 0.0f;
+            float currentTime = HireTimeInSeconds();
+
             while (running)
             {
-                uint starttime = SDL.GetTicks();
+                uint statTicks = SDL.GetTicks();
+                float newTime = HireTimeInSeconds();
+                float frameTime = newTime - currentTime;
 
-                while (SDL.PollEvent(out e) == 1)
+                currentTime = newTime;
+
+                accumulator += frameTime;
+
+                while (accumulator >= timeStep)
                 {
-                    switch (e.Type)
+                    while (SDL.PollEvent(out e) == 1)
                     {
-                        case EventType.Quit:
-                            running = false;
-                            break;
+                        switch (e.Type)
+                        {
+                            case EventType.Quit:
+                                running = false;
+                                break;
+                        }
                     }
+                    accumulator -= timeStep;
                 }
+
+                float aplha = accumulator / timeStep;
 
                 glClear(GL_COLOR_BUFFER_BIT);
 
@@ -68,10 +83,34 @@ namespace OPENGL_IN_SDL
                 // Draw the triangle.
                 glDrawArrays(GL_TRIANGLES, 0, 3);
 
-                SDL.RenderPresent(renderer);
-
                 SDL.GL_SwapWindow(window);
+
+                uint frashRate = 1000 / (uint)GetRefreshRate();
+
+                uint frameTicks = SDL.GetTicks() - statTicks;
+                if (frameTicks < frashRate)
+                {
+                    SDL.Delay(frashRate - frameTicks);
+                }
             }
+        }
+
+        private static float HireTimeInSeconds()
+        {
+            float t = SDL.GetTicks();
+            t *= 0.001f;
+            return t;
+        }
+
+        private static int GetRefreshRate()
+        {
+            int displayIndex = SDL.GetWindowDisplayIndex(window);
+
+            DisplayMode mode;
+
+            SDL.GetDisplayMode(displayIndex, 0 ,out mode);
+
+            return mode.RefreshRate;
         }
 
         private static void SetRandomColor(int location)
