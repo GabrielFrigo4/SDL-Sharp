@@ -11,7 +11,7 @@ namespace OPENGL_IN_SDL
     {
         //Sound
         float x = 0, y = 0, z = 0;
-        uint source, buffer;
+        int source, buffer;
         short loop;
         public Vector3 GetPos { get { return new Vector3(x, y, z); } }
 
@@ -52,7 +52,7 @@ namespace OPENGL_IN_SDL
         void Update()
         {
             int state;
-            AL.GetSource(source, ALSourcei.SourceType, out state);
+            AL.GetSource(source, ALGetSourcei.SourceType, out state);
             if ((ALSourceState)state == ALSourceState.Stopped && loop != 0)
             {
                 Play(loop);
@@ -134,9 +134,9 @@ namespace OPENGL_IN_SDL
         }
 
         //AudioMaster
-        static List<uint> buffers = new List<uint>();
-        static IntPtr Device;
-        static IntPtr Context;
+        static List<int> buffers = new List<int>();
+        static ALDevice Device;
+        static ALContext Context;
 
         /// <summary>
         /// Init a sound system (is called when creating SGL_Window)
@@ -173,9 +173,9 @@ namespace OPENGL_IN_SDL
             AL.Listener(ALListener3f.Velocity, 0f, 0f, 0f);
         }
 
-        unsafe static uint LoadSound(string path)
+        unsafe static int LoadSound(string path)
         {
-            uint buffer = AL.GenBuffer();
+            int buffer = AL.GenBuffer();
             buffers.Add(buffer);
 
             int channels, bits_per_sample, sample_rate;
@@ -195,7 +195,7 @@ namespace OPENGL_IN_SDL
         /// </summary>
         static void ClearUp()
         {
-            foreach (uint buffer in buffers)
+            foreach (int buffer in buffers)
             {
                 AL.DeleteBuffer(buffer);
             }
