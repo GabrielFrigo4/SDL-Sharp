@@ -1,5 +1,4 @@
-Is a SDL2 for c#
-The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project):
+Is a SDL2 for c#. The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project):
 - SDL2 (2.0.14) in SDL_Sharp
 - SDL2_image (2.0.5) in SDL_Sharp.Img
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mix
