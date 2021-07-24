@@ -5,7 +5,7 @@ The wrapper provides bindings for the following libraries (contains the necessar
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mix
 - SDL2_ttf (2.0.15) in SDL_Sharp.Ttf
 - OpenGL (4.6 core) in SDL_Sharp.OpenGL
-- OpenGL Mathematics (GLM) in SDL_Sharp.GLM
+- OpenGL Mathematics (GLM) in SDL_Sharp.OpenGL.Mathematics
 - OpenAL (1.1) in SDL_Sharp.OpenAL
 - SharpFont (FreeType) in SharpFont
 
