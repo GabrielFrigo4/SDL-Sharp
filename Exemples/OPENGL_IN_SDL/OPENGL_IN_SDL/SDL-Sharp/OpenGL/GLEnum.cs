@@ -26419,4 +26419,400 @@ namespace SDL_Sharp.OpenGL
         //     Original was GL_ACTIVE_ATOMIC_COUNTER_BUFFERS = 0x92D9
         ActiveAtomicCounterBuffers = 37593
     }
+
+    public enum CullFaceMode
+    {
+        //
+        // Resumo:
+        //     Original was GL_FRONT = 0x0404
+        Front = 1028,
+        //
+        // Resumo:
+        //     Original was GL_BACK = 0x0405
+        Back = 1029,
+        //
+        // Resumo:
+        //     Original was GL_FRONT_AND_BACK = 0x0408
+        FrontAndBack = 1032
+    }
+
+    public enum FrontFaceDirection
+    {
+        //
+        // Resumo:
+        //     Original was GL_CW = 0x0900
+        Cw = 2304,
+        //
+        // Resumo:
+        //     Original was GL_CCW = 0x0901
+        Ccw = 2305
+    }
+
+    public enum HintTarget
+    {
+        //
+        // Resumo:
+        //     Original was GL_PERSPECTIVE_CORRECTION_HINT = 0x0C50
+        PerspectiveCorrectionHint = 3152,
+        //
+        // Resumo:
+        //     Original was GL_POINT_SMOOTH_HINT = 0x0C51
+        PointSmoothHint = 3153,
+        //
+        // Resumo:
+        //     Original was GL_LINE_SMOOTH_HINT = 0x0C52
+        LineSmoothHint = 3154,
+        //
+        // Resumo:
+        //     Original was GL_POLYGON_SMOOTH_HINT = 0x0C53
+        PolygonSmoothHint = 3155,
+        //
+        // Resumo:
+        //     Original was GL_FOG_HINT = 0x0C54
+        FogHint = 3156,
+        //
+        // Resumo:
+        //     Original was GL_PACK_CMYK_HINT_EXT = 0x800E
+        PackCmykHintExt = 32782,
+        //
+        // Resumo:
+        //     Original was GL_UNPACK_CMYK_HINT_EXT = 0x800F
+        UnpackCmykHintExt = 32783,
+        //
+        // Resumo:
+        //     Original was GL_PHONG_HINT_WIN = 0x80EB
+        PhongHintWin = 33003,
+        //
+        // Resumo:
+        //     Original was GL_CLIP_VOLUME_CLIPPING_HINT_EXT = 0x80F0
+        ClipVolumeClippingHintExt = 33008,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_MULTI_BUFFER_HINT_SGIX = 0x812E
+        TextureMultiBufferHintSgix = 33070,
+        //
+        // Resumo:
+        //     Original was GL_GENERATE_MIPMAP_HINT = 0x8192
+        GenerateMipmapHint = 33170,
+        //
+        // Resumo:
+        //     Original was GL_GENERATE_MIPMAP_HINT_SGIS = 0x8192
+        GenerateMipmapHintSgis = 33170,
+        //
+        // Resumo:
+        //     Original was GL_PROGRAM_BINARY_RETRIEVABLE_HINT = 0x8257
+        ProgramBinaryRetrievableHint = 33367,
+        //
+        // Resumo:
+        //     Original was GL_CONVOLUTION_HINT_SGIX = 0x8316
+        ConvolutionHintSgix = 33558,
+        //
+        // Resumo:
+        //     Original was GL_SCALEBIAS_HINT_SGIX = 0x8322
+        ScalebiasHintSgix = 33570,
+        //
+        // Resumo:
+        //     Original was GL_LINE_QUALITY_HINT_SGIX = 0x835B
+        LineQualityHintSgix = 33627,
+        //
+        // Resumo:
+        //     Original was GL_VERTEX_PRECLIP_SGIX = 0x83EE
+        VertexPreclipSgix = 33774,
+        //
+        // Resumo:
+        //     Original was GL_VERTEX_PRECLIP_HINT_SGIX = 0x83EF
+        VertexPreclipHintSgix = 33775,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_COMPRESSION_HINT = 0x84EF
+        TextureCompressionHint = 34031,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_COMPRESSION_HINT_ARB = 0x84EF
+        TextureCompressionHintArb = 34031,
+        //
+        // Resumo:
+        //     Original was GL_VERTEX_ARRAY_STORAGE_HINT_APPLE = 0x851F
+        VertexArrayStorageHintApple = 34079,
+        //
+        // Resumo:
+        //     Original was GL_MULTISAMPLE_FILTER_HINT_NV = 0x8534
+        MultisampleFilterHintNv = 34100,
+        //
+        // Resumo:
+        //     Original was GL_TRANSFORM_HINT_APPLE = 0x85B1
+        TransformHintApple = 34225,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_STORAGE_HINT_APPLE = 0x85BC
+        TextureStorageHintApple = 34236,
+        //
+        // Resumo:
+        //     Original was GL_FRAGMENT_SHADER_DERIVATIVE_HINT = 0x8B8B
+        FragmentShaderDerivativeHint = 35723,
+        //
+        // Resumo:
+        //     Original was GL_FRAGMENT_SHADER_DERIVATIVE_HINT_ARB = 0x8B8B
+        FragmentShaderDerivativeHintArb = 35723,
+        //
+        // Resumo:
+        //     Original was GL_FRAGMENT_SHADER_DERIVATIVE_HINT_OES = 0x8B8B
+        FragmentShaderDerivativeHintOes = 35723,
+        //
+        // Resumo:
+        //     Original was GL_BINNING_CONTROL_HINT_QCOM = 0x8FB0
+        BinningControlHintQcom = 36784,
+        //
+        // Resumo:
+        //     Original was GL_PREFER_DOUBLEBUFFER_HINT_PGI = 0x1A1F8
+        PreferDoublebufferHintPgi = 107000,
+        //
+        // Resumo:
+        //     Original was GL_CONSERVE_MEMORY_HINT_PGI = 0x1A1FD
+        ConserveMemoryHintPgi = 107005,
+        //
+        // Resumo:
+        //     Original was GL_RECLAIM_MEMORY_HINT_PGI = 0x1A1FE
+        ReclaimMemoryHintPgi = 107006,
+        //
+        // Resumo:
+        //     Original was GL_NATIVE_GRAPHICS_BEGIN_HINT_PGI = 0x1A203
+        NativeGraphicsBeginHintPgi = 107011,
+        //
+        // Resumo:
+        //     Original was GL_NATIVE_GRAPHICS_END_HINT_PGI = 0x1A204
+        NativeGraphicsEndHintPgi = 107012,
+        //
+        // Resumo:
+        //     Original was GL_ALWAYS_FAST_HINT_PGI = 0x1A20C
+        AlwaysFastHintPgi = 107020,
+        //
+        // Resumo:
+        //     Original was GL_ALWAYS_SOFT_HINT_PGI = 0x1A20D
+        AlwaysSoftHintPgi = 107021,
+        //
+        // Resumo:
+        //     Original was GL_ALLOW_DRAW_OBJ_HINT_PGI = 0x1A20E
+        AllowDrawObjHintPgi = 107022,
+        //
+        // Resumo:
+        //     Original was GL_ALLOW_DRAW_WIN_HINT_PGI = 0x1A20F
+        AllowDrawWinHintPgi = 107023,
+        //
+        // Resumo:
+        //     Original was GL_ALLOW_DRAW_FRG_HINT_PGI = 0x1A210
+        AllowDrawFrgHintPgi = 107024,
+        //
+        // Resumo:
+        //     Original was GL_ALLOW_DRAW_MEM_HINT_PGI = 0x1A211
+        AllowDrawMemHintPgi = 107025,
+        //
+        // Resumo:
+        //     Original was GL_STRICT_DEPTHFUNC_HINT_PGI = 0x1A216
+        StrictDepthfuncHintPgi = 107030,
+        //
+        // Resumo:
+        //     Original was GL_STRICT_LIGHTING_HINT_PGI = 0x1A217
+        StrictLightingHintPgi = 107031,
+        //
+        // Resumo:
+        //     Original was GL_STRICT_SCISSOR_HINT_PGI = 0x1A218
+        StrictScissorHintPgi = 107032,
+        //
+        // Resumo:
+        //     Original was GL_FULL_STIPPLE_HINT_PGI = 0x1A219
+        FullStippleHintPgi = 107033,
+        //
+        // Resumo:
+        //     Original was GL_CLIP_NEAR_HINT_PGI = 0x1A220
+        ClipNearHintPgi = 107040,
+        //
+        // Resumo:
+        //     Original was GL_CLIP_FAR_HINT_PGI = 0x1A221
+        ClipFarHintPgi = 107041,
+        //
+        // Resumo:
+        //     Original was GL_WIDE_LINE_HINT_PGI = 0x1A222
+        WideLineHintPgi = 107042,
+        //
+        // Resumo:
+        //     Original was GL_BACK_NORMALS_HINT_PGI = 0x1A223
+        BackNormalsHintPgi = 107043,
+        //
+        // Resumo:
+        //     Original was GL_VERTEX_DATA_HINT_PGI = 0x1A22A
+        VertexDataHintPgi = 107050,
+        //
+        // Resumo:
+        //     Original was GL_VERTEX_CONSISTENT_HINT_PGI = 0x1A22B
+        VertexConsistentHintPgi = 107051,
+        //
+        // Resumo:
+        //     Original was GL_MATERIAL_SIDE_HINT_PGI = 0x1A22C
+        MaterialSideHintPgi = 107052,
+        //
+        // Resumo:
+        //     Original was GL_MAX_VERTEX_HINT_PGI = 0x1A22D
+        MaxVertexHintPgi = 107053
+    }
+
+    public enum HintMode
+    {
+        //
+        // Resumo:
+        //     Original was GL_DONT_CARE = 0x1100
+        DontCare = 4352,
+        //
+        // Resumo:
+        //     Original was GL_FASTEST = 0x1101
+        Fastest = 4353,
+        //
+        // Resumo:
+        //     Original was GL_NICEST = 0x1102
+        Nicest = 4354
+    }
+
+    public enum MaterialFace
+    {
+        //
+        // Resumo:
+        //     Original was GL_FRONT = 0x0404
+        Front = 1028,
+        //
+        // Resumo:
+        //     Original was GL_BACK = 0x0405
+        Back = 1029,
+        //
+        // Resumo:
+        //     Original was GL_FRONT_AND_BACK = 0x0408
+        FrontAndBack = 1032
+    }
+
+    public enum PolygonMode
+    {
+        //
+        // Resumo:
+        //     Original was GL_POINT = 0x1B00
+        Point = 6912,
+        //
+        // Resumo:
+        //     Original was GL_LINE = 0x1B01
+        Line = 6913,
+        //
+        // Resumo:
+        //     Original was GL_FILL = 0x1B02
+        Fill = 6914
+    }
+
+    public enum DrawBufferMode
+    {
+        //
+        // Resumo:
+        //     Original was GL_NONE = 0
+        None = 0,
+        //
+        // Resumo:
+        //     Original was GL_NONE_OES = 0
+        NoneOes = 0,
+        //
+        // Resumo:
+        //     Original was GL_FRONT_LEFT = 0x0400
+        FrontLeft = 1024,
+        //
+        // Resumo:
+        //     Original was GL_FRONT_RIGHT = 0x0401
+        FrontRight = 1025,
+        //
+        // Resumo:
+        //     Original was GL_BACK_LEFT = 0x0402
+        BackLeft = 1026,
+        //
+        // Resumo:
+        //     Original was GL_BACK_RIGHT = 0x0403
+        BackRight = 1027,
+        //
+        // Resumo:
+        //     Original was GL_FRONT = 0x0404
+        Front = 1028,
+        //
+        // Resumo:
+        //     Original was GL_BACK = 0x0405
+        Back = 1029,
+        //
+        // Resumo:
+        //     Original was GL_LEFT = 0x0406
+        Left = 1030,
+        //
+        // Resumo:
+        //     Original was GL_RIGHT = 0x0407
+        Right = 1031,
+        //
+        // Resumo:
+        //     Original was GL_FRONT_AND_BACK = 0x0408
+        FrontAndBack = 1032,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT0 = 0x8CE0
+        ColorAttachment0 = 36064,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT1 = 0x8CE1
+        ColorAttachment1 = 36065,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT2 = 0x8CE2
+        ColorAttachment2 = 36066,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT3 = 0x8CE3
+        ColorAttachment3 = 36067,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT4 = 0x8CE4
+        ColorAttachment4 = 36068,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT5 = 0x8CE5
+        ColorAttachment5 = 36069,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT6 = 0x8CE6
+        ColorAttachment6 = 36070,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT7 = 0x8CE7
+        ColorAttachment7 = 36071,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT8 = 0x8CE8
+        ColorAttachment8 = 36072,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT9 = 0x8CE9
+        ColorAttachment9 = 36073,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT10 = 0x8CEA
+        ColorAttachment10 = 36074,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT11 = 0x8CEB
+        ColorAttachment11 = 36075,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT12 = 0x8CEC
+        ColorAttachment12 = 36076,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT13 = 0x8CED
+        ColorAttachment13 = 36077,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT14 = 0x8CEE
+        ColorAttachment14 = 36078,
+        //
+        // Resumo:
+        //     Original was GL_COLOR_ATTACHMENT15 = 0x8CEF
+        ColorAttachment15 = 36079
+    }
 }

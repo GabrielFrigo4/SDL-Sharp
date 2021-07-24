@@ -40,6 +40,46 @@ namespace SDL_Sharp.OpenGL
     /// </summary>
     public sealed partial class GL
     {
+        public static void CullFace(CullFaceMode mode)
+        {
+            glCullFace((int)mode);
+        }
+
+        public static void FrontFace(FrontFaceDirection mode)
+        {
+            glFrontFace((int)mode);
+        }
+
+        public static void Hint(HintTarget target, HintMode mode)
+        {
+            glHint((int)target,(int)mode);
+        }
+
+        public static void LineWidth(float width)
+        {
+            glLineWidth(width);
+        }
+
+        public static void PointSize(float size)
+        {
+            glPointSize(size);
+        }
+
+        public static void PolygonMode(MaterialFace face, PolygonMode mode)
+        {
+            glPolygonMode((int)face, (int)mode);
+        }
+
+        public static void Scissor(int x, int y, int width, int height)
+        {
+            glScissor(x, y, width, height);
+        }
+
+        public static void DrawBuffer(DrawBufferMode buffer)
+        {
+            glDrawBuffer((int)buffer);
+        }
+
         public static void Clear(ClearBufferMask mask)
         {
             glClear((uint)mask);
@@ -53,6 +93,16 @@ namespace SDL_Sharp.OpenGL
         public static void ClearColor(Color4 color)
         {
             glClearColor(color.R, color.G, color.B, color.A);
+        }
+
+        public static void ClearStencil(int index)
+        {
+            glClearStencil(index);
+        }
+
+        public static void ClearDepth(double depth)
+        {
+            glClearDepth(depth);
         }
 
         public static void BlendColor(Color color)
