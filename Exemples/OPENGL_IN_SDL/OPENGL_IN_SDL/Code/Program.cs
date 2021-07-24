@@ -1,4 +1,4 @@
-﻿using static SDL_Sharp.OpenGL.GL;
+﻿using SDL_Sharp.OpenGL;
 using System.IO;
 using System;
 using SDL_Sharp;
@@ -31,7 +31,7 @@ namespace OPENGL_IN_SDL
             {
                 Console.WriteLine("OpenGL context could not be created! SDL Error: %s\n" + SDL.GetErrorString());
             }
-            Import(SDL.GL_GetProcAddress);
+            GLFunc.Import(SDL.GL_GetProcAddress);
             //Init OpenGL
 
             var program = CreateProgram();
@@ -39,7 +39,7 @@ namespace OPENGL_IN_SDL
             CreateVertices(out var vao, out var vbo);
             rand = new Random();
 
-            var location = glGetUniformLocation(program, "color");
+            var location = GL.GetUniformLocation(program, "color");
             SetRandomColor(location);
             long n = 0;
 
@@ -75,13 +75,13 @@ namespace OPENGL_IN_SDL
 
                 float aplha = accumulator / timeStep;
 
-                glClear(GL_COLOR_BUFFER_BIT);
+                GL.Clear(ClearBufferMask.ColorBufferBit);
 
                 if (n++ % 60 == 0)
                     SetRandomColor(location);
 
                 // Draw the triangle.
-                glDrawArrays(GL_TRIANGLES, 0, 3);
+                GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
 
                 SDL.GL_SwapWindow(window);
 
@@ -118,24 +118,24 @@ namespace OPENGL_IN_SDL
             var r = (float)rand.NextDouble();
             var g = (float)rand.NextDouble();
             var b = (float)rand.NextDouble();
-            glUniform3f(location, r, g, b);
+           GL.Uniform3(location, r, g, b);
         }
 
-        private static uint CreateProgram()
+        private static int CreateProgram()
         {
-            var vertex = CreateShader(GL_VERTEX_SHADER, File.ReadAllText("./Files/triangle.vert"));
-            var fragment = CreateShader(GL_FRAGMENT_SHADER, File.ReadAllText("./Files/triangle.frag"));
+            var vertex = CreateShader(ShaderType.VertexShader, File.ReadAllText("./Files/triangle.vert"));
+            var fragment = CreateShader(ShaderType.FragmentShader, File.ReadAllText("./Files/triangle.frag"));
 
-            var program = glCreateProgram();
-            glAttachShader(program, vertex);
-            glAttachShader(program, fragment);
+            var program = GL.CreateProgram();
+            GL.AttachShader(program, vertex);
+            GL.AttachShader(program, fragment);
 
-            glLinkProgram(program);
+            GL.LinkProgram(program);
 
-            glDeleteShader(vertex);
-            glDeleteShader(fragment);
+            GL.DeleteShader(vertex);
+            GL.DeleteShader(fragment);
 
-            glUseProgram(program);
+            GL.UseProgram(program);
             return program;
         }
 
@@ -145,11 +145,11 @@ namespace OPENGL_IN_SDL
         /// <param name="type">An OpenGL enum for the shader type.</param>
         /// <param name="source">The source code of the shader.</param>
         /// <returns>The created shader. No error checking is performed for this basic example.</returns>
-        private static uint CreateShader(int type, string source)
+        private static int CreateShader(ShaderType type, string source)
         {
-            var shader = glCreateShader(type);
-            glShaderSource(shader, source);
-            glCompileShader(shader);
+            var shader = GL.CreateShader(type);
+            GL.ShaderSource(shader, source);
+            GL.CompileShader(shader);
             return shader;
         }
 
@@ -158,7 +158,7 @@ namespace OPENGL_IN_SDL
         /// </summary>
         /// <param name="vao">The created vertex array object for the triangle.</param>
         /// <param name="vbo">The created vertex buffer object for the triangle.</param>
-        private static unsafe void CreateVertices(out uint vao, out uint vbo)
+        private static unsafe void CreateVertices(out int vao, out int vbo)
         {
 
             var vertices = new[] {
@@ -167,19 +167,19 @@ namespace OPENGL_IN_SDL
                 0.0f,  0.5f, 0.0f
             };
 
-            vao = glGenVertexArray();
-            vbo = glGenBuffer();
+            vao = GL.GenVertexArray();
+            vbo = GL.GenBuffer();
 
-            glBindVertexArray(vao);
+            GL.BindVertexArray(vao);
 
-            glBindBuffer(GL_ARRAY_BUFFER, vbo);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
             fixed (float* v = &vertices[0])
             {
-                glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertices.Length, v, GL_STATIC_DRAW);
+                GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float) * vertices.Length, v, BufferUsageHint.StaticDraw);
             }
 
-            glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * sizeof(float), IntPtr.Zero);
-            glEnableVertexAttribArray(0);
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.EnableVertexAttribArray(0);
         }
 
         private static Random rand;
