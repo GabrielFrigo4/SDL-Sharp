@@ -2,6 +2,7 @@
 using System.IO;
 using System;
 using SDL_Sharp;
+using SDL_Sharp.OpenGL.Mathematics;
 
 namespace OPENGL_IN_SDL
 {
@@ -17,7 +18,14 @@ namespace OPENGL_IN_SDL
             sound.Play(-1);
 
             SDL.Init(SdlInitFlags.Video);
-            window = SDL.CreateWindow("OPENGL_IN_SDL",SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800,600,WindowFlags.OpenGL);
+
+            int displayIndex = SDL.GetWindowDisplayIndex(window);
+
+            DisplayMode mode;
+
+            SDL.GetDisplayMode(displayIndex, 0, out mode);
+
+            window = SDL.CreateWindow("OPENGL_IN_SDL",SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, mode.Height, mode.Width, WindowFlags.OpenGL | WindowFlags.Fullscreen);
             //Init SDL & Sound
 
             //Init OpenGL
@@ -33,6 +41,9 @@ namespace OPENGL_IN_SDL
             }
             GLFunc.Import(SDL.GL_GetProcAddress);
             //Init OpenGL
+
+            Shader.asset_shader = new Shader("./Files/Basic/basic.vert", "./Files/Basic/basic.frag");
+            Sprite spr = new Sprite("./Files/SDL_Img.png", new Vector2(0.5f,0.5f));
 
             var program = CreateProgram();
 
@@ -68,6 +79,12 @@ namespace OPENGL_IN_SDL
                             case EventType.Quit:
                                 running = false;
                                 break;
+                            case EventType.KeyDown:
+                                if (Keycode.Escape == e.Keyboard.Keysym.Sym)
+                                {
+                                    running = false;
+                                }
+                                break;
                         }
                     }
                     accumulator -= timeStep;
@@ -77,11 +94,18 @@ namespace OPENGL_IN_SDL
 
                 GL.Clear(ClearBufferMask.ColorBufferBit);
 
-                if (n++ % 60 == 0)
-                    SetRandomColor(location);
+                if (true)
+                {
+                    DrawSprite(spr, 0, 0);
+                }
+                else
+                {
+                    if (n++ % 60 == 0)
+                        SetRandomColor(location);
 
-                // Draw the triangle.
-                GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+                    // Draw the triangle.
+                    GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+                }
 
                 SDL.GL_SwapWindow(window);
 
@@ -93,6 +117,37 @@ namespace OPENGL_IN_SDL
                     SDL.Delay(frashRate - frameTicks);
                 }
             }
+        }
+
+        public static void DrawSprite(Sprite sprite, float x, float y, int image_index = 0, float image_angle = 0, float scale_x = 1, float scale_y = 1)
+        {
+            float angRad = MathHelper.DegreesToRadians(image_angle);
+
+            int width, height;
+            SDL.GetWindowSize(window, out width, out height);
+            Vector2 texel_world = new Vector2(1f / width, 1f / height);
+
+            if (image_index < sprite.IndMax)
+                GL.BindVertexArray(sprite.Sprite_Image[image_index]);
+            else
+                GL.BindVertexArray(sprite.Sprite_Image[sprite.IndMax - 1]);
+
+            var transformImage = Matrix4.Identity;
+
+            transformImage = transformImage * Matrix4.CreateScale(scale_x, scale_y, 1.0f);
+
+            transformImage = transformImage * Matrix4.CreateRotationZ(angRad);
+
+            transformImage = transformImage * Matrix4.CreateTranslation(x, y, 0.0f);
+
+            transformImage = transformImage * Matrix4.CreateScale(texel_world.X * 2, texel_world.Y * 2, 1.0f);
+
+            sprite.Use(TextureUnit.Texture0);
+            Shader.asset_shader.Use();
+
+            Shader.asset_shader.SetMatrix4("transform", transformImage);
+
+            GL.DrawElements(BeginMode.Triangles, sprite.Indices.Length, DrawElementsType.UnsignedInt, 0);
         }
 
         private static float HireTimeInSeconds()
@@ -118,7 +173,7 @@ namespace OPENGL_IN_SDL
             var r = (float)rand.NextDouble();
             var g = (float)rand.NextDouble();
             var b = (float)rand.NextDouble();
-           GL.Uniform3(location, r, g, b);
+            GL.Uniform3(location, r, g, b);
         }
 
         private static int CreateProgram()

@@ -65,22 +65,14 @@ namespace SDL_Sharp.OpenGL
             glBlendColor(color.R, color.G, color.B, color.A);
         }
 
-        [CLSCompliant(false)]
-        public static void Uniform2(int location, ref Vector2 vector)
+        public static void Uniform1(int location, int v0)
         {
-            glUniform2f(location, vector.X, vector.Y);
+            glUniform1i(location, v0);
         }
 
-        [CLSCompliant(false)]
-        public static void Uniform3(int location, ref Vector3 vector)
+        public static void Uniform1(int location, float v0)
         {
-            glUniform3f(location, vector.X, vector.Y, vector.Z);
-        }
-
-        [CLSCompliant(false)]
-        public static void Uniform4(int location, ref Vector4 vector)
-        {
-            glUniform4f(location, vector.X, vector.Y, vector.Z, vector.W);
+            glUniform1f(location, v0);
         }
 
         public static void Uniform2(int location, Vector2 vector)
@@ -171,15 +163,7 @@ namespace SDL_Sharp.OpenGL
             int length;
             unsafe
             {
-                int* args = null;
-                glGetProgramiv((uint)program, (int)GetProgramParameterName.ActiveAttributeMaxLength, args);
-                int count = 0;
-                while (*(args + count) != 0)
-                {
-                    count += 1;
-                }
-
-                length = count;
+                glGetProgramiv((uint)program, (int)GetProgramParameterName.ActiveUniformMaxLength, &length);
             }
 
             string str;
@@ -194,15 +178,7 @@ namespace SDL_Sharp.OpenGL
             int length;
             unsafe
             {
-                int* args = null;
-                glGetProgramiv((uint)program, (int)GetProgramParameterName.ActiveUniformMaxLength, args);
-                int count = 0;
-                while (*(args + count) != 0)
-                {
-                    count += 1;
-                }
-
-                length = count;
+                glGetProgramiv((uint)program, (int)GetProgramParameterName.ActiveUniformMaxLength, &length);
             }
 
             string str;
@@ -210,6 +186,11 @@ namespace SDL_Sharp.OpenGL
             glGetActiveUniform((uint)program, (uint)uniformIndex, length == 0 ? 1 : length, out length, out size, out intType, out str);
             type = (ActiveUniformType)intType;
             return str;
+        }
+
+        public static int GetAttribLocation(int program, string attribName)
+        {
+            return glGetAttribLocation((uint)program, attribName);
         }
 
         public static int CreateProgram()
@@ -225,6 +206,26 @@ namespace SDL_Sharp.OpenGL
         public static void UseProgram(int program)
         {
             glUseProgram((uint)program);
+        }
+
+        public static void GetProgram(int program, GetProgramParameterName pname, out int @params)
+        {
+            int args;
+            unsafe
+            {
+                glGetProgramiv((uint)program, (int)pname, &args);
+            }
+            @params = args;
+        }
+
+        public static void GetProgram(int program, ProgramParameter pname, out int @params)
+        {
+            int args;
+            unsafe
+            {
+                glGetProgramiv((uint)program, (int)pname, &args);
+            }
+            @params = args;
         }
 
         public static void AttachShader(int program, int shader)
@@ -258,6 +259,21 @@ namespace SDL_Sharp.OpenGL
             glCompileShader((uint)shader);
         }
 
+        public static void GetShader(int shader, ShaderParameter pname, out int @params)
+        {
+            int args;
+            unsafe
+            {
+                glGetShaderiv((uint)shader, (int)pname, &args);
+            }
+            @params = args;
+        }
+
+        public static void DetachShader(int program, int shader)
+        {
+            glDetachShader((uint)program, (uint)shader);
+        }
+
         public static string GetShaderInfoLog(Int32 shader)
         {
             string info;
@@ -267,14 +283,14 @@ namespace SDL_Sharp.OpenGL
 
         public static void GetShaderInfoLog(Int32 shader, out string info)
         {
-            int length;
+            int length = 0, args = 0;
             unsafe
             {
-                int* args = null;
-                glGetShaderiv((uint)shader, (int)ShaderParameter.InfoLogLength, args);
+                int* ptr = &args;
+                glGetShaderiv((uint)shader, (int)ShaderParameter.InfoLogLength, ptr);
 
                 int count = 0;
-                while (*(args + count) != 0)
+                while (*(ptr + count) != 0)
                 {
                     count += 1;
                 }
@@ -299,45 +315,18 @@ namespace SDL_Sharp.OpenGL
 
         public static void GetProgramInfoLog(Int32 program, out string info)
         {
+            int length;
             unsafe
             {
-                int length;
-                int* args = null;
-                glGetProgramiv((uint)program, (int)GetProgramParameterName.InfoLogLength, args);
-
-                int count = 0;
-                while (*(args + count) != 0)
-                {
-                    count += 1;
-                }
-
-                length = count;
-
-                if (length == 0)
-                {
-                    info = String.Empty;
-                    return;
-                }
-                info = glGetProgramInfoLog((UInt32)program, length * 2);
+                glGetProgramiv((uint)program, (int)GetProgramParameterName.InfoLogLength, &length);
             }
-        }
 
-        [CLSCompliant(false)]
-        public static void VertexAttrib2(Int32 index, ref Vector2 v)
-        {
-            glVertexAttrib2f((uint)index, v.X, v.Y);
-        }
-
-        [CLSCompliant(false)]
-        public static void VertexAttrib3(Int32 index, ref Vector3 v)
-        {
-            glVertexAttrib3f((uint)index, v.X, v.Y, v.Z);
-        }
-
-        [CLSCompliant(false)]
-        public static void VertexAttrib4(Int32 index, ref Vector4 v)
-        {
-            glVertexAttrib4f((uint)index, v.X, v.Y, v.Z, v.W);
+            if (length == 0)
+            {
+                info = String.Empty;
+                return;
+            }
+            info = glGetProgramInfoLog((UInt32)program, length * 2);
         }
 
         public static void VertexAttrib2(Int32 index, Vector2 v)
@@ -358,12 +347,6 @@ namespace SDL_Sharp.OpenGL
         public static void VertexAttribPointer(int index, int size, VertexAttribPointerType type, bool normalized, int stride, int offset)
         {
             glVertexAttribPointer((uint)index, size, (int)type, normalized, stride, (IntPtr)offset);
-        }
-
-        [CLSCompliant(false)]
-        public static void VertexAttribPointer(uint index, int size, VertexAttribPointerType type, bool normalized, int stride, int offset)
-        {
-            glVertexAttribPointer(index, size, (int)type, normalized, stride, (IntPtr)offset);
         }
 
         public unsafe static void DrawElements(BeginMode mode, int count, DrawElementsType type, int offset)
@@ -436,9 +419,19 @@ namespace SDL_Sharp.OpenGL
             handle.Free();
         }
 
+        public static void DeleteBuffer(int buffer)
+        {
+            glDeleteBuffer((uint)buffer);
+        }
+
         public static void EnableVertexAttribArray(int index)
         {
             glEnableVertexAttribArray((uint)index);
+        }
+
+        public static void DeleteVertexArray(int array)
+        {
+            glDeleteVertexArray((uint)array);
         }
 
         public static int GenTexture()
@@ -449,6 +442,11 @@ namespace SDL_Sharp.OpenGL
         public static void ActiveTexture(TextureUnit texture)
         {
             glActiveTexture((int)texture);
+        }
+
+        public static void BindTexture(TextureTarget target, int texture)
+        {
+            glBindTexture((int)target, (uint)texture);
         }
 
         public static void TexImage2D(TextureTarget target, int level, PixelInternalFormat internalFormat, int width, int hight, int border, PixelFormat format, PixelType type, IntPtr pixels)
