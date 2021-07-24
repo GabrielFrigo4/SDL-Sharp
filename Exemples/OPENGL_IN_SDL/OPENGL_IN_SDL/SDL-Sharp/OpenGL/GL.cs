@@ -480,5 +480,30 @@ namespace SDL_Sharp.OpenGL
         {
             glGenerateMipmap((int)target);
         }
+
+        public static void PixelStore(PixelStoreParameter pname, int param)
+        {
+            glPixelStorei((int)pname, param);
+        }
+
+        public static void Flush()
+        {
+            glFlush();
+        }
+
+        public static void Enable(EnableCap cap)
+        {
+            glEnable((int)cap);
+        }
+
+        public static void BlendFunc(BlendingFactor sfactor, BlendingFactor dfactor)
+        {
+            glBlendFunc((int)sfactor, (int)dfactor);
+        }
+
+        public static void DepthFunc(DepthFunction func)
+        {
+            glDepthFunc((int)func);
+        }
     }
 }
