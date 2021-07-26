@@ -12,8 +12,15 @@ nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuge
 nuget 64-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/)
 
 the project was made based on 2 other projects
+
 the SharpSDL (https://github.com/hasali19/SharpSDL)
+
 and the SDL2 # (https://github.com/flibitijibibo/SDL2-CS)
+
+and the SharpFont (https://github.com/Robmaister/SharpFont)
+
+and the OpenTK (https://github.com/opentk/opentk)
+
 With some modifications in both
 
 This project aims to make SDL2 non-aggressive in c#
