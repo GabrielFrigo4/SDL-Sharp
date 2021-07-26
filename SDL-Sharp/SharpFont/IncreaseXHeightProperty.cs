@@ -24,9 +24,9 @@ SOFTWARE.*/
 
 using System;
 
-using SharpFont.Internal;
+using SDL_Sharp.SharpFont.Internal;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// The data exchange structure for the increase-x-height property.

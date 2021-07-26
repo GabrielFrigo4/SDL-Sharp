@@ -29260,5 +29260,313 @@ namespace SDL_Sharp.OpenGL
         //     Original was GL_MAP_COHERENT_BIT_EXT = 0x0080
         MapCoherentBitExt = 128
     }
+
+    public enum BlitFramebufferFilter
+    {
+        //
+        // Resumo:
+        //     Original was GL_NEAREST = 0x2600
+        Nearest = 9728,
+        //
+        // Resumo:
+        //     Original was GL_LINEAR = 0x2601
+        Linear = 9729
+    }
+
+    public enum RenderbufferStorage
+    {
+        //
+        // Resumo:
+        //     Original was GL_DEPTH_COMPONENT = 0x1902
+        DepthComponent = 6402,
+        //
+        // Resumo:
+        //     Original was GL_R3_G3_B2 = 0x2A10
+        R3G3B2 = 10768,
+        //
+        // Resumo:
+        //     Original was GL_RGB4 = 0x804F
+        Rgb4 = 32847,
+        //
+        // Resumo:
+        //     Original was GL_RGB5 = 0x8050
+        Rgb5 = 32848,
+        //
+        // Resumo:
+        //     Original was GL_RGB8 = 0x8051
+        Rgb8 = 32849,
+        //
+        // Resumo:
+        //     Original was GL_RGB10 = 0x8052
+        Rgb10 = 32850,
+        //
+        // Resumo:
+        //     Original was GL_RGB12 = 0x8053
+        Rgb12 = 32851,
+        //
+        // Resumo:
+        //     Original was GL_RGB16 = 0x8054
+        Rgb16 = 32852,
+        //
+        // Resumo:
+        //     Original was GL_RGBA2 = 0x8055
+        Rgba2 = 32853,
+        //
+        // Resumo:
+        //     Original was GL_RGBA4 = 0x8056
+        Rgba4 = 32854,
+        //
+        // Resumo:
+        //     Original was GL_RGBA8 = 0x8058
+        Rgba8 = 32856,
+        //
+        // Resumo:
+        //     Original was GL_RGB10_A2 = 0x8059
+        Rgb10A2 = 32857,
+        //
+        // Resumo:
+        //     Original was GL_RGBA12 = 0x805A
+        Rgba12 = 32858,
+        //
+        // Resumo:
+        //     Original was GL_RGBA16 = 0x805B
+        Rgba16 = 32859,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH_COMPONENT16 = 0x81a5
+        DepthComponent16 = 33189,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH_COMPONENT24 = 0x81a6
+        DepthComponent24 = 33190,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH_COMPONENT32 = 0x81a7
+        DepthComponent32 = 33191,
+        //
+        // Resumo:
+        //     Original was GL_R8 = 0x8229
+        R8 = 33321,
+        //
+        // Resumo:
+        //     Original was GL_R16 = 0x822A
+        R16 = 33322,
+        //
+        // Resumo:
+        //     Original was GL_RG8 = 0x822B
+        Rg8 = 33323,
+        //
+        // Resumo:
+        //     Original was GL_RG16 = 0x822C
+        Rg16 = 33324,
+        //
+        // Resumo:
+        //     Original was GL_R16F = 0x822D
+        R16f = 33325,
+        //
+        // Resumo:
+        //     Original was GL_R32F = 0x822E
+        R32f = 33326,
+        //
+        // Resumo:
+        //     Original was GL_RG16F = 0x822F
+        Rg16f = 33327,
+        //
+        // Resumo:
+        //     Original was GL_RG32F = 0x8230
+        Rg32f = 33328,
+        //
+        // Resumo:
+        //     Original was GL_R8I = 0x8231
+        R8i = 33329,
+        //
+        // Resumo:
+        //     Original was GL_R8UI = 0x8232
+        R8ui = 33330,
+        //
+        // Resumo:
+        //     Original was GL_R16I = 0x8233
+        R16i = 33331,
+        //
+        // Resumo:
+        //     Original was GL_R16UI = 0x8234
+        R16ui = 33332,
+        //
+        // Resumo:
+        //     Original was GL_R32I = 0x8235
+        R32i = 33333,
+        //
+        // Resumo:
+        //     Original was GL_R32UI = 0x8236
+        R32ui = 33334,
+        //
+        // Resumo:
+        //     Original was GL_RG8I = 0x8237
+        Rg8i = 33335,
+        //
+        // Resumo:
+        //     Original was GL_RG8UI = 0x8238
+        Rg8ui = 33336,
+        //
+        // Resumo:
+        //     Original was GL_RG16I = 0x8239
+        Rg16i = 33337,
+        //
+        // Resumo:
+        //     Original was GL_RG16UI = 0x823A
+        Rg16ui = 33338,
+        //
+        // Resumo:
+        //     Original was GL_RG32I = 0x823B
+        Rg32i = 33339,
+        //
+        // Resumo:
+        //     Original was GL_RG32UI = 0x823C
+        Rg32ui = 33340,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH_STENCIL = 0x84F9
+        DepthStencil = 34041,
+        //
+        // Resumo:
+        //     Original was GL_RGBA32F = 0x8814
+        Rgba32f = 34836,
+        //
+        // Resumo:
+        //     Original was GL_RGB32F = 0x8815
+        Rgb32f = 34837,
+        //
+        // Resumo:
+        //     Original was GL_RGBA16F = 0x881A
+        Rgba16f = 34842,
+        //
+        // Resumo:
+        //     Original was GL_RGB16F = 0x881B
+        Rgb16f = 34843,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH24_STENCIL8 = 0x88F0
+        Depth24Stencil8 = 35056,
+        //
+        // Resumo:
+        //     Original was GL_R11F_G11F_B10F = 0x8C3A
+        R11fG11fB10f = 35898,
+        //
+        // Resumo:
+        //     Original was GL_RGB9_E5 = 0x8C3D
+        Rgb9E5 = 35901,
+        //
+        // Resumo:
+        //     Original was GL_SRGB8 = 0x8C41
+        Srgb8 = 35905,
+        //
+        // Resumo:
+        //     Original was GL_SRGB8_ALPHA8 = 0x8C43
+        Srgb8Alpha8 = 35907,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH_COMPONENT32F = 0x8CAC
+        DepthComponent32f = 36012,
+        //
+        // Resumo:
+        //     Original was GL_DEPTH32F_STENCIL8 = 0x8CAD
+        Depth32fStencil8 = 36013,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX1 = 0x8D46
+        StencilIndex1 = 36166,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX1_EXT = 0x8D46
+        StencilIndex1Ext = 36166,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX4 = 0x8D47
+        StencilIndex4 = 36167,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX4_EXT = 0x8D47
+        StencilIndex4Ext = 36167,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX8 = 0x8D48
+        StencilIndex8 = 36168,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX8_EXT = 0x8D48
+        StencilIndex8Ext = 36168,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX16 = 0x8D49
+        StencilIndex16 = 36169,
+        //
+        // Resumo:
+        //     Original was GL_STENCIL_INDEX16_EXT = 0x8D49
+        StencilIndex16Ext = 36169,
+        //
+        // Resumo:
+        //     Original was GL_RGBA32UI = 0x8D70
+        Rgba32ui = 36208,
+        //
+        // Resumo:
+        //     Original was GL_RGB32UI = 0x8D71
+        Rgb32ui = 36209,
+        //
+        // Resumo:
+        //     Original was GL_RGBA16UI = 0x8D76
+        Rgba16ui = 36214,
+        //
+        // Resumo:
+        //     Original was GL_RGB16UI = 0x8D77
+        Rgb16ui = 36215,
+        //
+        // Resumo:
+        //     Original was GL_RGBA8UI = 0x8D7C
+        Rgba8ui = 36220,
+        //
+        // Resumo:
+        //     Original was GL_RGB8UI = 0x8D7D
+        Rgb8ui = 36221,
+        //
+        // Resumo:
+        //     Original was GL_RGBA32I = 0x8D82
+        Rgba32i = 36226,
+        //
+        // Resumo:
+        //     Original was GL_RGB32I = 0x8D83
+        Rgb32i = 36227,
+        //
+        // Resumo:
+        //     Original was GL_RGBA16I = 0x8D88
+        Rgba16i = 36232,
+        //
+        // Resumo:
+        //     Original was GL_RGB16I = 0x8D89
+        Rgb16i = 36233,
+        //
+        // Resumo:
+        //     Original was GL_RGBA8I = 0x8D8E
+        Rgba8i = 36238,
+        //
+        // Resumo:
+        //     Original was GL_RGB8I = 0x8D8F
+        Rgb8i = 36239,
+        //
+        // Resumo:
+        //     Original was GL_RGB10_A2UI = 0x906F
+        Rgb10A2ui = 36975
+    }
+
+    public enum PackedPointerType
+    {
+        //
+        // Resumo:
+        //     Original was GL_UNSIGNED_INT_2_10_10_10_REV = 0x8368
+        UnsignedInt2101010Rev = 33640,
+        //
+        // Resumo:
+        //     Original was GL_INT_2_10_10_10_REV = 0x8D9F
+        Int2101010Rev = 36255
+    }
     #endregion
 }

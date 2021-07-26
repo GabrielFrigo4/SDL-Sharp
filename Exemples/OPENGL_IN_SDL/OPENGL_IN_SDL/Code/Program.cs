@@ -25,7 +25,7 @@ namespace OPENGL_IN_SDL
 
             SDL.GetDisplayMode(displayIndex, 0, out mode);
 
-            window = SDL.CreateWindow("OPENGL_IN_SDL",SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, mode.Height, mode.Width, WindowFlags.OpenGL | WindowFlags.Fullscreen);
+            window = SDL.CreateWindow("OPENGL_IN_SDL",SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 900, 660, WindowFlags.OpenGL | WindowFlags.Hidden);
             //Init SDL & Sound
 
             //Init OpenGL
@@ -59,6 +59,7 @@ namespace OPENGL_IN_SDL
             const float timeStep = 60f/1000f;
             float accumulator = 0.0f;
             float currentTime = HireTimeInSeconds();
+            SDL.ShowWindow(window);
 
             while (running)
             {

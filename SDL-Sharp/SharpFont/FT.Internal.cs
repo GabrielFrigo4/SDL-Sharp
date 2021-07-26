@@ -25,13 +25,13 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Cache;
-using SharpFont.Internal;
-using SharpFont.PostScript;
-using SharpFont.TrueType;
+using SDL_Sharp.SharpFont.Cache;
+using SDL_Sharp.SharpFont.Internal;
+using SDL_Sharp.SharpFont.PostScript;
+using SDL_Sharp.SharpFont.TrueType;
 using System.Reflection;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <content>
 	/// This file contains all the raw FreeType2 function signatures.

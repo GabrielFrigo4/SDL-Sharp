@@ -26,13 +26,13 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-using SharpFont.Bdf;
-using SharpFont.Internal;
-using SharpFont.MultipleMasters;
-using SharpFont.PostScript;
-using SharpFont.TrueType;
+using SDL_Sharp.SharpFont.Bdf;
+using SDL_Sharp.SharpFont.Internal;
+using SDL_Sharp.SharpFont.MultipleMasters;
+using SDL_Sharp.SharpFont.PostScript;
+using SDL_Sharp.SharpFont.TrueType;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// FreeType root face class structure. A face object models a typeface in a font file.

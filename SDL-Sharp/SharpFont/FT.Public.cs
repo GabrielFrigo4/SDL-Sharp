@@ -26,9 +26,9 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-using SharpFont.Internal;
+using SDL_Sharp.SharpFont.Internal;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// Miscellaneous FreeType2 functions that don't fit anywhere else.

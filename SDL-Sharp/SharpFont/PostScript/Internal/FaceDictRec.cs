@@ -25,12 +25,12 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Internal;
+using SDL_Sharp.SharpFont.Internal;
 
 using FT_Long = System.IntPtr;
 using FT_ULong = System.UIntPtr;
 
-namespace SharpFont.PostScript.Internal
+namespace SDL_Sharp.SharpFont.PostScript.Internal
 {
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct FaceDictRec

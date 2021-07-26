@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Internal;
+using SDL_Sharp.SharpFont.Internal;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A function used to initialize (not create) a new module object.

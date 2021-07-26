@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Internal;
+using SDL_Sharp.SharpFont.Internal;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A function used to seek and read data from a given input stream.

@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 using System;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A list of values and/or bit-flags returned by the FT_Get_Gasp function.

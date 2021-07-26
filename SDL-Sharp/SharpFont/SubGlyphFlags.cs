@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 using System;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A list of constants used to describe subglyphs. Please refer to the TrueType specification for the meaning of

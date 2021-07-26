@@ -25,7 +25,7 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpFont.Internal
+namespace SDL_Sharp.SharpFont.Internal
 {
 	/// <summary>
 	/// Internally represents a Bitmap.

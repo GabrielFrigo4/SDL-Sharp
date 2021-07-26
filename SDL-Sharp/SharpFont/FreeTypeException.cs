@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 using System;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// An exception that gets thrown when FreeType returns an error code.

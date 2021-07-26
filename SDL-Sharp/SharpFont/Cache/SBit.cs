@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Cache.Internal;
+using SDL_Sharp.SharpFont.Cache.Internal;
 
-namespace SharpFont.Cache
+namespace SDL_Sharp.SharpFont.Cache
 {
 	/// <summary>
 	/// A handle to a small bitmap cache. These are special cache objects used to store small glyph bitmaps (and

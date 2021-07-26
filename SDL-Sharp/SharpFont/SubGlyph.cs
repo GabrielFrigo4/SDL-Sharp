@@ -25,7 +25,7 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// The subglyph structure is an internal object used to describe subglyphs (for example, in the case of

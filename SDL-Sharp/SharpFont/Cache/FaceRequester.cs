@@ -25,7 +25,7 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpFont.Cache
+namespace SDL_Sharp.SharpFont.Cache
 {
 	/// <summary>
 	/// A callback function provided by client applications. It is used by the cache manager to translate a given

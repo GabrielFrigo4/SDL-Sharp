@@ -24,9 +24,9 @@ SOFTWARE.*/
 
 using System;
 
-using SharpFont.Fnt.Internal;
+using SDL_Sharp.SharpFont.Fnt.Internal;
 
-namespace SharpFont.Fnt
+namespace SDL_Sharp.SharpFont.Fnt
 {
 	/// <summary>
 	/// Describes the general appearance of the font.

@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.TrueType.Internal;
+using SDL_Sharp.SharpFont.TrueType.Internal;
 
-namespace SharpFont.TrueType
+namespace SDL_Sharp.SharpFont.TrueType
 {
 	/// <summary>
 	/// A structure used to model a TrueType PostScript table. All fields comply to the TrueType specification. This

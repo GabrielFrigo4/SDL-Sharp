@@ -25,7 +25,7 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpFont.TrueType.Internal
+namespace SDL_Sharp.SharpFont.TrueType.Internal
 {
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct SfntNameRec
