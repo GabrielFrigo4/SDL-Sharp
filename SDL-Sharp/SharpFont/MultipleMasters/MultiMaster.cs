@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.MultipleMasters.Internal;
+using SDL_Sharp.SharpFont.MultipleMasters.Internal;
 
-namespace SharpFont.MultipleMasters
+namespace SDL_Sharp.SharpFont.MultipleMasters
 {
 	/// <summary><para>
 	/// A structure used to model the axes and space of a Multiple Masters font.

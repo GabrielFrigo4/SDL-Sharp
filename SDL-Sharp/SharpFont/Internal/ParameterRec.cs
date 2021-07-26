@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 using FT_Long = System.IntPtr;
 using FT_ULong = System.UIntPtr;
 
-namespace SharpFont.Internal
+namespace SDL_Sharp.SharpFont.Internal
 {
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct ParameterRec

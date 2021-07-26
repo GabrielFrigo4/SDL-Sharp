@@ -25,7 +25,7 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpFont.Internal
+namespace SDL_Sharp.SharpFont.Internal
 {
 	[StructLayout(LayoutKind.Sequential)]
 	internal struct ListNodeRec

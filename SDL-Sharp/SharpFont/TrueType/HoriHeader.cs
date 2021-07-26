@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.TrueType.Internal;
+using SDL_Sharp.SharpFont.TrueType.Internal;
 
-namespace SharpFont.TrueType
+namespace SDL_Sharp.SharpFont.TrueType
 {
 	/// <summary>
 	/// A structure used to model a TrueType horizontal header, the ‘hhea’ table, as well as the corresponding

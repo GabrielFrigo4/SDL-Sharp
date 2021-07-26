@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Cache.Internal;
+using SDL_Sharp.SharpFont.Cache.Internal;
 
-namespace SharpFont.Cache
+namespace SDL_Sharp.SharpFont.Cache
 {
 	/// <summary>
 	/// A structure used to model the type of images in a glyph cache.

@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 using System;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A list of bit flag constants as used in the ‘flags’ field of a <see cref="RasterParams"/> structure.

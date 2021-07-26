@@ -26,11 +26,11 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-using SharpFont.Cache;
-using SharpFont.Internal;
-using SharpFont.TrueType;
+using SDL_Sharp.SharpFont.Cache;
+using SDL_Sharp.SharpFont.Internal;
+using SDL_Sharp.SharpFont.TrueType;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary><para>
 	/// A handle to a FreeType library instance. Each ‘library’ is completely independent from the others; it is the
@@ -133,7 +133,7 @@ namespace SharpFont
 		/// <summary>
 		/// Gets the version of the FreeType library being used.
 		/// </summary>
-		public Version Version
+		public System.Version Version
 		{
 			get
 			{
@@ -142,7 +142,7 @@ namespace SharpFont
 
 				int major, minor, patch;
 				FT.FT_Library_Version(Reference, out major, out minor, out patch);
-				return new Version(major, minor, patch);
+				return new System.Version(major, minor, patch);
 			}
 		}
 

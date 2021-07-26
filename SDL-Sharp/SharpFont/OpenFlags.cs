@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 using System;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A list of bit-field constants used within the ‘flags’ field of the <see cref="OpenArgs"/> structure.

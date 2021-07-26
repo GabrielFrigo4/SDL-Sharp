@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.TrueType.Internal;
+using SDL_Sharp.SharpFont.TrueType.Internal;
 
-namespace SharpFont.TrueType
+namespace SDL_Sharp.SharpFont.TrueType
 {
 	/// <summary>
 	/// The maximum profile is a table containing many max values which can be used to pre-allocate arrays. This

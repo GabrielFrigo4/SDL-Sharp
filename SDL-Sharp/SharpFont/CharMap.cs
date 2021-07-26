@@ -25,10 +25,10 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.Internal;
-using SharpFont.TrueType;
+using SDL_Sharp.SharpFont.Internal;
+using SDL_Sharp.SharpFont.TrueType;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// The base charmap structure.

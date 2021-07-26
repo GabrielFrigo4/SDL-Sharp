@@ -31,7 +31,7 @@ using System;
 using System.Runtime.InteropServices;
 #endregion
 
-namespace SDL_Sharp.Img
+namespace SDL_Sharp.Image
 {
 	public static unsafe partial class IMG
 	{

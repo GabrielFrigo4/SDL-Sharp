@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.TrueType;
+using SDL_Sharp.SharpFont.TrueType;
 
-namespace SharpFont.Internal
+namespace SDL_Sharp.SharpFont.Internal
 {
 	/// <summary>
 	/// Internally represents a CharMap.

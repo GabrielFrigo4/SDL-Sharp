@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace SDL_Sharp.Mix
+namespace SDL_Sharp.Mixer
 {
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Music

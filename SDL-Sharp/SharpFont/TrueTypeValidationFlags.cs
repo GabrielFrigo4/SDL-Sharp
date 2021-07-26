@@ -24,7 +24,7 @@ SOFTWARE.*/
 
 using System;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// A list of bit-field constants used with <see cref="Face.TrueTypeGXValidate"/> to indicate which TrueTypeGX/AAT

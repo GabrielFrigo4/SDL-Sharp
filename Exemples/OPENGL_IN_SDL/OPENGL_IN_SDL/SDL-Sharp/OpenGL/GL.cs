@@ -3176,7 +3176,7 @@ namespace SDL_Sharp.OpenGL
         ///     The amount of data in machine units that can be read from the buffer object while used as an indexed
         ///     target.
         /// </param>
-        public static void glBindBufferRange(int target, uint index, uint buffer, long offset, long size) => _glBindBufferRange(target, index, buffer, new IntPtr(offset), new IntPtr(size));
+        public static void BindBufferRange(BufferRangeTarget target, int index, int buffer, long offset, long size) => _glBindBufferRange((int)target, (uint)index, (uint)buffer, new IntPtr(offset), new IntPtr(size));
 
         /// <summary>
         ///     Copy a block of pixels from one framebuffer object to another.
@@ -3191,7 +3191,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="dstY1">The upper right corner of the write buffer on the y-axis.</param>
         /// <param name="mask">The bitwise OR of the flags indicating which buffers are to be copied.<para>The allowed flags are GL_COLOR_BUFFER_BIT, GL_DEPTH_BUFFER_BIT and GL_STENCIL_BUFFER_BIT.</para></param>
         /// <param name="filter">Specifies the interpolation to be applied if the image is stretched.<para>Must be GL_NEAREST or GL_LINEAR.</para></param>
-        public static void glBlitFramebuffer(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, uint mask, int filter) => _glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+        public static void BlitFramebuffer(int srcX0, int srcY0, int srcX1, int srcY1, int dstX0, int dstY0, int dstX1, int dstY1, ClearBufferMask mask, BlitFramebufferFilter filter) => _glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, (uint)mask, (int)filter);
 
         /// <summary>
         /// Establish data storage, format and dimensions of a renderbuffer object's image.
@@ -3200,46 +3200,46 @@ namespace SDL_Sharp.OpenGL
         /// <param name="internalFormat">Specifies the internal format to use for the renderbuffer object's image.</param>
         /// <param name="width">Specifies the width of the renderbuffer, in pixels.</param>
         /// <param name="height">Specifies the height of the renderbuffer, in pixels.</param>
-        public static void glRenderbufferStorage(int target, int internalFormat, int width, int height) => _glRenderbufferStorage(target, internalFormat, width, height);
+        public static void RenderbufferStorage(RenderbufferTarget target, RenderbufferStorage internalFormat, int width, int height) => _glRenderbufferStorage((int)target, (int)internalFormat, width, height);
 
         /// <summary>
         ///     Set the current color as a packed value.
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glColorP3ui(int type, uint color) => _glColorP3ui(type, color);
+        public static void ColorP3(PackedPointerType type, int color) => _glColorP3ui((int)type, (uint)color);
 
         /// <summary>
         ///     Set the current color as a packed value.
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glColorP3uiv(int type, /*const*/ uint* color) => _glColorP3uiv(type, color);
+        public static void ColorP3(PackedPointerType type, /*const*/ int* color) => _glColorP3uiv((int)type, (uint*)color);
 
         /// <summary>
         ///     Set the current color as a packed value.
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glColorP4ui(int type, uint color) => _glColorP4ui(type, color);
+        public static void ColorP4(PackedPointerType type, int color) => _glColorP4ui((int)type, (uint)color);
 
         /// <summary>
         ///     Set the current color as a packed value.
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glColorP4uiv(int type, /*const*/ uint* color) => _glColorP4uiv(type, color);
+        public static void ColorP4(PackedPointerType type, /*const*/ int* color) => _glColorP4uiv((int)type, (uint*)color);
 
         /// <summary>
         ///     Set the current color as a packed value.
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glColorP3uiv(int type, uint[] color)
+        public static void ColorP3(PackedPointerType type, int[] color)
         {
-            fixed (uint* c = &color[0])
+            fixed (int* c = &color[0])
             {
-                _glColorP3uiv(type, c);
+                _glColorP3uiv((int)type, (uint*)c);
             }
         }
 
@@ -3248,11 +3248,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glColorP4uiv(int type, uint[] color)
+        public static void ColorP4(PackedPointerType type, int[] color)
         {
-            fixed (uint* c = &color[0])
+            fixed (int* c = &color[0])
             {
-                _glColorP4uiv(type, c);
+                _glColorP4uiv((int)type, (uint*)c);
             }
         }
 
@@ -3261,18 +3261,18 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glSecondaryColorP3ui(int type, uint color) => _glSecondaryColorP3ui(type, color);
+        public static void SecondaryColorP3(PackedPointerType type, int color) => _glSecondaryColorP3ui((int)type, (uint)color);
 
         /// <summary>
         ///     Set the current color as a packed value.
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glSecondaryColorP3uiv(int type, uint[] color)
+        public static void SecondaryColorP3(PackedPointerType type, int[] color)
         {
-            fixed (uint* c = &color[0])
+            fixed (int* c = &color[0])
             {
-                _glSecondaryColorP3uiv(type, c);
+                _glSecondaryColorP3uiv((int)type, (uint*)c);
             }
         }
 
@@ -3281,7 +3281,7 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the data type of each color components.</param>
         /// <param name="color">The packed color value.</param>
-        public static void glSecondaryColorP3uiv(int type, /*const*/ uint* color) => _glSecondaryColorP3uiv(type, color);
+        public static void SecondaryColorP3(PackedPointerType type, /*const*/ int* color) => _glSecondaryColorP3uiv((int)type, (uint*)color);
 
         /// <summary>
         ///     Updates a subset of a buffer object's data store.
@@ -3293,7 +3293,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="size">Specifies the size in bytes of the data store region being replaced.</param>
         /// <param name="data">Specifies a pointer to the new data that will be copied into the data store.</param>
-        public static void glBufferSubData(int target, int offset, int size, IntPtr data) => _glBufferSubData(target, new IntPtr(offset), new IntPtr(size), data.ToPointer());
+        public static void BufferSubData(BufferTarget target, int offset, int size, IntPtr data) => _glBufferSubData((int)target, new IntPtr(offset), new IntPtr(size), data.ToPointer());
 
         /// <summary>
         ///     Updates a subset of a buffer object's data store.
@@ -3305,7 +3305,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="size">Specifies the size in bytes of the data store region being replaced.</param>
         /// <param name="data">Specifies a pointer to the new data that will be copied into the data store.</param>
-        public static void glBufferSubData(int target, long offset, long size, IntPtr data) => _glBufferSubData(target, new IntPtr(offset), new IntPtr(size), data.ToPointer());
+        public static void BufferSubData(BufferTarget target, long offset, long size, IntPtr data) => _glBufferSubData((int)target, new IntPtr(offset), new IntPtr(size), data.ToPointer());
 
 
         /// <summary>
@@ -3318,7 +3318,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="size">Specifies the size in bytes of the data store region being replaced.</param>
         /// <param name="data">Specifies a pointer to the new data that will be copied into the data store.</param>
-        public static void glBufferSubData(int target, int offset, int size, /*const*/ void* data) => _glBufferSubData(target, new IntPtr(offset), new IntPtr(size), data);
+        public static void BufferSubData(BufferTarget target, int offset, int size, /*const*/ void* data) => _glBufferSubData((int)target, new IntPtr(offset), new IntPtr(size), data);
 
         /// <summary>
         ///     Updates a subset of a buffer object's data store.
@@ -3330,32 +3330,32 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="size">Specifies the size in bytes of the data store region being replaced.</param>
         /// <param name="data">Specifies a pointer to the new data that will be copied into the data store.</param>
-        public static void glBufferSubData(int target, long offset, long size, /*const*/ void* data) => _glBufferSubData(target, new IntPtr(offset), new IntPtr(size), data);
+        public static void BufferSubData(BufferTarget target, long offset, long size, /*const*/ void* data) => _glBufferSubData((int)target, new IntPtr(offset), new IntPtr(size), data);
 
         /// <summary>
         ///     Set the current normal vector.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="coords">The coords.</param>
-        public static void glNormalP3ui(int type, uint coords) => _glNormalP3ui(type, coords);
+        public static void NormalP3(PackedPointerType type, int coords) => _glNormalP3ui((int)type, (uint)coords);
 
         /// <summary>
         ///     Set the current normal vector.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="coords">The coords.</param>
-        public static void glNormalP3uiv(int type, /*const*/ uint* coords) => _glNormalP3uiv(type, coords);
+        public static void NormalP3(PackedPointerType type, /*const*/ int* coords) => _glNormalP3uiv((int)type, (uint*)coords);
 
         /// <summary>
         ///     Set the current normal vector.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <param name="coords">The coords.</param>
-        public static void glNormalP3uiv(int type, uint[] coords)
+        public static void NormalP3(PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glNormalP3uiv(type, c);
+                _glNormalP3uiv((int)type, (uint*)c);
             }
         }
 
@@ -3365,12 +3365,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="program">The name of the program containing varying out variable whose binding to modify.</param>
         /// <param name="color">The color number to bind the user-defined varying out variable to.</param>
         /// <param name="name">The name of the user-defined varying out variable whose binding to modify.</param>
-        public static void glBindFragDataLocation(uint program, uint color, string name)
+        public static void BindFragDataLocation(int program, int color, string name)
         {
             var utf8 = Encoding.UTF8.GetBytes(name);
             fixed (byte* b = &utf8[0])
             {
-                _glBindFragDataLocation(program, color, b);
+                _glBindFragDataLocation((uint)program, (uint)color, b);
             }
         }
 
@@ -3381,12 +3381,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="name">The name of the user-defined varying out variable whose binding to query.</param>
         /// <returns>The requested location, or <c>-1</c> if error occured.</returns>
 
-        public static int glGetFragDataLocation(uint program, string name)
+        public static int GetFragDataLocation(int program, string name)
         {
             var utf8 = Encoding.UTF8.GetBytes(name);
             fixed (byte* b = &utf8[0])
             {
-                return _glGetFragDataLocation(program, b);
+                return _glGetFragDataLocation((uint)program, b);
             }
         }
 
@@ -3412,7 +3412,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="maxCount">Specifies the size of the array for storing the returned object names.</param>
         /// <param name="count">Returns the number of names actually returned in shaders.</param>
         /// <param name="shaders">Specifies an array that is used to return the names of attached shader objects.</param>
-        public static void glGetAttachedShaders(uint program, int maxCount, int* count, uint* shaders) => _glGetAttachedShaders(program, maxCount, count, shaders);
+        public static void GetAttachedShaders(int program, int maxCount, int* count, int* shaders) => _glGetAttachedShaders((uint)program, maxCount, count, (uint*)shaders);
 
         /// <summary>
         /// Returns the handles of the shader objects attached to a program object.
@@ -3422,13 +3422,13 @@ namespace SDL_Sharp.OpenGL
         /// <returns>An array containing the attached shaders of the specified program.</returns>
 
 
-        public static uint[] glGetAttachedShaders(uint program, int maxCount)
+        public static int[] GetAttachedShaders(int program, int maxCount)
         {
             int count;
-            var shaders = new uint[maxCount];
-            fixed (uint* shader = &shaders[0])
+            var shaders = new int[maxCount];
+            fixed (int* shader = &shaders[0])
             {
-                _glGetAttachedShaders(program, maxCount, &count, shader);
+                _glGetAttachedShaders((uint)program, maxCount, &count, (uint*)shader);
             }
             return count < maxCount ? shaders.Take(count).ToArray() : shaders;
         }
@@ -3439,12 +3439,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="program">Specifies the handle of the program object in which the association is to be made.</param>
         /// <param name="index">Specifies the index of the generic vertex attribute to be bound.</param>
         /// <param name="name">Specifies a string containing the name of the vertex shader attribute variable to which index is to be bound.</param>
-        public static void glBindAttribLocation(uint program, uint index, string name)
+        public static void BindAttribLocation(int program, int index, string name)
         {
             var utf8 = Encoding.UTF8.GetBytes(name);
             fixed (byte* b = &utf8[0])
             {
-                _glBindAttribLocation(program, index, b);
+                _glBindAttribLocation((uint)program, (uint)index, b);
             }
         }
 
@@ -3458,19 +3458,34 @@ namespace SDL_Sharp.OpenGL
         /// <param name="size">Returns the size of the attribute variable.</param>
         /// <param name="type">Returns the data type of the attribute variable.</param>
         /// <param name="name">The name of the attribute variable.</param>
-        public static void glGetActiveAttrib(uint program, uint index, int bufSize, out int length, out int size,
-            out int type, out string name)
+        public static void GetActiveAttrib(int program, int index, int bufSize, out int length, out int size,
+            out ActiveAttribType type, out string name)
         {
             var buffer = Marshal.AllocHGlobal(bufSize);
             try
             {
-                _glGetActiveAttrib(program, index, bufSize, out length, out size, out type, buffer);
+                int intType;
+                _glGetActiveAttrib((uint)program, (uint)index, bufSize, out length, out size, out intType, buffer);
+                type = (ActiveAttribType)intType;
                 name = PtrToStringUtf8(buffer, length);
             }
             finally
             {
                 Marshal.FreeHGlobal(buffer);
             }
+        }
+
+        public static string GetActiveAttrib(int program, int index, out int size, out ActiveAttribType type)
+        {
+            int length;
+            unsafe
+            {
+                GetProgram(program, GetProgramParameterName.ActiveUniformMaxLength, &length);
+            }
+
+            string str;
+            GetActiveAttrib(program, index, length == 0 ? 1 : length * 2, out length, out size, out type, out str);
+            return str;
         }
 
         /// <summary>
@@ -3527,7 +3542,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <param name="data">Returns the value or values of the specified parameter.</param>
-        public static void glGetBooleani_v(int target, uint index, bool* data) => _glGetBooleani_v(target, index, data);
+        public static void glGetBoolean(int target, uint index, bool* data) => _glGetBooleani_v(target, index, data);
 
         /// <summary>
         /// Return the value or values of a selected parameter.
@@ -4596,21 +4611,21 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="x">The value.</param>
-        public static void glVertexAttrib1d(uint index, double x) => _glVertexAttrib1d(index, x);
+        public static void VertexAttrib1(int index, double x) => _glVertexAttrib1d((uint)index, x);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="x">The value.</param>
-        public static void glVertexAttrib1f(uint index, float x) => _glVertexAttrib1f(index, x);
+        public static void VertexAttrib1(int index, float x) => _glVertexAttrib1f((uint)index, x);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="x">The value.</param>
-        public static void glVertexAttrib1s(uint index, short x) => _glVertexAttrib1s(index, x);
+        public static void VertexAttrib1(int index, short x) => _glVertexAttrib1s((uint)index, x);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4618,7 +4633,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="x">The first value.</param>
         /// <param name="y">The second value.</param>
-        public static void glVertexAttrib2d(uint index, double x, double y) => _glVertexAttrib2d(index, x, y);
+        public static void VertexAttrib2(int index, double x, double y) => _glVertexAttrib2d((uint)index, x, y);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4626,7 +4641,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="x">The first value.</param>
         /// <param name="y">The second value.</param>
-        public static void glVertexAttrib2f(uint index, float x, float y) => _glVertexAttrib2f(index, x, y);
+        public static void VertexAttrib2(int index, float x, float y) => _glVertexAttrib2f((uint)index, x, y);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4634,25 +4649,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="x">The first value.</param>
         /// <param name="y">The second value.</param>
-        public static void glVertexAttrib2s(uint index, short x, short y) => _glVertexAttrib2s(index, x, y);
+        public static void VertexAttrib2(int index, short x, short y) => _glVertexAttrib2s((uint)index, x, y);
 
-        /// <summary>
-        ///     Specifies the value of a generic vertex attribute.
-        /// </summary>
-        /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
-        /// <param name="x">The first value.</param>
-        /// <param name="y">The second value.</param>
-        /// <param name="z">The third value.</param>
-        public static void glVertexAttrib3d(uint index, double x, double y, double z) => _glVertexAttrib3d(index, x, y, z);
-
-        /// <summary>
-        ///     Specifies the value of a generic vertex attribute.
-        /// </summary>
-        /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
-        /// <param name="x">The first value.</param>
-        /// <param name="y">The second value.</param>
-        /// <param name="z">The third value.</param>
-        public static void glVertexAttrib3f(uint index, float x, float y, float z) => _glVertexAttrib3f(index, x, y, z);
+        public static void VertexAttrib2(int index, Vector2 v)
+        {
+            VertexAttrib2(index, v.X, v.Y);
+        }
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4661,7 +4663,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="x">The first value.</param>
         /// <param name="y">The second value.</param>
         /// <param name="z">The third value.</param>
-        public static void glVertexAttrib3s(uint index, short x, short y, short z) => _glVertexAttrib3s(index, x, y, z);
+        public static void VertexAttrib3(int index, double x, double y, double z) => _glVertexAttrib3d((uint)index, x, y, z);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4670,8 +4672,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="x">The first value.</param>
         /// <param name="y">The second value.</param>
         /// <param name="z">The third value.</param>
-        /// <param name="w">The fourth value.</param>
-        public static void glVertexAttrib4Nub(uint index, byte x, byte y, byte z, byte w) => _glVertexAttrib4Nub(index, x, y, z, w);
+        public static void VertexAttrib3(int index, float x, float y, float z) => _glVertexAttrib3f((uint)index, x, y, z);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4680,8 +4681,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="x">The first value.</param>
         /// <param name="y">The second value.</param>
         /// <param name="z">The third value.</param>
-        /// <param name="w">The fourth value.</param>
-        public static void glVertexAttrib4d(uint index, double x, double y, double z, double w) => _glVertexAttrib4d(index, x, y, z, w);
+        public static void VertexAttrib3(int index, short x, short y, short z) => _glVertexAttrib3s((uint)index, x, y, z);
+
+        public static void VertexAttrib3(int index, Vector3 v)
+        {
+            VertexAttrib3(index, v.X, v.Y, v.Z);
+        }
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4691,7 +4696,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="y">The second value.</param>
         /// <param name="z">The third value.</param>
         /// <param name="w">The fourth value.</param>
-        public static void glVertexAttrib4f(uint index, float x, float y, float z, float w) => _glVertexAttrib4f(index, x, y, z, w);
+        public static void VertexAttrib4(int index, byte x, byte y, byte z, byte w) => _glVertexAttrib4Nub((uint)index, x, y, z, w);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
@@ -4701,7 +4706,32 @@ namespace SDL_Sharp.OpenGL
         /// <param name="y">The second value.</param>
         /// <param name="z">The third value.</param>
         /// <param name="w">The fourth value.</param>
-        public static void glVertexAttrib4s(uint index, short x, short y, short z, short w) => _glVertexAttrib4s(index, x, y, z, w);
+        public static void VertexAttrib4(int index, double x, double y, double z, double w) => _glVertexAttrib4d((uint)index, x, y, z, w);
+
+        /// <summary>
+        ///     Specifies the value of a generic vertex attribute.
+        /// </summary>
+        /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
+        /// <param name="x">The first value.</param>
+        /// <param name="y">The second value.</param>
+        /// <param name="z">The third value.</param>
+        /// <param name="w">The fourth value.</param>
+        public static void VertexAttrib4(int index, float x, float y, float z, float w) => _glVertexAttrib4f((uint)index, x, y, z, w);
+
+        /// <summary>
+        ///     Specifies the value of a generic vertex attribute.
+        /// </summary>
+        /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
+        /// <param name="x">The first value.</param>
+        /// <param name="y">The second value.</param>
+        /// <param name="z">The third value.</param>
+        /// <param name="w">The fourth value.</param>
+        public static void VertexAttrib4(int index, short x, short y, short z, short w) => _glVertexAttrib4s((uint)index, x, y, z, w);
+
+        public static void VertexAttrib4(int index, Vector4 v)
+        {
+            VertexAttrib4(index, v.X, v.Y, v.Z, v.W);
+        }
 
         /// <summary>
         ///     Disable a generic vertex attribute array.
@@ -6651,7 +6681,18 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix2fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix2fv(location, count, transpose, value);
+        public static void UniformMatrix2(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix2fv(location, count, transpose, value);
+
+        public static void UniformMatrix2(int location, bool transpose, ref Matrix2 matrix)
+        {
+            unsafe
+            {
+                fixed (float* matrix_ptr = &matrix.Row0.X)
+                {
+                    UniformMatrix2(location, 1, transpose, matrix_ptr);
+                }
+            }
+        }
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6660,7 +6701,18 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix3fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix3fv(location, count, transpose, value);
+        public static void UniformMatrix3(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix3fv(location, count, transpose, value);
+
+        public static void UniformMatrix3(int location, bool transpose, ref Matrix3 matrix)
+        {
+            unsafe
+            {
+                fixed (float* matrix_ptr = &matrix.Row0.X)
+                {
+                    UniformMatrix3(location, 1, transpose, matrix_ptr);
+                }
+            }
+        }
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6689,7 +6741,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix2x3fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix2x3fv(location, count, transpose, value);
+        public static void UniformMatrix2x3(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix2x3fv(location, count, transpose, value);
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6698,7 +6750,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix3x2fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix3x2fv(location, count, transpose, value);
+        public static void UniformMatrix3x2(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix3x2fv(location, count, transpose, value);
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6707,7 +6759,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix2x4fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix2x4fv(location, count, transpose, value);
+        public static void UniformMatrix2x4(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix2x4fv(location, count, transpose, value);
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6716,7 +6768,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix4x2fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix4x2fv(location, count, transpose, value);
+        public static void UniformMatrix4x2(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix4x2fv(location, count, transpose, value);
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6725,7 +6777,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix3x4fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix3x4fv(location, count, transpose, value);
+        public static void UniformMatrix3x4(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix3x4fv(location, count, transpose, value);
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6734,7 +6786,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="value">Specifies a pointer to an array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix4x3fv(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix4x3fv(location, count, transpose, value);
+        public static void UniformMatrix4x3(int location, int count, bool transpose, /*const*/ float* value) => _glUniformMatrix4x3fv(location, count, transpose, value);
 
         /// <summary>
         /// Specify the value of a uniform variable for the current program object.
@@ -6743,7 +6795,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix2fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix2(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6758,7 +6810,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix3fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix3(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6788,7 +6840,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix2x3fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix2x3(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6803,7 +6855,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix3x2fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix3x2(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6818,7 +6870,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix2x4fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix2x4(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6833,7 +6885,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix4x2fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix4x2(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6848,7 +6900,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix3x4fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix3x4(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {
@@ -6863,7 +6915,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">Specifies the number of matrices that are to be modified.</param>
         /// <param name="transpose">Specifies whether to transpose the matrix as the values are loaded into the uniform variable.</param>
         /// <param name="values">An array of count values that will be used to update the specified uniform variable.</param>
-        public static void glUniformMatrix4x3fv(int location, int count, bool transpose, float[] values)
+        public static void UniformMatrix4x3(int location, int count, bool transpose, float[] values)
         {
             fixed (float* value = &values[0])
             {

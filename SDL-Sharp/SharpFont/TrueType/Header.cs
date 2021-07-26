@@ -25,9 +25,9 @@ SOFTWARE.*/
 using System;
 using System.Runtime.InteropServices;
 
-using SharpFont.TrueType.Internal;
+using SDL_Sharp.SharpFont.TrueType.Internal;
 
-namespace SharpFont.TrueType
+namespace SDL_Sharp.SharpFont.TrueType
 {
 	/// <summary>
 	/// Provides Mac style flags for the header table.

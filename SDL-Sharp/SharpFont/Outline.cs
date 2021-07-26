@@ -24,9 +24,9 @@ SOFTWARE.*/
 
 using System;
 using System.Runtime.InteropServices;
-using SharpFont.Internal;
+using SDL_Sharp.SharpFont.Internal;
 
-namespace SharpFont
+namespace SDL_Sharp.SharpFont
 {
 	/// <summary>
 	/// This structure is used to describe an outline to the scan-line converter.
