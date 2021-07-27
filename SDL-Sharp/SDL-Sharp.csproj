@@ -17,7 +17,12 @@ The wrapper provides bindings for the following libraries:
 - OpenAL (1.1)
 - SharpFont (FreeType)
 and contains the necessary DLLs for the project</Description>
-    <PackageReleaseNotes>NOVIDADES AQUIIIIIIIII!!!!!!!!</PackageReleaseNotes>
+    <PackageReleaseNotes>Add al function on OpenGL, OpenAL, OpenGL.Mathematics
+new namespace:
+SDL_Sharp.Image
+SDL_Sharp.Mixer
+SDL_Sharp.Ttf
+SDL_Sharp.SharpFont</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <Version>1.0.0</Version>
   </PropertyGroup>
@@ -33,5 +38,9 @@ and contains the necessary DLLs for the project</Description>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="VulkanCore\" />
+  </ItemGroup>
 
 </Project>
