@@ -19,12 +19,6 @@ namespace OPENGL_IN_SDL
 
             SDL.Init(SdlInitFlags.Video);
 
-            int displayIndex = SDL.GetWindowDisplayIndex(window);
-
-            DisplayMode mode;
-
-            SDL.GetDisplayMode(displayIndex, 0, out mode);
-
             window = SDL.CreateWindow("OPENGL_IN_SDL",SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 900, 660, WindowFlags.OpenGL | WindowFlags.Hidden);
             //Init SDL & Sound
 
@@ -44,15 +38,6 @@ namespace OPENGL_IN_SDL
 
             Shader.asset_shader = new Shader("./Files/Basic/basic.vert", "./Files/Basic/basic.frag");
             Sprite spr = new Sprite("./Files/SDL_Img.png", new Vector2(0.5f,0.5f));
-
-            var program = CreateProgram();
-
-            CreateVertices(out var vao, out var vbo);
-            rand = new Random();
-
-            var location = GL.GetUniformLocation(program, "color");
-            SetRandomColor(location);
-            long n = 0;
 
             Event e;
             var running = true;
@@ -95,18 +80,7 @@ namespace OPENGL_IN_SDL
 
                 GL.Clear(ClearBufferMask.ColorBufferBit);
 
-                if (true)
-                {
-                    DrawSprite(spr, 0, 0);
-                }
-                else
-                {
-                    if (n++ % 60 == 0)
-                        SetRandomColor(location);
-
-                    // Draw the triangle.
-                    GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
-                }
+                DrawSprite(spr, 0, 0);
 
                 SDL.GL_SwapWindow(window);
 
@@ -168,76 +142,5 @@ namespace OPENGL_IN_SDL
 
             return mode.RefreshRate;
         }
-
-        private static void SetRandomColor(int location)
-        {
-            var r = (float)rand.NextDouble();
-            var g = (float)rand.NextDouble();
-            var b = (float)rand.NextDouble();
-            GL.Uniform3(location, r, g, b);
-        }
-
-        private static int CreateProgram()
-        {
-            var vertex = CreateShader(ShaderType.VertexShader, File.ReadAllText("./Files/triangle.vert"));
-            var fragment = CreateShader(ShaderType.FragmentShader, File.ReadAllText("./Files/triangle.frag"));
-
-            var program = GL.CreateProgram();
-            GL.AttachShader(program, vertex);
-            GL.AttachShader(program, fragment);
-
-            GL.LinkProgram(program);
-
-            GL.DeleteShader(vertex);
-            GL.DeleteShader(fragment);
-
-            GL.UseProgram(program);
-            return program;
-        }
-
-        /// <summary>
-        /// Creates a shader of the specified type from the given source string.
-        /// </summary>
-        /// <param name="type">An OpenGL enum for the shader type.</param>
-        /// <param name="source">The source code of the shader.</param>
-        /// <returns>The created shader. No error checking is performed for this basic example.</returns>
-        private static int CreateShader(ShaderType type, string source)
-        {
-            var shader = GL.CreateShader(type);
-            GL.ShaderSource(shader, source);
-            GL.CompileShader(shader);
-            return shader;
-        }
-
-        /// <summary>
-        /// Creates a VBO and VAO to store the vertices for a triangle.
-        /// </summary>
-        /// <param name="vao">The created vertex array object for the triangle.</param>
-        /// <param name="vbo">The created vertex buffer object for the triangle.</param>
-        private static unsafe void CreateVertices(out int vao, out int vbo)
-        {
-
-            var vertices = new[] {
-                -0.5f, -0.5f, 0.0f,
-                0.5f, -0.5f, 0.0f,
-                0.0f,  0.5f, 0.0f
-            };
-
-            vao = GL.GenVertexArray();
-            vbo = GL.GenBuffer();
-
-            GL.BindVertexArray(vao);
-
-            GL.BindBuffer(BufferTarget.ArrayBuffer, vbo);
-            fixed (float* v = &vertices[0])
-            {
-                GL.BufferData(BufferTarget.ArrayBuffer, sizeof(float) * vertices.Length, v, BufferUsageHint.StaticDraw);
-            }
-
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-            GL.EnableVertexAttribArray(0);
-        }
-
-        private static Random rand;
     }
 }
