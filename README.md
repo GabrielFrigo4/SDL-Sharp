@@ -21,6 +21,8 @@ and the SharpFont (https://github.com/Robmaister/SharpFont)
 
 and the OpenTK (https://github.com/opentk/opentk)
 
+and the Pencil.Gaming (https://github.com/andykorth/Pencil.Gaming)
+
 With some modifications in both
 
 This project aims to make SDL2 non-aggressive in c#
@@ -53,7 +55,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 /// [OpenGL]
 
-|to use openGL, you need to initialize GLFunc.Import(SDL.GL_GetProcAddress);|
+|to use openGL Legacy, you need to use GLCore;
 
 ///
 
