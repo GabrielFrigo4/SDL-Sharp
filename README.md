@@ -55,7 +55,7 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 /// [OpenGL]
 
-|to use openGL Legacy, you need to use GLCore;
+to use openGL Legacy, you need to use GLCore;
 
 ///
 
