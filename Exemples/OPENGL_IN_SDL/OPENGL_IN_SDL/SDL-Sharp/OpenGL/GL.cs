@@ -3542,7 +3542,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <param name="data">Returns the value or values of the specified parameter.</param>
-        public static void glGetBoolean(int target, uint index, bool* data) => _glGetBooleani_v(target, index, data);
+        public static void GetBoolean(GetIndexedPName target, int index, bool* data) => _glGetBooleani_v((int)target, (uint)index, data);
 
         /// <summary>
         /// Return the value or values of a selected parameter.
@@ -3550,7 +3550,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <param name="data">Returns the value or values of the specified parameter.</param>
-        public static void glGetIntegeri_v(int target, uint index, int* data) => _glGetIntegeri_v(target, index, data);
+        public static void GetInteger(GetIndexedPName target, int index, int* data) => _glGetIntegeri_v((int)target, (uint)index, data);
 
         /// <summary>
         /// Return the value or values of a selected parameter.
@@ -3558,7 +3558,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <param name="data">Returns the value or values of the specified parameter.</param>
-        public static void glGetInteger64i_v(int target, uint index, long* data) => _glGetInteger64i_v(target, index, data);
+        public static void GetInteger64(GetIndexedPName target, int index, long* data) => _glGetInteger64i_v((int)target, (uint)index, data);
 
         /// <summary>
         /// Return the value or values of a selected parameter.
@@ -3566,10 +3566,10 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <returns>The request parameter value.</returns>
-        public static bool glGetBooleani(int target, uint index)
+        public static bool GetBoolean(GetIndexedPName target, int index)
         {
             bool value;
-            _glGetBooleani_v(target, index, &value);
+            _glGetBooleani_v((int)target, (uint)index, &value);
             return value;
         }
 
@@ -3579,10 +3579,10 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <returns>The request parameter value.</returns>
-        public static int glGetIntegeri(int target, uint index)
+        public static int GetInteger(GetIndexedPName target, int index)
         {
             int value;
-            _glGetIntegeri_v(target, index, &value);
+            _glGetIntegeri_v((int)target, (uint)index, &value);
             return value;
         }
 
@@ -3592,10 +3592,10 @@ namespace SDL_Sharp.OpenGL
         /// <param name="target">Specifies the parameter value to be returned.</param>
         /// <param name="index">Specifies the index of the particular element being queried.</param>
         /// <returns>The request parameter value.</returns>
-        public static long glGetInteger64i(int target, uint index)
+        public static long GetInteger64(GetIndexedPName target, int index)
         {
             long value;
-            _glGetInteger64i_v(target, index, &value);
+            _glGetInteger64i_v((int)target, (uint)index, &value);
             return value;
         }
 
@@ -3607,12 +3607,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">The number of values to get.</param>
         /// <returns>The request parameter value.</returns>
 
-        public static bool[] glGetBooleani_v(int target, uint index, int count)
+        public static bool[] GetBoolean(GetIndexedPName target, int index, int count)
         {
             var value = new bool[count];
             fixed (bool* v = &value[0])
             {
-                _glGetBooleani_v(target, index, v);
+                _glGetBooleani_v((int)target, (uint)index, v);
             }
             return value;
         }
@@ -3625,12 +3625,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">The number of values to get.</param>
         /// <returns>The request parameter value.</returns>
 
-        public static int[] glGetIntegeri_v(int target, uint index, int count)
+        public static int[] GetInteger(GetIndexedPName target, int index, int count)
         {
             var value = new int[count];
             fixed (int* v = &value[0])
             {
-                _glGetIntegeri_v(target, index, v);
+                _glGetIntegeri_v((int)target, (uint)index, v);
             }
             return value;
         }
@@ -3643,12 +3643,12 @@ namespace SDL_Sharp.OpenGL
         /// <param name="count">The number of values to get.</param>
         /// <returns>The request parameter value.</returns>
 
-        public static long[] glGetInteger64i_v(int target, uint index, int count)
+        public static long[] GetInteger64(GetIndexedPName target, int index, int count)
         {
             var value = new long[count];
             fixed (long* v = &value[0])
             {
-                _glGetInteger64i_v(target, index, v);
+                _glGetInteger64i_v((int)target, (uint)index, v);
             }
             return value;
         }
@@ -3658,14 +3658,14 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="array">Specifies a value that may be the name of a vertex array object.</param>
         /// <returns><c>true</c> if value is a vertex array, otherwise <c>false</c>.</returns>
-        public static bool glIsVertexArray(uint array) => _glIsVertexArray(array);
+        public static bool IsVertexArray(int array) => _glIsVertexArray((uint)array);
 
         /// <summary>
         ///     Generate vertex array object names.
         /// </summary>
         /// <param name="n">Specifies the number of vertex array object names to generate.</param>
         /// <param name="arrays">Specifies an array in which the generated vertex array object names are stored.</param>
-        public static void glGenVertexArrays(int n, uint* arrays) => _glGenVertexArrays(n, arrays);
+        public static void GenVertexArrays(int n, int* arrays) => _glGenVertexArrays(n, (uint*)arrays);
 
         /// <summary>
         ///     Generate vertex array object names.
@@ -3674,12 +3674,12 @@ namespace SDL_Sharp.OpenGL
         /// <returns>An array of generated vertex array object names.</returns>
 
 
-        public static uint[] glGenVertexArrays(int n)
+        public static int[] GenVertexArrays(int n)
         {
-            var arrays = new uint[n];
-            fixed (uint* names = &arrays[0])
+            var arrays = new int[n];
+            fixed (int* names = &arrays[0])
             {
-                _glGenVertexArrays(n, names);
+                _glGenVertexArrays(n, (uint*)names);
             }
 
             return arrays;
@@ -3708,19 +3708,19 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="n">Specifies the number of vertex array objects to be deleted.</param>
         /// <param name="arrays">Specifies the address of an array containing the n names of the objects to be deleted.</param>
-        public static void glDeleteVertexArrays(int n, /*const*/ uint* arrays) => _glDeleteVertexArrays(n, arrays);
+        public static void DeleteVertexArrays(int n, /*const*/ int* arrays) => _glDeleteVertexArrays(n, (uint*)arrays);
 
         /// <summary>
         ///     Delete vertex array objects.
         /// </summary>
         /// <param name="arrays">An array of vertex array objects to delete.</param>
-        public static void glDeleteVertexArrays(uint[] arrays)
+        public static void DeleteVertexArrays(int[] arrays)
         {
             if (arrays is null)
                 return;
-            fixed (uint* names = &arrays[0])
+            fixed (int* names = &arrays[0])
             {
-                _glDeleteVertexArrays(arrays.Length, names);
+                _glDeleteVertexArrays(arrays.Length, (uint*)names);
             }
         }
 
@@ -3735,39 +3735,39 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="paramName">Specifies a single-valued point parameter.<para>GL_POINT_FADE_THRESHOLD_SIZE, and GL_POINT_SPRITE_COORD_ORIGIN are accepted.</para></param>
         /// <param name="param">Specifies the value that paramName will be set to.</param>
-        public static void glPointParameterf(int paramName, float param) => _glPointParameterf(paramName, param);
+        public static void PointParameter(PointParameterName paramName, float param) => _glPointParameterf((int)paramName, param);
 
         /// <summary>
         /// Specify point parameters.
         /// </summary>
         /// <param name="paramName">Specifies a single-valued point parameter.<para>GL_POINT_FADE_THRESHOLD_SIZE, and GL_POINT_SPRITE_COORD_ORIGIN are accepted.</para></param>
         /// <param name="param">Specifies the value that paramName will be set to.</param>
-        public static void glPointParameteri(int paramName, int param) => _glPointParameteri(paramName, param);
+        public static void PointParameter(PointParameterName paramName, int param) => _glPointParameteri((int)paramName, param);
 
         /// <summary>
         /// Specify point parameters.
         /// </summary>
         /// <param name="paramName">Specifies a single-valued point parameter.<para>GL_POINT_FADE_THRESHOLD_SIZE, and GL_POINT_SPRITE_COORD_ORIGIN are accepted.</para></param>
         /// <param name="args">A pointer to an array where the value or values to be assigned to paramName are stored.</param>
-        public static void glPointParameterfv(int paramName, /*const*/ float* args) => _glPointParameterfv(paramName, args);
+        public static void PointParameter(PointParameterName paramName, /*const*/ float* args) => _glPointParameterfv((int)paramName, args);
 
         /// <summary>
         /// Specify point parameters.
         /// </summary>
         /// <param name="paramName">Specifies a single-valued point parameter.<para>GL_POINT_FADE_THRESHOLD_SIZE, and GL_POINT_SPRITE_COORD_ORIGIN are accepted.</para></param>
         /// <param name="args">A pointer to an array where the value or values to be assigned to paramName are stored.</param>
-        public static void glPointParameteriv(int paramName, /*const*/ int* args) => _glPointParameteriv(paramName, args);
+        public static void PointParameter(PointParameterName paramName, /*const*/ int* args) => _glPointParameteriv((int)paramName, args);
 
         /// <summary>
         /// Specify point parameters.
         /// </summary>
         /// <param name="paramName">Specifies a single-valued point parameter.<para>GL_POINT_FADE_THRESHOLD_SIZE, and GL_POINT_SPRITE_COORD_ORIGIN are accepted.</para></param>
         /// <param name="args">An array of the values to be assigned.</param>
-        public static void glPointParameterfv(int paramName, float[] args)
+        public static void PointParameter(PointParameterName paramName, float[] args)
         {
             fixed (float* a = &args[0])
             {
-                _glPointParameterfv(paramName, a);
+                _glPointParameterfv((int)paramName, a);
             }
         }
 
@@ -3776,11 +3776,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="paramName">Specifies a single-valued point parameter.<para>GL_POINT_FADE_THRESHOLD_SIZE, and GL_POINT_SPRITE_COORD_ORIGIN are accepted.</para></param>
         /// <param name="args">An array of the values to be assigned.</param>
-        public static void glPointParameteriv(int paramName, int[] args)
+        public static void PointParameter(PointParameterName paramName, int[] args)
         {
             fixed (int* a = &args[0])
             {
-                _glPointParameteriv(paramName, a);
+                _glPointParameteriv((int)paramName, a);
             }
         }
 
@@ -3790,7 +3790,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameteri(uint sampler, int paramName, int param) => _glSamplerParameteri(sampler, paramName, param);
+        public static void SamplerParameter(int sampler, SamplerParameterName paramName, int param) => _glSamplerParameteri((uint)sampler, (int)paramName, param);
 
         /// <summary>
         ///     Set sampler parameters.
@@ -3798,7 +3798,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterf(uint sampler, int paramName, float param) => _glSamplerParameterf(sampler, paramName, param);
+        public static void SamplerParameter(int sampler, SamplerParameterName paramName, float param) => _glSamplerParameterf((uint)sampler, (int)paramName, param);
 
         /// <summary>
         ///     Set sampler parameters.
@@ -3806,11 +3806,11 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameteriv(uint sampler, int paramName, int[] param)
+        public static void SamplerParameter(int sampler, SamplerParameterName paramName, int[] param)
         {
             fixed (int* p = &param[0])
             {
-                _glSamplerParameteriv(sampler, paramName, p);
+                _glSamplerParameteriv((uint)sampler, (int)paramName, p);
             }
         }
 
@@ -3820,11 +3820,11 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterfv(uint sampler, int paramName, float[] param)
+        public static void SamplerParameter(int sampler, SamplerParameterName paramName, float[] param)
         {
             fixed (float* p = &param[0])
             {
-                _glSamplerParameterfv(sampler, paramName, p);
+                _glSamplerParameterfv((uint)sampler, (int)paramName, p);
             }
         }
 
@@ -3834,7 +3834,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameteriv(uint sampler, int paramName, /*const*/ int* param) => _glSamplerParameteriv(sampler, paramName, param);
+        public static void SamplerParameter(int sampler, SamplerParameterName paramName, /*const*/ int* param) => _glSamplerParameteriv((uint)sampler, (int)paramName, param);
 
         /// <summary>
         ///     Set sampler parameters.
@@ -3842,7 +3842,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterfv(uint sampler, int paramName, /*const*/ float* param) => _glSamplerParameterfv(sampler, paramName, param);
+        public static void SamplerParameter(int sampler, SamplerParameterName paramName, /*const*/ float* param) => _glSamplerParameterfv((uint)sampler, (int)paramName, param);
 
         /// <summary>
         ///     Set sampler parameters.
@@ -3850,7 +3850,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterIiv(uint sampler, int paramName, /*const*/ int* param) => _glSamplerParameterIiv(sampler, paramName, param);
+        public static void SamplerParameterI(int sampler, SamplerParameterName paramName, /*const*/ int* param) => _glSamplerParameterIiv((uint)sampler, (int)paramName, param);
 
         /// <summary>
         ///     Set sampler parameters.
@@ -3858,7 +3858,7 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterIuiv(uint sampler, int paramName, /*const*/ uint* param) => _glSamplerParameterIuiv(sampler, paramName, param);
+        public static void SamplerParameterI(int sampler, SamplerParameterName paramName, /*const*/ uint* param) => _glSamplerParameterIuiv((uint)sampler, (int)paramName, param);
 
         /// <summary>
         ///     Set sampler parameters.
@@ -3866,11 +3866,11 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterIiv(uint sampler, int paramName, int[] param)
+        public static void SamplerParameterI(int sampler, SamplerParameterName paramName, int[] param)
         {
             fixed (int* p = &param[0])
             {
-                _glSamplerParameterIiv(sampler, paramName, p);
+                _glSamplerParameterIiv((uint)sampler, (int)paramName, p);
             }
         }
 
@@ -3880,11 +3880,11 @@ namespace SDL_Sharp.OpenGL
         /// <param name="sampler">Specifies the sampler object whose parameter to modify.</param>
         /// <param name="paramName">Specifies the symbolic name of a sampler parameter.</param>
         /// <param name="param">The value to set.</param>
-        public static void glSamplerParameterIuiv(uint sampler, int paramName, uint[] param)
+        public static void SamplerParameterI(int sampler, SamplerParameterName paramName, uint[] param)
         {
             fixed (uint* p = &param[0])
             {
-                _glSamplerParameterIuiv(sampler, paramName, p);
+                _glSamplerParameterIuiv((uint)sampler, (int)paramName, p);
             }
         }
 
@@ -4307,7 +4307,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP1ui(int texture, int type, uint coords) => _glMultiTexCoordP1ui(texture, type, coords);
+        public static void MultiTexCoordP1(TextureUnit texture, PackedPointerType type, int coords) => _glMultiTexCoordP1ui((int)texture, (int)type, (uint)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4322,7 +4322,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP2ui(int texture, int type, uint coords) => _glMultiTexCoordP2ui(texture, type, coords);
+        public static void MultiTexCoordP2(TextureUnit texture, PackedPointerType type, int coords) => _glMultiTexCoordP2ui((int)texture, (int)type, (uint)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4337,7 +4337,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP3ui(int texture, int type, uint coords) => _glMultiTexCoordP3ui(texture, type, coords);
+        public static void MultiTexCoordP3(TextureUnit texture, PackedPointerType type, int coords) => _glMultiTexCoordP3ui((int)texture, (int)type, (uint)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4352,7 +4352,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP4ui(int texture, int type, uint coords) => _glMultiTexCoordP4ui(texture, type, coords);
+        public static void MultiTexCoordP4(TextureUnit texture, PackedPointerType type, int coords) => _glMultiTexCoordP4ui((int)texture, (int)type, (uint)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4367,7 +4367,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP1uiv(int texture, int type, /*const*/ uint* coords) => _glMultiTexCoordP1uiv(texture, type, coords);
+        public static void MultiTexCoordP1(TextureUnit texture, PackedPointerType type, /*const*/ int* coords) => _glMultiTexCoordP1uiv((int)texture, (int)type, (uint*)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4382,7 +4382,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP2uiv(int texture, int type, /*const*/ uint* coords) => _glMultiTexCoordP2uiv(texture, type, coords);
+        public static void MultiTexCoordP2(TextureUnit texture, PackedPointerType type, /*const*/ int* coords) => _glMultiTexCoordP2uiv((int)texture, (int)type, (uint*)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4397,7 +4397,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP3uiv(int texture, int type, /*const*/ uint* coords) => _glMultiTexCoordP3uiv(texture, type, coords);
+        public static void MultiTexCoordP3(TextureUnit texture, PackedPointerType type, /*const*/ int* coords) => _glMultiTexCoordP3uiv((int)texture, (int)type, (uint*)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4412,7 +4412,7 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP4uiv(int texture, int type, /*const*/ uint* coords) => _glMultiTexCoordP4uiv(texture, type, coords);
+        public static void MultiTexCoordP4(TextureUnit texture, PackedPointerType type, /*const*/ int* coords) => _glMultiTexCoordP4uiv((int)texture, (int)type, (uint*)coords);
 
         /// <summary>
         ///     Set the current texture coordinates.
@@ -4427,11 +4427,11 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP1uiv(int texture, int type, uint[] coords)
+        public static void MultiTexCoordP1(TextureUnit texture, PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glMultiTexCoordP1uiv(texture, type, c);
+                _glMultiTexCoordP1uiv((int)texture, (int)type, (uint*)c);
             }
         }
 
@@ -4448,11 +4448,11 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP2uiv(int texture, int type, uint[] coords)
+        public static void MultiTexCoordP2(TextureUnit texture, PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glMultiTexCoordP2uiv(texture, type, c);
+                _glMultiTexCoordP2uiv((int)texture, (int)type, (uint*)c);
             }
         }
 
@@ -4469,11 +4469,11 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP3uiv(int texture, int type, uint[] coords)
+        public static void MultiTexCoordP3(TextureUnit texture, PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glMultiTexCoordP3uiv(texture, type, c);
+                _glMultiTexCoordP3uiv((int)texture, (int)type, (uint*)c);
             }
         }
 
@@ -4490,11 +4490,11 @@ namespace SDL_Sharp.OpenGL
         /// </param>
         /// <param name="type">The data type.</param>
         /// <param name="coords">The value of the coordinates to set.</param>
-        public static void glMultiTexCoordP4uiv(int texture, int type, uint[] coords)
+        public static void MultiTexCoordP4(TextureUnit texture, PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glMultiTexCoordP4uiv(texture, type, c);
+                _glMultiTexCoordP4uiv((int)texture, (int)type, (uint*)c);
             }
         }
 
@@ -4503,25 +4503,25 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">A packed value.</param>
-        public static void glTexCoordP1ui(int type, uint coords) => _glTexCoordP1ui(type, coords);
+        public static void TexCoordP1(PackedPointerType type, int coords) => _glTexCoordP1ui((int)type, (uint)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">Specifies a pointer to an array of packed elements.</param>
-        public static void glTexCoordP1uiv(int type, /*const*/ uint* coords) => _glTexCoordP1uiv(type, coords);
+        public static void TexCoordP1(PackedPointerType type, /*const*/ int* coords) => _glTexCoordP1uiv((int)type, (uint*)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP1uiv(int type, uint[] coords)
+        public static void TexCoordP1(PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glTexCoordP1uiv(type, c);
+                _glTexCoordP1uiv((int)type, (uint*)c);
             }
         }
 
@@ -4530,25 +4530,25 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">A packed value.</param>
-        public static void glTexCoordP2ui(int type, uint coords) => _glTexCoordP2ui(type, coords);
+        public static void TexCoordP2(PackedPointerType type, int coords) => _glTexCoordP2ui((int)type, (uint)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP2uiv(int type, /*const*/ uint* coords) => _glTexCoordP2uiv(type, coords);
+        public static void TexCoordP2(PackedPointerType type, /*const*/ int* coords) => _glTexCoordP2uiv((int)type, (uint*)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP2uiv(int type, uint[] coords)
+        public static void TexCoordP2(PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glTexCoordP2uiv(type, c);
+                _glTexCoordP2uiv((int)type, (uint*)c);
             }
         }
 
@@ -4557,25 +4557,25 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">A packed value.</param>
-        public static void glTexCoordP3ui(int type, uint coords) => _glTexCoordP3ui(type, coords);
+        public static void TexCoordP3(PackedPointerType type, int coords) => _glTexCoordP3ui((int)type, (uint)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP3uiv(int type, /*const*/ uint* coords) => _glTexCoordP3uiv(type, coords);
+        public static void TexCoordP3(int type, /*const*/ int* coords) => _glTexCoordP3uiv((int)type, (uint*)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP3uiv(int type, uint[] coords)
+        public static void TexCoordP3(PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glTexCoordP3uiv(type, c);
+                _glTexCoordP3uiv((int)type, (uint*)c);
             }
         }
 
@@ -4584,25 +4584,25 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">A packed value.</param>
-        public static void glTexCoordP4ui(int type, uint coords) => _glTexCoordP4ui(type, coords);
+        public static void TexCoordP4(PackedPointerType type, int coords) => _glTexCoordP4ui((int)type, (uint)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP4uiv(int type, /*const*/ uint* coords) => _glTexCoordP4uiv(type, coords);
+        public static void TexCoordP4(PackedPointerType type, /*const*/ int* coords) => _glTexCoordP4uiv((int)type, (uint*)coords);
 
         /// <summary>
         /// Set the current texture coordinates.
         /// </summary>
         /// <param name="type">Specifies the texture unit whose coordinates should be modified.<para>The number of texture units is implementation dependent, but must be at least two. Symbolic constant must be one of GL_TEXTUREi, where i ranges from 0 to GL_MAX_TEXTURE_COORDS - 1, which is an implementation-dependent value.</para></param>
         /// <param name="coords">An array of packed elements.</param>
-        public static void glTexCoordP4uiv(int type, uint[] coords)
+        public static void TexCoordP4(PackedPointerType type, int[] coords)
         {
-            fixed (uint* c = &coords[0])
+            fixed (int* c = &coords[0])
             {
-                _glTexCoordP4uiv(type, c);
+                _glTexCoordP4uiv((int)type, (uint*)c);
             }
         }
 
@@ -4737,7 +4737,7 @@ namespace SDL_Sharp.OpenGL
         ///     Disable a generic vertex attribute array.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be disabled.</param>
-        public static void glDisableVertexAttribArray(uint index) => _glDisableVertexAttribArray(index);
+        public static void DisableVertexAttribArray(int index) => _glDisableVertexAttribArray((uint)index);
 
         /// <summary>
         ///     Enable a generic vertex attribute array.
@@ -4749,137 +4749,137 @@ namespace SDL_Sharp.OpenGL
         ///     Specify the primitive restart index.
         /// </summary>
         /// <param name="index">Specifies the value to be interpreted as the primitive restart index.</param>
-        public static void glPrimitiveRestartIndex(uint index) => _glPrimitiveRestartIndex(index);
+        public static void PrimitiveRestartIndex(int index) => _glPrimitiveRestartIndex((uint)index);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib1dv(uint index, /*const*/ double* v) => _glVertexAttrib1dv(index, v);
+        public static void VertexAttrib1(int index, /*const*/ double* v) => _glVertexAttrib1dv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib1fv(uint index, /*const*/ float* v) => _glVertexAttrib1fv(index, v);
+        public static void VertexAttrib1(int index, /*const*/ float* v) => _glVertexAttrib1fv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib1sv(uint index, /*const*/ short* v) => _glVertexAttrib1sv(index, v);
+        public static void VertexAttrib1(int index, /*const*/ short* v) => _glVertexAttrib1sv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib2dv(uint index, /*const*/ double* v) => _glVertexAttrib2dv(index, v);
+        public static void VertexAttrib2(int index, /*const*/ double* v) => _glVertexAttrib2dv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib2fv(uint index, /*const*/ float* v) => _glVertexAttrib2fv(index, v);
+        public static void VertexAttrib2(int index, /*const*/ float* v) => _glVertexAttrib2fv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib2sv(uint index, /*const*/ short* v) => _glVertexAttrib2sv(index, v);
+        public static void VertexAttrib2(int index, /*const*/ short* v) => _glVertexAttrib2sv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib3dv(uint index, /*const*/ double* v) => _glVertexAttrib3dv(index, v);
+        public static void VertexAttrib3(int index, /*const*/ double* v) => _glVertexAttrib3dv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib3fv(uint index, /*const*/ float* v) => _glVertexAttrib3fv(index, v);
+        public static void VertexAttrib3(int index, /*const*/ float* v) => _glVertexAttrib3fv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib3sv(uint index, /*const*/ short* v) => _glVertexAttrib3sv(index, v);
+        public static void VertexAttrib3(int index, /*const*/ short* v) => _glVertexAttrib3sv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4bv(uint index, /*const*/ sbyte* v) => _glVertexAttrib4bv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ sbyte* v) => _glVertexAttrib4bv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4dv(uint index, /*const*/ double* v) => _glVertexAttrib4dv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ double* v) => _glVertexAttrib4dv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4fv(uint index, /*const*/ float* v) => _glVertexAttrib4fv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ float* v) => _glVertexAttrib4fv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4iv(uint index, /*const*/ int* v) => _glVertexAttrib4iv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ int* v) => _glVertexAttrib4iv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4sv(uint index, /*const*/ short* v) => _glVertexAttrib4sv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ short* v) => _glVertexAttrib4sv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4ubv(uint index, /*const*/ byte* v) => _glVertexAttrib4ubv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ byte* v) => _glVertexAttrib4ubv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4uiv(uint index, /*const*/ uint* v) => _glVertexAttrib4uiv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ uint* v) => _glVertexAttrib4uiv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="v">A pointer to the vertex data.</param>
-        public static void glVertexAttrib4usv(uint index, /*const*/ ushort* v) => _glVertexAttrib4usv(index, v);
+        public static void VertexAttrib4(int index, /*const*/ ushort* v) => _glVertexAttrib4usv((uint)index, v);
 
         /// <summary>
         ///     Specifies the value of a generic vertex attribute.
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib1dv(uint index, double[] value)
+        public static void VertexAttrib1(int index, double[] value)
         {
             fixed (double* v = &value[0])
             {
-                _glVertexAttrib1dv(index, v);
+                _glVertexAttrib1dv((uint)index, v);
             }
         }
 
@@ -4888,11 +4888,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib1fv(uint index, float[] value)
+        public static void VertexAttrib1(int index, float[] value)
         {
             fixed (float* v = &value[0])
             {
-                _glVertexAttrib1fv(index, v);
+                _glVertexAttrib1fv((uint)index, v);
             }
         }
 
@@ -4901,11 +4901,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib1sv(uint index, short[] value)
+        public static void VertexAttrib1(int index, short[] value)
         {
             fixed (short* v = &value[0])
             {
-                _glVertexAttrib1sv(index, v);
+                _glVertexAttrib1sv((uint)index, v);
             }
         }
 
@@ -4914,11 +4914,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib2dv(uint index, double[] value)
+        public static void VertexAttrib2(int index, double[] value)
         {
             fixed (double* v = &value[0])
             {
-                _glVertexAttrib2dv(index, v);
+                _glVertexAttrib2dv((uint)index, v);
             }
         }
 
@@ -4927,11 +4927,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib2fv(uint index, float[] value)
+        public static void VertexAttrib2(int index, float[] value)
         {
             fixed (float* v = &value[0])
             {
-                _glVertexAttrib2fv(index, v);
+                _glVertexAttrib2fv((uint)index, v);
             }
         }
 
@@ -4940,11 +4940,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib2sv(uint index, short[] value)
+        public static void VertexAttrib2(int index, short[] value)
         {
             fixed (short* v = &value[0])
             {
-                _glVertexAttrib2sv(index, v);
+                _glVertexAttrib2sv((uint)index, v);
             }
         }
 
@@ -4953,11 +4953,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib3dv(uint index, double[] value)
+        public static void VertexAttrib3(int index, double[] value)
         {
             fixed (double* v = &value[0])
             {
-                _glVertexAttrib3dv(index, v);
+                _glVertexAttrib3dv((uint)index, v);
             }
         }
 
@@ -4966,11 +4966,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib3fv(uint index, float[] value)
+        public static void VertexAttrib3(int index, float[] value)
         {
             fixed (float* v = &value[0])
             {
-                _glVertexAttrib3fv(index, v);
+                _glVertexAttrib3fv((uint)index, v);
             }
         }
 
@@ -4979,11 +4979,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib3sv(uint index, short[] value)
+        public static void VertexAttrib3(int index, short[] value)
         {
             fixed (short* v = &value[0])
             {
-                _glVertexAttrib3sv(index, v);
+                _glVertexAttrib3sv((uint)index, v);
             }
         }
 
@@ -4992,11 +4992,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4bv(uint index, sbyte[] value)
+        public static void VertexAttrib4(int index, sbyte[] value)
         {
             fixed (sbyte* v = &value[0])
             {
-                _glVertexAttrib4bv(index, v);
+                _glVertexAttrib4bv((uint)index, v);
             }
         }
 
@@ -5005,11 +5005,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4dv(uint index, double[] value)
+        public static void VertexAttrib4(int index, double[] value)
         {
             fixed (double* v = &value[0])
             {
-                _glVertexAttrib4dv(index, v);
+                _glVertexAttrib4dv((uint)index, v);
             }
         }
 
@@ -5018,12 +5018,12 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4fv(uint index, float[] value)
+        public static void VertexAttrib4(int index, float[] value)
 
         {
             fixed (float* v = &value[0])
             {
-                _glVertexAttrib4fv(index, v);
+                _glVertexAttrib4fv((uint)index, v);
             }
         }
 
@@ -5032,11 +5032,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4iv(uint index, int[] value)
+        public static void VertexAttrib4(int index, int[] value)
         {
             fixed (int* v = &value[0])
             {
-                _glVertexAttrib4iv(index, v);
+                _glVertexAttrib4iv((uint)index, v);
             }
         }
 
@@ -5045,11 +5045,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4sv(uint index, short[] value)
+        public static void VertexAttrib4(int index, short[] value)
         {
             fixed (short* v = &value[0])
             {
-                _glVertexAttrib4sv(index, v);
+                _glVertexAttrib4sv((uint)index, v);
             }
         }
 
@@ -5058,11 +5058,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4ubv(uint index, byte[] value)
+        public static void VertexAttrib4(int index, byte[] value)
         {
             fixed (byte* v = &value[0])
             {
-                _glVertexAttrib4ubv(index, v);
+                _glVertexAttrib4ubv((uint)index, v);
             }
         }
 
@@ -5071,11 +5071,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4uiv(uint index, uint[] value)
+        public static void VertexAttrib4(int index, uint[] value)
         {
             fixed (uint* v = &value[0])
             {
-                _glVertexAttrib4uiv(index, v);
+                _glVertexAttrib4uiv((uint)index, v);
             }
         }
 
@@ -5084,11 +5084,11 @@ namespace SDL_Sharp.OpenGL
         /// </summary>
         /// <param name="index">Specifies the index of the generic vertex attribute to be modified.</param>
         /// <param name="value">The vertex data.</param>
-        public static void glVertexAttrib4usv(uint index, ushort[] value)
+        public static void VertexAttrib4(int index, ushort[] value)
         {
             fixed (ushort* v = &value[0])
             {
-                _glVertexAttrib4usv(index, v);
+                _glVertexAttrib4usv((uint)index, v);
             }
         }
 

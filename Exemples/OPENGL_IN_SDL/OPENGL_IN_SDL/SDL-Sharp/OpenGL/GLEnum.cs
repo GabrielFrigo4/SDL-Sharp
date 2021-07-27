@@ -29568,5 +29568,81 @@ namespace SDL_Sharp.OpenGL
         //     Original was GL_INT_2_10_10_10_REV = 0x8D9F
         Int2101010Rev = 36255
     }
+
+    public enum PointParameterName
+    {
+        //
+        // Resumo:
+        //     Original was GL_POINT_SIZE_MIN = 0x8126
+        PointSizeMin = 33062,
+        //
+        // Resumo:
+        //     Original was GL_POINT_SIZE_MAX = 0x8127
+        PointSizeMax = 33063,
+        //
+        // Resumo:
+        //     Original was GL_POINT_FADE_THRESHOLD_SIZE = 0x8128
+        PointFadeThresholdSize = 33064,
+        //
+        // Resumo:
+        //     Original was GL_POINT_DISTANCE_ATTENUATION = 0x8129
+        PointDistanceAttenuation = 33065,
+        //
+        // Resumo:
+        //     Original was GL_POINT_SPRITE_COORD_ORIGIN = 0x8CA0
+        PointSpriteCoordOrigin = 36000
+    }
+
+    public enum SamplerParameterName
+    {
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_BORDER_COLOR = 0x1004
+        TextureBorderColor = 4100,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_MAG_FILTER = 0x2800
+        TextureMagFilter = 10240,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_MIN_FILTER = 0x2801
+        TextureMinFilter = 10241,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_WRAP_S = 0x2802
+        TextureWrapS = 10242,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_WRAP_T = 0x2803
+        TextureWrapT = 10243,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_WRAP_R = 0x8072
+        TextureWrapR = 32882,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_MIN_LOD = 0x813A
+        TextureMinLod = 33082,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_MAX_LOD = 0x813B
+        TextureMaxLod = 33083,
+        //
+        // Resumo:
+        //     Original was GL_TextureMaxAnisotropyExt = 0x84FE
+        TextureMaxAnisotropyExt = 34046,
+        //
+        // Resumo:
+        //     Original was GL_TextureLodBias = 0x8501
+        TextureLodBias = 34049,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_COMPARE_MODE = 0x884C
+        TextureCompareMode = 34892,
+        //
+        // Resumo:
+        //     Original was GL_TEXTURE_COMPARE_FUNC = 0x884D
+        TextureCompareFunc = 34893
+    }
     #endregion
 }
