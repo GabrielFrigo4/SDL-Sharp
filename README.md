@@ -53,7 +53,6 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 //////
 
-
 In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
 
 So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
