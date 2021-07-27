@@ -53,11 +53,6 @@ Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | R
 
 //////
 
-/// [OpenGL]
-
-to use openGL Legacy, you need to use GLCore;
-
-///
 
 In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
 
