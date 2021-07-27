@@ -60,3 +60,7 @@ So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
 However Surface, Chunck and others are not pointers, so the functions return a Surface* (example)
 
 to be able to use pointers in C#, you have to enable Unsafe Code and use these pointers (void*) inside an unsafe { //Pointers here// }
+
+// [OpenGL Legacy]
+
+To use openGL legacy it is necessary to use the functions of GLCore
