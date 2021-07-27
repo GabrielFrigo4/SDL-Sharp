@@ -33,7 +33,6 @@ namespace OPENGL_IN_SDL
             {
                 Console.WriteLine("OpenGL context could not be created! SDL Error: %s\n" + SDL.GetErrorString());
             }
-            GL.Import(SDL.GL_GetProcAddress);
             //Init OpenGL
 
             Shader.asset_shader = new Shader("./Files/Basic/basic.vert", "./Files/Basic/basic.frag");

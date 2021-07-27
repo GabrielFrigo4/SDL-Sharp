@@ -41,7 +41,7 @@ namespace OPENGL_IN_SDL
             GL.ShaderSource(vertexShader, shaderSource);
 
             // And then compile
-            CompileShader(vertexShader);
+            CompileShader((int)vertexShader);
 
             // We do the same for the fragment shader
             if (path)
@@ -50,23 +50,23 @@ namespace OPENGL_IN_SDL
                 shaderSource = frag;
             var fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
             GL.ShaderSource(fragmentShader, shaderSource);
-            CompileShader(fragmentShader);
+            CompileShader((int)fragmentShader);
 
             // These two shaders must then be merged into a shader program, which can then be used by OpenGL.
             // To do this, create a program...
-            Handle = GL.CreateProgram();
+            Handle = (int)GL.CreateProgram();
 
             // Attach both shaders...
-            GL.AttachShader(Handle, vertexShader);
-            GL.AttachShader(Handle, fragmentShader);
+            GL.AttachShader(Handle, (int)vertexShader);
+            GL.AttachShader(Handle, (int)fragmentShader);
 
             // And then link them together.
             LinkProgram(Handle);
 
             // When the shader program is linked, it no longer needs the individual shaders attacked to it; the compiled code is copied into the shader program.
             // Detach them, and then delete them.
-            GL.DetachShader(Handle, vertexShader);
-            GL.DetachShader(Handle, fragmentShader);
+            GL.DetachShader(Handle, (int)vertexShader);
+            GL.DetachShader(Handle, (int)fragmentShader);
             GL.DeleteShader(fragmentShader);
             GL.DeleteShader(vertexShader);
 
@@ -75,7 +75,7 @@ namespace OPENGL_IN_SDL
             // later.
 
             // First, we have to get the number of active uniforms in the shader.
-            GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+            GL.GetProgram(Handle, ProgramParameter.ActiveUniforms, out var numberOfUniforms);
 
             // Next, allocate the dictionary to hold the locations.
             _uniformLocations = new Dictionary<string, int>();
@@ -112,29 +112,29 @@ namespace OPENGL_IN_SDL
             GL.ShaderSource(vertexShader, shaderSource);
 
             // And then compile
-            CompileShader(vertexShader);
+            CompileShader((int)vertexShader);
 
             // We do the same for the fragment shader
             shaderSource = frag.ReadToEnd();
             var fragmentShader = GL.CreateShader(ShaderType.FragmentShader);
             GL.ShaderSource(fragmentShader, shaderSource);
-            CompileShader(fragmentShader);
+            CompileShader((int)fragmentShader);
 
             // These two shaders must then be merged into a shader program, which can then be used by OpenGL.
             // To do this, create a program...
-            Handle = GL.CreateProgram();
+            Handle = (int)GL.CreateProgram();
 
             // Attach both shaders...
-            GL.AttachShader(Handle, vertexShader);
-            GL.AttachShader(Handle, fragmentShader);
+            GL.AttachShader(Handle, (int)vertexShader);
+            GL.AttachShader(Handle, (int)fragmentShader);
 
             // And then link them together.
             LinkProgram(Handle);
 
             // When the shader program is linked, it no longer needs the individual shaders attacked to it; the compiled code is copied into the shader program.
             // Detach them, and then delete them.
-            GL.DetachShader(Handle, vertexShader);
-            GL.DetachShader(Handle, fragmentShader);
+            GL.DetachShader(Handle, (int)vertexShader);
+            GL.DetachShader(Handle, (int)fragmentShader);
             GL.DeleteShader(fragmentShader);
             GL.DeleteShader(vertexShader);
 
@@ -143,7 +143,7 @@ namespace OPENGL_IN_SDL
             // later.
 
             // First, we have to get the number of active uniforms in the shader.
-            GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+            GL.GetProgram(Handle, ProgramParameter.ActiveUniforms, out var numberOfUniforms);
 
             // Next, allocate the dictionary to hold the locations.
             _uniformLocations = new Dictionary<string, int>();
@@ -183,7 +183,7 @@ namespace OPENGL_IN_SDL
             GL.LinkProgram(program);
 
             // Check for linking errors
-            GL.GetProgram(program, GetProgramParameterName.LinkStatus, out var code);
+            GL.GetProgram(program, ProgramParameter.LinkStatus, out var code);
             if (code != (int)All.True)
             {
                 Console.WriteLine(code);
