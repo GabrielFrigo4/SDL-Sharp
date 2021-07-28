@@ -68,6 +68,10 @@ To use openGL legacy it is necessary to use the functions of GLCore
 
 // [OpenGL version]
 
-here it has all the functions up to OpenGL 3.x
+Here it has all the functions up to OpenGL 3.x
 
-if you need all the functions of OpenGL4.x, you can use OpenGL from Silk.NET or create your project in OpenTK
+If you need all the functions of OpenGL4.x, you can use OpenGL from Silk.NET or create your project in OpenTK
+
+// [Vulkan]
+
+In order to use Vulkan, use Silk.NET's vulkan
