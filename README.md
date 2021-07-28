@@ -64,3 +64,10 @@ to be able to use pointers in C#, you have to enable Unsafe Code and use these p
 // [OpenGL Legacy]
 
 To use openGL legacy it is necessary to use the functions of GLCore
+
+
+// [OpenGL version]
+
+here it has all the functions up to OpenGL 3.x
+
+if you need all the functions of OpenGL4.x, you can use OpenGL from Silk.NET or create your project in OpenTK
