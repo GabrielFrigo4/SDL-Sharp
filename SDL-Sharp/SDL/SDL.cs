@@ -47,5 +47,21 @@ namespace SDL_Sharp
 
             return Encoding.UTF8.GetString(ptr, count);
         }
+
+        private static unsafe byte* Utf8EncodeHeap(string str)
+        {
+            if (str == null)
+            {
+                return (byte*)0;
+            }
+
+            int bufferSize = Utf8Size(str);
+            byte* buffer = (byte*)Marshal.AllocHGlobal(bufferSize);
+            fixed (char* strPtr = str)
+            {
+                Encoding.UTF8.GetBytes(strPtr, str.Length + 1, buffer, bufferSize);
+            }
+            return buffer;
+        }
     }
 }
