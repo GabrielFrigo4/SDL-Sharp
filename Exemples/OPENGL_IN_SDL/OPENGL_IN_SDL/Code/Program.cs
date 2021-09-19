@@ -75,8 +75,6 @@ namespace OPENGL_IN_SDL
                     accumulator -= timeStep;
                 }
 
-                float aplha = accumulator / timeStep;
-
                 GL.Clear(ClearBufferMask.ColorBufferBit);
 
                 DrawSprite(spr, 0, 0);
