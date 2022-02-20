@@ -8,7 +8,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <Description>is a SDL2 for c#
 The wrapper provides bindings for the following libraries:
-- SDL2 (2.0.14)
+- SDL2 (2.0.20)
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
 - SDL2_ttf (2.0.15)
@@ -17,14 +17,10 @@ The wrapper provides bindings for the following libraries:
 - OpenAL (1.1)
 - SharpFont (FreeType)
 and contains the necessary DLLs for the project</Description>
-    <PackageReleaseNotes>Add al function on OpenGL, OpenAL, OpenGL.Mathematics
-new namespace:
-SDL_Sharp.Image
-SDL_Sharp.Mixer
-SDL_Sharp.Ttf
-SDL_Sharp.SharpFont</PackageReleaseNotes>
+    <PackageReleaseNotes>Add GetWindowID and update SDL dependences</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>1.0.0</Version>
+    <Version>1.3.0</Version>
+    <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
