@@ -291,6 +291,9 @@ namespace SDL_Sharp
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowSize", CallingConvention = CallingConvention.Cdecl)]
         public static extern void GetWindowSize(Window window, out int w, out int h);
 
+        [DllImport(LibraryName, EntryPoint = "SDL_GetWindowID", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int GetWindowID(Window window);
+
         [DllImport(LibraryName, EntryPoint = "SDL_GetWindowTitle", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte* GetWindowTitle(Window window);
 
