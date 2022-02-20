@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>SDL_Sharp</RootNamespace>
     <Platforms>x64;x86</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -40,7 +40,9 @@ SDL_Sharp.SharpFont</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="VulkanCore\" />
+    <Compile Remove="VulkanCore\**" />
+    <EmbeddedResource Remove="VulkanCore\**" />
+    <None Remove="VulkanCore\**" />
   </ItemGroup>
 
 </Project>
