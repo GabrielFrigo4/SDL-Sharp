@@ -1,7 +1,8 @@
-﻿using SixLabors.ImageSharp.PixelFormats;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+
 using System.Collections.Generic;
-using SixLabors.ImageSharp;
 using SDL_Sharp.OpenGL.Mathematics;
 using System.IO;
 using System;
@@ -328,14 +329,12 @@ namespace OPENGL_IN_SDL
 
             for (int y = 0; y < image.Height; y++)
             {
-                var row = image.GetPixelRowSpan(y);
-
                 for (int x = 0; x < image.Width; x++)
                 {
-                    pixels.Add(row[x].R);
-                    pixels.Add(row[x].G);
-                    pixels.Add(row[x].B);
-                    pixels.Add(row[x].A);
+                    pixels.Add(image[x, y].R);
+                    pixels.Add(image[x, y].G);
+                    pixels.Add(image[x, y].B);
+                    pixels.Add(image[x, y].A);
                 }
             }
 
@@ -369,16 +368,15 @@ namespace OPENGL_IN_SDL
             with = image.Width;
             heigth = image.Height;
 
+
             for (int y = 0; y < image.Height; y++)
             {
-                var row = image.GetPixelRowSpan(y);
-
                 for (int x = 0; x < image.Width; x++)
                 {
-                    pixels.Add(row[x].R);
-                    pixels.Add(row[x].G);
-                    pixels.Add(row[x].B);
-                    pixels.Add(row[x].A);
+                    pixels.Add(image[x, y].R);
+                    pixels.Add(image[x, y].G);
+                    pixels.Add(image[x, y].B);
+                    pixels.Add(image[x, y].A);
                 }
             }
 
