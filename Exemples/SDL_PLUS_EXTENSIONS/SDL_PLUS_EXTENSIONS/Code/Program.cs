@@ -1,6 +1,6 @@
 ﻿using SDL_Sharp.Ttf;
-using SDL_Sharp.Img;
-using SDL_Sharp.Mix;
+using SDL_Sharp.Image;
+using SDL_Sharp.Mixer;
 using SDL_Sharp;
 using System;
 

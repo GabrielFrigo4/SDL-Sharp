@@ -1,4 +1,4 @@
-﻿using SDL_Sharp.Mix;
+﻿using SDL_Sharp.Mixer;
 using System;
 
 namespace SDL_PLUS_EXTENSIONS
