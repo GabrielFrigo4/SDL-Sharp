@@ -8,6 +8,7 @@ namespace SDL_PLUS_EXTENSIONS
 {
     class Program
     {
+        readonly static bool CheckPressed = false;
         static Window window;
         static Renderer renderer;
 
@@ -33,8 +34,10 @@ namespace SDL_PLUS_EXTENSIONS
             var running = true;
             while (running)
             {
+                Input.Restart();
                 while (SDL.PollEvent(out e) == 1)
                 {
+                    Input.Update(e);
                     switch (e.Type)
                     {
                         case EventType.Quit:
@@ -49,6 +52,21 @@ namespace SDL_PLUS_EXTENSIONS
                 DrawTextExt("SDL_PLUS_EXTENSIONS", 400, 300, 64, new Color(150, 100, 200, 255), "arial.ttf", true);
 
                 SDL.RenderPresent(renderer);
+
+                if (CheckPressed)
+                {
+                    Console.WriteLine($"Up is pressed: {Input.GetKeyPressed(Keycode.Up)}");
+                    Console.WriteLine($"Down is pressed: {Input.GetKeyPressed(Keycode.Down)}");
+                    Console.WriteLine($"Left is pressed: {Input.GetKeyPressed(Keycode.Left)}");
+                    Console.WriteLine($"Right is pressed: {Input.GetKeyPressed(Keycode.Right)}");
+                }
+                else
+                {
+                    if (Input.GetKeyDown(Keycode.Space))
+                    {
+                        Console.WriteLine("Key Down Space");
+                    }
+                }
             }
 
             SDL.DestroyRenderer(renderer);
