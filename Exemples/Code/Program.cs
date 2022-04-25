@@ -43,6 +43,13 @@ namespace SDL_PLUS_EXTENSIONS
                         case EventType.Quit:
                             running = false;
                             break;
+                        case EventType.MouseButtonDown:
+                            Console.WriteLine(e.Button.Button);
+                            if (e.Button.Button == MouseButton.Left)
+                            {
+                                Console.WriteLine("pressed");
+                            }
+                            break;
                     }
                 }
 

@@ -155,7 +155,7 @@ namespace SDL_Sharp
         public uint Timestamp;
         public uint WindowID;
         public uint Which;
-        public ButtonMask State;
+        public MouseButtonMask State;
         public int X;
         public int Y;
         public int XRel;
@@ -169,7 +169,7 @@ namespace SDL_Sharp
         public uint Timestamp;
         public uint WindowID;
         public uint Which;
-        public Button Button;
+        public MouseButton Button;
         public ButtonState State;
         public byte Clicks;
         public byte Padding;
