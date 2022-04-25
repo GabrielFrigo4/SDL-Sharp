@@ -11,15 +11,18 @@ The wrapper provides bindings for the following libraries:
 - SDL2 (2.0.20)
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
-- SDL2_ttf (2.0.15)
+- SDL2_ttf (2.0.18)
+and contains the necessary DLLs for the project
+Wrapper removed:
 - OpenGL (4.6 Core)
 - OpenGL Mathematics (GLM)
 - OpenAL (1.1)
 - SharpFont (FreeType)
-and contains the necessary DLLs for the project</Description>
+
+now in 1.4.0 is only SDL</Description>
     <PackageReleaseNotes>Add GetWindowID and update SDL dependences</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>1.3.0</Version>
+    <Version>1.4.0</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
   </PropertyGroup>
 
