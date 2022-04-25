@@ -30,7 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SDL-Sharp_64-bits" Version="1.3.0" />
+    <PackageReference Include="SDL-Sharp_64-bits" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
