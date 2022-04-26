@@ -2,9 +2,9 @@ Is a SDL2 for c#. The wrapper provides bindings for the following libraries (con
 - SDL2 (2.0.20) in SDL_Sharp
 - SDL2_image (2.0.5) in SDL_Sharp.Image
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mixer
-- SDL2_ttf (2.0.15) in SDL_Sharp.Ttf
+- SDL2_ttf (2.0.18) in SDL_Sharp.Ttf
 
-To use opengl in SDL we recommend using Silk.NET: https://github.com/dotnet/Silk.NET
+To use opengl and openal in SDL we recommend using Silk.NET: https://github.com/dotnet/Silk.NET
 
 nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
 nuget 64-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/)
@@ -20,6 +20,8 @@ and the SharpFont (https://github.com/Robmaister/SharpFont)
 and the OpenTK (https://github.com/opentk/opentk)
 
 and the Pencil.Gaming (https://github.com/andykorth/Pencil.Gaming)
+
+and the Silk.NET (https://github.com/dotnet/Silk.NET)
 
 With some modifications in both
 
@@ -58,12 +60,3 @@ So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
 However Surface, Chunck and others are not pointers, so the functions return a Surface* (example)
 
 to be able to use pointers in C#, you have to enable Unsafe Code and use these pointers (void*) inside an unsafe { //Pointers here// }
-
-// [OpenGL Legacy]
-
-To use openGL legacy it is necessary to use the functions of GLCore
-
-
-// [OpenGL version]
-
-Here it has all the functions up to OpenGL 3.x
