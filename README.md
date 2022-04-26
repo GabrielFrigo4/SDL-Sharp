@@ -57,6 +57,7 @@ In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntP
 
 So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
 
-However Surface, Chunck and others are not pointers, so the functions return a Surface* (example)
+However Surface, Chunk and others are not pointers, so the functions return a Surface* or PSurface (example), in these cases there are P(Structure name) such as PChunk, PSurface...
+(P of pointer)
 
 to be able to use pointers in C#, you have to enable Unsafe Code and use these pointers (void*) inside an unsafe { //Pointers here// }
