@@ -9,7 +9,7 @@ To use opengl and openal in SDL we recommend using Silk.NET: https://github.com/
 nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
 nuget 64-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/)
 
-the project was made based on 2 other projects
+the project was made based on other projects
 
 the SharpSDL (https://github.com/hasali19/SharpSDL)
 
