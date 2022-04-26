@@ -83,46 +83,42 @@ namespace SDL_PLUS_EXTENSIONS
             IMG.Quit();
         }
 
-        public unsafe static void DrawText(string text, int x, int y, int size)
+        public static void DrawText(string text, int x, int y, int size)
         {
             Font _font = TTF.OpenFont("C:/Windows/Fonts/arial.ttf", size);
 
             Color color;
             color.R = color.G = color.B = color.A = 0;
 
-            Surface* surfaceMessage = TTF.RenderText_Solid(_font, text, color);
+            TTF.RenderText_Solid(_font, text, color, out PSurface surfaceMessage);
 
             Texture Message = SDL.CreateTextureFromSurface(renderer, surfaceMessage);
 
             int texW;
             int texH;
-            uint format;
-            TextureAccess access;
-            SDL.QueryTexture(Message, &format, &access, &texW, &texH);
+            SDL.QueryTexture(Message, out _, out _, out texW, out texH);
 
             Rect dstrect = new Rect(x, y, texW, texH);
 
             Rect srcrect = new Rect(0, 0, texW, texH);
 
-            SDL.RenderCopy(renderer, Message, &srcrect, &dstrect);
+            SDL.RenderCopy(renderer, Message, ref srcrect, ref dstrect);
             TTF.CloseFont(_font);
 
             SDL.FreeSurface(surfaceMessage);
             SDL.DestroyTexture(Message);
         }
 
-        public unsafe static void DrawTextExt(string text, int x, int y, int size, Color color, string font, bool center)
+        public static void DrawTextExt(string text, int x, int y, int size, Color color, string font, bool center)
         {
             Font _font = TTF.OpenFont("C:/Windows/Fonts/" + font, size);
-            Surface* surfaceMessage = TTF.RenderText_Solid(_font, text, color);
+            TTF.RenderText_Solid(_font, text, color, out PSurface surfaceMessage);
 
             Texture Message = SDL.CreateTextureFromSurface(renderer, surfaceMessage);
 
             int texW;
             int texH;
-            uint format;
-            TextureAccess access;
-            SDL.QueryTexture(Message, &format, &access, &texW, &texH);
+            SDL.QueryTexture(Message, out _, out _, out texW, out texH);
 
             Rect dstrect;
 
@@ -137,7 +133,7 @@ namespace SDL_PLUS_EXTENSIONS
                 dstrect = new Rect(x - (texW / 2), y - (texH / 2), texW, texH);
             }
 
-            SDL.RenderCopy(renderer, Message, &srcrect, &dstrect);
+            SDL.RenderCopy(renderer, Message, ref srcrect, ref dstrect);
             TTF.CloseFont(_font);
 
             SDL.FreeSurface(surfaceMessage);

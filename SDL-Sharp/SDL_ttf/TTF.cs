@@ -37,7 +37,7 @@ public unsafe static partial class TTF
 	#region SDL2# Variables
 
 	/* Used by DllImport to load the native library. */
-	private const string nativeLibName = "SDL2_ttf";
+	private const string NativeLibName = "SDL2_ttf";
 
 	#endregion
 
@@ -80,7 +80,7 @@ public unsafe static partial class TTF
 		X->Patch = PATCHLEVEL;
 	}
 
-	[DllImport(nativeLibName, EntryPoint = "TTF_LinkedVersion", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_LinkedVersion", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_TTF_LinkedVersion();
 	public static Version LinkedVersion()
 	{
@@ -93,14 +93,14 @@ public unsafe static partial class TTF
 		return result;
 	}
 
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_ByteSwappedUNICODE")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_ByteSwappedUNICODE")]
 	public static extern void ByteSwappedUNICODE(int swapped);
 
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_Init")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_Init")]
 	public static extern int Init();
 
 	/* IntPtr refers to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_OpenFont", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_OpenFont", CallingConvention = CallingConvention.Cdecl)]
 	private static extern unsafe Font INTERNAL_TTF_OpenFont(
 		byte* file,
 		int ptsize
@@ -118,7 +118,7 @@ public unsafe static partial class TTF
 
 	/* src refers to an SDL_RWops*, IntPtr to a TTF_Font* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontRW")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontRW")]
 	public static extern Font OpenFontRW(
 		IntPtr src,
 		int freesrc,
@@ -126,7 +126,7 @@ public unsafe static partial class TTF
 	);
 
 	/* IntPtr refers to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_OpenFontIndex", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_OpenFontIndex", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Font INTERNAL_TTF_OpenFontIndex(
 		byte* file,
 		int ptsize,
@@ -150,7 +150,7 @@ public unsafe static partial class TTF
 
 	/* src refers to an SDL_RWops*, IntPtr to a TTF_Font* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontIndexRW")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontIndexRW")]
 	public static extern Font OpenFontIndexRW(
 		IntPtr src,
 		int freesrc,
@@ -161,70 +161,70 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontSize")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontSize")]
 	public static extern int SetFontSize(
 		Font font,
 		int ptsize
 	);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontStyle")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontStyle")]
 	public static extern int GetFontStyle(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontStyle")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontStyle")]
 	public static extern void SetFontStyle(Font font, int style);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontOutline")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontOutline")]
 	public static extern int GetFontOutline(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontOutline")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontOutline")]
 	public static extern void SetFontOutline(Font font, int outline);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontHinting")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontHinting")]
 	public static extern int GetFontHinting(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontHinting")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontHinting")]
 	public static extern void SetFontHinting(Font font, int hinting);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontHeight")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontHeight")]
 	public static extern int FontHeight(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontAscent")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontAscent")]
 	public static extern int FontAscent(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontDescent")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontDescent")]
 	public static extern int FontDescent(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontLineSkip")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontLineSkip")]
 	public static extern int FontLineSkip(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontKerning")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontKerning")]
 	public static extern int GetFontKerning(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontKerning")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontKerning")]
 	public static extern void SetFontKerning(Font font, int allowed);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontFaces")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontFaces")]
 	public static extern long FontFaces(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontFaceIsFixedWidth")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_FontFaceIsFixedWidth")]
 	public static extern int FontFaceIsFixedWidth(Font font);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_FontFaceFamilyName", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_FontFaceFamilyName", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_TTF_FontFaceFamilyName(
 		Font font
 	);
@@ -236,7 +236,7 @@ public unsafe static partial class TTF
 	}
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_FontFaceStyleName", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_FontFaceStyleName", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_TTF_FontFaceStyleName(
 		Font font
 	);
@@ -248,17 +248,17 @@ public unsafe static partial class TTF
 	}
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphIsProvided")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphIsProvided")]
 	public static extern int GlyphIsProvided(Font font, ushort ch);
 
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphIsProvided32")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphIsProvided32")]
 	public static extern int GlyphIsProvided32(Font font, uint ch);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics")]
 	public static extern int GlyphMetrics(
 		Font font,
 		ushort ch,
@@ -268,7 +268,7 @@ public unsafe static partial class TTF
 		out int maxy,
 		out int advance
 	);
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics")]
 	public static extern int GlyphMetrics(
 		Font font,
 		ushort ch,
@@ -282,7 +282,7 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics32")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics32")]
 	public static extern int GlyphMetrics32(
 		Font font,
 		uint ch,
@@ -292,7 +292,7 @@ public unsafe static partial class TTF
 		out int maxy,
 		out int advance
 	);
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics32")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GlyphMetrics32")]
 	public static extern int GlyphMetrics32(
 		Font font,
 		uint ch,
@@ -304,7 +304,7 @@ public unsafe static partial class TTF
 	);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
 	public static extern int SizeText(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -312,7 +312,7 @@ public unsafe static partial class TTF
 		out int w,
 		out int h
 	);
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeText")]
 	public static extern int SizeText(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -322,7 +322,7 @@ public unsafe static partial class TTF
 	);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_TTF_SizeUTF8(
 		Font font,
 		byte* text,
@@ -346,7 +346,7 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
-	[DllImport(nativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_SizeUTF8", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_TTF_SizeUTF8(
 		Font font,
 		byte* text,
@@ -372,7 +372,7 @@ public unsafe static partial class TTF
 	}
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
 	public static extern int SizeUNICODE(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -381,7 +381,7 @@ public unsafe static partial class TTF
 		out int h
 	);
 
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SizeUNICODE")]
 	public static extern int SizeUNICODE(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -393,7 +393,7 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureText")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureText")]
 	public static extern int MeasureText(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -402,7 +402,7 @@ public unsafe static partial class TTF
 		out int extent,
 		out int count
 	);
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureText")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureText")]
 	public static extern int MeasureText(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -415,7 +415,7 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_TTF_MeasureUTF8(
 		Font font,
 		byte* text,
@@ -442,7 +442,7 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
-	[DllImport(nativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_MeasureUTF8", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_TTF_MeasureUTF8(
 		Font font,
 		byte* text,
@@ -473,7 +473,7 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureUNICODE")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureUNICODE")]
 	public static extern int MeasureUNICODE(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -483,7 +483,7 @@ public unsafe static partial class TTF
 		out int count
 	);
 
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureUNICODE")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_MeasureUNICODE")]
 	public static extern int MeasureUNICODE(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -494,16 +494,36 @@ public unsafe static partial class TTF
 	);
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Solid")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Solid")]
 	public static extern Surface* RenderText_Solid(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
 			string text,
 		Color fg
 	);
+	public static void RenderText_Solid(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+		Color fg,
+		out Surface* surface
+    )
+    {
+		surface = RenderText_Solid(font, text, fg);
+	}
+	public static void RenderText_Solid(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+		Color fg,
+		out PSurface surface
+	)
+    {
+		surface = RenderText_Solid(font, text, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Solid", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_RenderUTF8_Solid", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_TTF_RenderUTF8_Solid(
 		Font font,
 		byte* text,
@@ -524,20 +544,70 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
+	public static void RenderUTF8_Solid(
+		Font font,
+		string text,
+		Color fg,
+		out Surface* surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Solid(
+			font,
+			utf8Text,
+			fg
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
+	public static void RenderUTF8_Solid(
+		Font font,
+		string text,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Solid(
+			font,
+			utf8Text,
+			fg
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Solid")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Solid")]
 	public static extern Surface* RenderUNICODE_Solid(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
 			string text,
 		Color fg
 	);
+	public static void RenderUNICODE_Solid(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+			string text,
+		Color fg,
+		out Surface* surface
+    )
+    {
+		surface = RenderUNICODE_Solid(font, text, fg);
+	}
+	public static void RenderUNICODE_Solid(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+				string text,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderUNICODE_Solid(font, text, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Solid_Wrapped")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Solid_Wrapped")]
 	public static extern Surface* RenderText_Solid_Wrapped(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -545,18 +615,40 @@ public unsafe static partial class TTF
 		Color fg,
 		uint wrapLength
 	);
+	public static void RenderText_Solid_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+			string text,
+		Color fg,
+		uint wrapLength,
+		out Surface* surface
+	)
+	{
+		surface = RenderText_Solid_Wrapped(font, text, fg, wrapLength);
+	}
+	public static void RenderText_Solid_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+			string text,
+		Color fg,
+		uint wrapLength,
+		out PSurface surface
+	)
+	{
+		surface = RenderText_Solid_Wrapped(font, text, fg, wrapLength);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Solid_Wrapped", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_RenderUTF8_Solid_Wrapped", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
 		Font font,
 		byte* text,
 		Color fg,
 		uint wrapLength
 	);
-	public static unsafe Surface* RenderUTF8_Solid_Wrapped(
+	public static Surface* RenderUTF8_Solid_Wrapped(
 		Font font,
 		string text,
 		Color fg,
@@ -573,11 +665,45 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
+	public static void RenderUTF8_Solid_Wrapped(
+		Font font,
+		string text,
+		Color fg,
+		uint wrapLength,
+		out Surface* surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
+			font,
+			utf8Text,
+			fg,
+			wrapLength
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
+	public static void RenderUTF8_Solid_Wrapped(
+		Font font,
+		string text,
+		Color fg,
+		uint wrapLength,
+		out PSurface surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
+			font,
+			utf8Text,
+			fg,
+			wrapLength
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Solid_Wrapped")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Solid_Wrapped")]
 	public static extern Surface* RenderUNICODE_Solid_Wrapped(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -585,27 +711,85 @@ public unsafe static partial class TTF
 		Color fg,
 		uint wrapLength
 	);
+	public static void RenderUNICODE_Solid_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+				string text,
+		Color fg,
+		uint wrapLength,
+		out Surface* surface
+    )
+    {
+		surface = RenderUNICODE_Solid_Wrapped(font, text, fg, wrapLength);
+    }
+	public static void RenderUNICODE_Solid_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+					string text,
+		Color fg,
+		uint wrapLength,
+		out PSurface surface
+	)
+	{
+		surface = RenderUNICODE_Solid_Wrapped(font, text, fg, wrapLength);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Solid")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Solid")]
 	public static extern Surface* RenderGlyph_Solid(
 		Font font,
 		ushort ch,
 		Color fg
 	);
+	public static void RenderGlyph_Solid(
+		Font font,
+		ushort ch,
+		Color fg,
+		out Surface* surface
+    )
+    {
+		surface = RenderGlyph_Solid(font, ch, fg);	
+    }
+	public static void RenderGlyph_Solid(
+		Font font,
+		ushort ch,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderGlyph_Solid(font, ch, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Solid")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Solid")]
 	public static extern Surface* RenderGlyph32_Solid(
 		Font font,
 		uint ch,
 		Color fg
 	);
+	public static void RenderGlyph32_Solid(
+		Font font,
+		uint ch,
+		Color fg,
+		out Surface* surface
+	)
+	{
+		surface = RenderGlyph32_Solid(font, ch, fg);
+	}
+	public static void RenderGlyph32_Solid(
+		Font font,
+		uint ch,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderGlyph32_Solid(font, ch, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Shaded")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Shaded")]
 	public static extern Surface* RenderText_Shaded(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -613,9 +797,31 @@ public unsafe static partial class TTF
 		Color fg,
 		Color bg
 	);
+	public static void RenderText_Shaded(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+			string text,
+		Color fg,
+		Color bg,
+		out Surface* surface
+    )
+    {
+		surface = RenderText_Shaded(font, text, fg, bg);
+    }
+	public static void RenderText_Shaded(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+		Color fg,
+		Color bg,
+		out PSurface surface
+	)
+	{
+		surface = RenderText_Shaded(font, text, fg, bg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Shaded", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_RenderUTF8_Shaded", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_TTF_RenderUTF8_Shaded(
 		Font font,
 		byte* text,
@@ -639,19 +845,75 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
+	public static void RenderUTF8_Shaded(
+		Font font,
+		string text,
+		Color fg,
+		Color bg,
+		out Surface* surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Shaded(
+			font,
+			utf8Text,
+			fg,
+			bg
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
+	public static void RenderUTF8_Shaded(
+		Font font,
+		string text,
+		Color fg,
+		Color bg,
+		out PSurface surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Shaded(
+			font,
+			utf8Text,
+			fg,
+			bg
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Shaded")]
-	public static extern Surface* _RenderUNICODE_Shaded(
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Shaded")]
+	public static extern Surface* RenderUNICODE_Shaded(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
 			string text,
 		Color fg,
 		Color bg
 	);
+	public static void RenderUNICODE_Shaded(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+			string text,
+		Color fg,
+		Color bg,
+		out Surface* surface
+    )
+    {
+		surface = RenderUNICODE_Shaded(font, text, fg, bg);
+	}
+	public static void RenderUNICODE_Shaded(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+				string text,
+		Color fg,
+		Color bg,
+		out PSurface surface
+	)
+	{
+		surface = RenderUNICODE_Shaded(font, text, fg, bg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Shaded_Wrapped")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Shaded_Wrapped")]
 	public static extern Surface* RenderText_Shaded_Wrapped(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -660,11 +922,35 @@ public unsafe static partial class TTF
 		Color bg,
 		uint wrapLength
 	);
+	public static void RenderText_Shaded_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+			string text,
+		Color fg,
+		Color bg,
+		uint wrapLength,
+		out Surface* surface
+    )
+    {
+		surface = RenderText_Shaded_Wrapped(font, text, fg, bg, wrapLength);
+    }
+	public static void RenderText_Shaded_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+		Color fg,
+		Color bg,
+		uint wrapLength,
+		out PSurface surface
+	)
+	{
+		surface = RenderText_Shaded_Wrapped(font, text, fg, bg, wrapLength);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Shaded_Wrapped", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_RenderUTF8_Shaded_Wrapped", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
 		Font font,
 		byte* text,
@@ -691,9 +977,47 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
+	public static void RenderUTF8_Shaded_Wrapped(
+		Font font,
+		string text,
+		Color fg,
+		Color bg,
+		uint wrapLength,
+		out Surface* surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
+			font,
+			utf8Text,
+			fg,
+			bg,
+			wrapLength
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
+	public static void RenderUTF8_Shaded_Wrapped(
+		Font font,
+		string text,
+		Color fg,
+		Color bg,
+		uint wrapLength,
+		out PSurface surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
+			font,
+			utf8Text,
+			fg,
+			bg,
+			wrapLength
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Shaded_Wrapped")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Shaded_Wrapped")]
 	public static extern Surface* RenderUNICODE_Shaded_Wrapped(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -702,38 +1026,122 @@ public unsafe static partial class TTF
 		Color bg,
 		uint wrapLength
 	);
+	public static void RenderUNICODE_Shaded_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+			string text,
+		Color fg,
+		Color bg,
+		uint wrapLength,
+		out Surface* surface
+	)
+	{
+		surface = RenderUNICODE_Shaded_Wrapped(font, text, fg, bg, wrapLength);
+	}
+	public static void RenderUNICODE_Shaded_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+			string text,
+		Color fg,
+		Color bg,
+		uint wrapLength,
+		out PSurface surface
+	)
+	{
+		surface = RenderUNICODE_Shaded_Wrapped(font, text, fg, bg, wrapLength);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Shaded")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Shaded")]
 	public static extern Surface* RenderGlyph_Shaded(
 		Font font,
 		ushort ch,
 		Color fg,
 		Color bg
 	);
+	public static void RenderGlyph_Shaded(
+		Font font,
+		ushort ch,
+		Color fg,
+		Color bg,
+		out Surface* surface
+	)
+	{
+		surface = RenderGlyph_Shaded(font, ch, fg, bg);
+	}
+	public static void RenderGlyph_Shaded(
+		Font font,
+		ushort ch,
+		Color fg,
+		Color bg,
+		out PSurface surface
+	)
+	{
+		surface = RenderGlyph_Shaded(font, ch, fg, bg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Shaded")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Shaded")]
 	public static extern Surface* RenderGlyph32_Shaded(
 		Font font,
 		uint ch,
 		Color fg,
 		Color bg
 	);
+	public static void RenderGlyph32_Shaded(
+		Font font,
+		uint ch,
+		Color fg,
+		Color bg,
+		out Surface* surface
+    )
+    {
+		surface = RenderGlyph32_Shaded(font, ch, fg, bg);
+    }
+	public static void RenderGlyph32_Shaded(
+		Font font,
+		uint ch,
+		Color fg,
+		Color bg,
+		out PSurface surface
+	)
+	{
+		surface = RenderGlyph32_Shaded(font, ch, fg, bg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Blended")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Blended")]
 	public static extern Surface* RenderText_Blended(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
 			string text,
 		Color fg
 	);
+	public static void RenderText_Blended(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+			string text,
+		Color fg,
+		out Surface* surface
+    )
+    {
+		surface = RenderText_Blended(font, text, fg);
+	}
+	public static void RenderText_Blended(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderText_Blended(font, text, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Blended", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_RenderUTF8_Blended", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_TTF_RenderUTF8_Blended(
 		Font font,
 		byte* text,
@@ -754,18 +1162,68 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
+	public static void RenderUTF8_Blended(
+		Font font,
+		string text,
+		Color fg,
+		out Surface* surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Blended(
+			font,
+			utf8Text,
+			fg
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
+	public static void RenderUTF8_Blended(
+		Font font,
+		string text,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Blended(
+			font,
+			utf8Text,
+			fg
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Blended")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Blended")]
 	public static extern Surface* RenderUNICODE_Blended(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
 			string text,
 		Color fg
 	);
+	public static void RenderUNICODE_Blended(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+			string text,
+		Color fg,
+		out Surface* surface
+    )
+    {
+		surface = RenderUNICODE_Blended(font, text, fg);
+	}
+	public static void RenderUNICODE_Blended(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+				string text,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderUNICODE_Blended(font, text, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Blended_Wrapped")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderText_Blended_Wrapped")]
 	public static extern Surface* RenderText_Blended_Wrapped(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
@@ -773,9 +1231,31 @@ public unsafe static partial class TTF
 		Color fg,
 		uint wrapped
 	);
+	public static void RenderText_Blended_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+			string text,
+		Color fg,
+		uint wrapped,
+		out Surface* surface
+    )
+    {
+		surface = RenderText_Blended_Wrapped(font, text, fg, wrapped);
+	}
+	public static void RenderText_Blended_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPStr)]
+				string text,
+		Color fg,
+		uint wrapped,
+		out PSurface surface
+	)
+	{
+		surface = RenderText_Blended_Wrapped(font, text, fg, wrapped);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, EntryPoint = "TTF_RenderUTF8_Blended_Wrapped", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(NativeLibName, EntryPoint = "TTF_RenderUTF8_Blended_Wrapped", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
 		Font font,
 		byte* text,
@@ -799,9 +1279,43 @@ public unsafe static partial class TTF
 		Marshal.FreeHGlobal((IntPtr)utf8Text);
 		return result;
 	}
+	public static void RenderUTF8_Blended_Wrapped(
+		Font font,
+		string text,
+		Color fg,
+		uint wrapped,
+		out Surface* surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
+			font,
+			utf8Text,
+			fg,
+			wrapped
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
+	public static void RenderUTF8_Blended_Wrapped(
+		Font font,
+		string text,
+		Color fg,
+		uint wrapped,
+		out PSurface surface
+	)
+	{
+		byte* utf8Text = SDL.Utf8Encode(text);
+		surface = INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
+			font,
+			utf8Text,
+			fg,
+			wrapped
+		);
+		Marshal.FreeHGlobal((IntPtr)utf8Text);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Blended_Wrapped")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderUNICODE_Blended_Wrapped")]
 	public static extern Surface* RenderUNICODE_Blended_Wrapped(
 		Font font,
 		[In()] [MarshalAs(UnmanagedType.LPWStr)]
@@ -809,45 +1323,103 @@ public unsafe static partial class TTF
 		Color fg,
 		uint wrapped
 	);
+	public static void RenderUNICODE_Blended_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+			string text,
+		Color fg,
+		uint wrapped,
+		out Surface* surface
+    )
+    {
+		surface = RenderUNICODE_Blended_Wrapped(font, text, fg, wrapped);
+	}
+	public static void RenderUNICODE_Blended_Wrapped(
+		Font font,
+		[In()] [MarshalAs(UnmanagedType.LPWStr)]
+				string text,
+		Color fg,
+		uint wrapped,
+		out PSurface surface
+	)
+	{
+		surface = RenderUNICODE_Blended_Wrapped(font, text, fg, wrapped);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Blended")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph_Blended")]
 	public static extern Surface* RenderGlyph_Blended(
 		Font font,
 		ushort ch,
 		Color fg
 	);
+	public static void RenderGlyph_Blended(
+		Font font,
+		ushort ch,
+		Color fg,
+		out Surface* surface
+	)
+	{
+		surface = RenderGlyph_Blended(font, ch, fg);
+	}
+	public static void RenderGlyph_Blended(
+		Font font,
+		ushort ch,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderGlyph_Blended(font, ch, fg);
+	}
 
 	/* IntPtr refers to an SDL_Surface*, font to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Blended")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_RenderGlyph32_Blended")]
 	public static extern Surface* RenderGlyph32_Blended(
 		Font font,
 		uint ch,
 		Color fg
 	);
+	public static void RenderGlyph32_Blended(
+		Font font,
+		uint ch,
+		Color fg,
+		out Surface* surface
+    )
+    {
+		surface = RenderGlyph32_Blended(font, ch, fg);
+    }
+	public static void RenderGlyph32_Blended(
+		Font font,
+		uint ch,
+		Color fg,
+		out PSurface surface
+	)
+	{
+		surface = RenderGlyph32_Blended(font, ch, fg);
+	}
 
 	/* Only available in 2.0.16 or higher. */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetDirection")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetDirection")]
 	public static extern int SetDirection(int direction);
 
 	/* Only available in 2.0.16 or higher. */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetScript")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetScript")]
 	public static extern int SetScript(int script);
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_CloseFont")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_CloseFont")]
 	public static extern void CloseFont(Font font);
 
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_Quit")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_Quit")]
 	public static extern void Quit();
 
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_WasInit")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_WasInit")]
 	public static extern int WasInit();
 
 	/* font refers to a TTF_Font* */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetFontKerningSize")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "SDL_GetFontKerningSize")]
 	public static extern int GetFontKerningSize(
 		Font font,
 		int prev_index,
@@ -857,7 +1429,7 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.15 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontKerningSizeGlyphs")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontKerningSizeGlyphs")]
 	public static extern int GetFontKerningSizeGlyphs(
 		Font font,
 		ushort previous_ch,
@@ -867,7 +1439,7 @@ public unsafe static partial class TTF
 	/* font refers to a TTF_Font*
 	 * Only available in 2.0.16 or higher.
 	 */
-	[DllImport(nativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontKerningSizeGlyphs32")]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_GetFontKerningSizeGlyphs32")]
 	public static extern int GetFontKerningSizeGlyphs32(
 		Font font,
 		ushort previous_ch,

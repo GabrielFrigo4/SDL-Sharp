@@ -9,9 +9,7 @@ public static partial class SDL
 {
     private const string LibraryName = "SDL2";
 
-#if NETCOREAPP3_0
-    private static IntPtr _handle;
-
+#if NETCOREAPP3_0_OR_GREATER
     static SDL()
     {
         NativeLibrary.SetDllImportResolver(typeof(SDL).Assembly, ResolveDllImport);
@@ -19,10 +17,13 @@ public static partial class SDL
 
     private static IntPtr ResolveDllImport(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
     {
+        IntPtr _handle = default;
+
         if (_handle == IntPtr.Zero)
         {
-            foreach (var path in GetSearchPaths(assembly))
+            foreach (var path in GetSearchPaths(assembly, libraryName))
             {
+                Console.WriteLine($"procurando {libraryName}: {path}");
                 if (path != null && NativeLibrary.TryLoad(path, out _handle))
                 {
 #if DEBUG
@@ -36,12 +37,12 @@ public static partial class SDL
         return _handle;
     }
 
-    private static IEnumerable<string> GetSearchPaths(Assembly assembly)
+    private static IEnumerable<string> GetSearchPaths(Assembly assembly, string libraryName)
     {
+        string libName = GetNativeLibraryName(libraryName);
+
         // Try loading from environment variable, if set
         yield return Environment.GetEnvironmentVariable("SHARPSDL_SDL2");
-
-        var libName = GetNativeLibraryName();
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
@@ -91,21 +92,21 @@ public static partial class SDL
         throw new PlatformNotSupportedException();
     }
 
-    private static string GetNativeLibraryName()
+    private static string GetNativeLibraryName(string baseName)
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            return "SDL2.dll";
+            return $"{baseName}.dll";
         }
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            return "libSDL2-2.0.so.0";
+            return $"lib{baseName}-2.0.so.0";
         }
 
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            return "libSDL2.dylib";
+            return $"lib{baseName}.dylib";
         }
 
         throw new PlatformNotSupportedException();

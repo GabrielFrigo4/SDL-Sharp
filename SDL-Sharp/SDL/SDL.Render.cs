@@ -95,11 +95,17 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_CreateSoftwareRenderer", CallingConvention = CallingConvention.Cdecl)]
     public static extern Renderer CreateSoftwareRenderer(Surface* surface);
 
+    [DllImport(LibraryName, EntryPoint = "SDL_CreateSoftwareRenderer", CallingConvention = CallingConvention.Cdecl)]
+    public static extern Renderer CreateSoftwareRenderer(PSurface surface);
+
     [DllImport(LibraryName, EntryPoint = "SDL_CreateTexture", CallingConvention = CallingConvention.Cdecl)]
     public static extern Texture CreateTexture(Renderer renderer, uint format, TextureAccess access, int w, int h);
 
     [DllImport(LibraryName, EntryPoint = "SDL_CreateTextureFromSurface", CallingConvention = CallingConvention.Cdecl)]
     public static extern Texture CreateTextureFromSurface(Renderer renderer, Surface* surface);
+
+    [DllImport(LibraryName, EntryPoint = "SDL_CreateTextureFromSurface", CallingConvention = CallingConvention.Cdecl)]
+    public static extern Texture CreateTextureFromSurface(Renderer renderer, PSurface surface);
 
     [DllImport(LibraryName, EntryPoint = "SDL_CreateWindowAndRenderer", CallingConvention = CallingConvention.Cdecl)]
     public static extern int CreateWindowAndRenderer(int width, int height, WindowFlags window_flags, Window* window, Renderer* renderer);
@@ -189,10 +195,16 @@ public static unsafe partial class SDL
     public static extern int RenderCopy(Renderer renderer, Texture texture, Rect* srcrect, Rect* dstrect);
 
     [DllImport(LibraryName, EntryPoint = "SDL_RenderCopy", CallingConvention = CallingConvention.Cdecl)]
+    public static extern int RenderCopy(Renderer renderer, Texture texture, IntPtr srcrect, IntPtr dstrect);
+
+    [DllImport(LibraryName, EntryPoint = "SDL_RenderCopy", CallingConvention = CallingConvention.Cdecl)]
     public static extern int RenderCopy(Renderer renderer, Texture texture, ref Rect srcrect, ref Rect dstrect);
 
     [DllImport(LibraryName, EntryPoint = "SDL_RenderCopyEx", CallingConvention = CallingConvention.Cdecl)]
     public static extern int RenderCopyEx(Renderer renderer, Texture texture, Rect* srcrect, Rect* dstrect, double angle, Point* center, RendererFlip flip);
+
+    [DllImport(LibraryName, EntryPoint = "SDL_RenderCopyEx", CallingConvention = CallingConvention.Cdecl)]
+    public static extern int RenderCopyEx(Renderer renderer, Texture texture, IntPtr srcrect, IntPtr dstrect, double angle, IntPtr center, RendererFlip flip);
 
     [DllImport(LibraryName, EntryPoint = "SDL_RenderCopyEx", CallingConvention = CallingConvention.Cdecl)]
     public static extern int RenderCopyEx(Renderer renderer, Texture texture, ref Rect srcrect, ref Rect dstrect, double angle, ref Point center, RendererFlip flip);

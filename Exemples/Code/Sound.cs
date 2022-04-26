@@ -1,11 +1,10 @@
 ﻿using SDL_Sharp.Mixer;
-using System;
 
 namespace SDL_PLUS_EXTENSIONS
 {
-    unsafe class Sound
+    class Sound
     {
-        Chunk* chunck;
+        PChunk chunck;
         int volume = MIX.MAX_VOLUME;
 
         public static Sound CreateSound(string path)
@@ -15,7 +14,7 @@ namespace SDL_PLUS_EXTENSIONS
 
         Sound(string path)
         {
-            chunck = MIX.LoadWAV(path);
+            MIX.LoadWAV(path, out chunck);
             MIX.VolumeChunk(chunck, volume);
         }
 

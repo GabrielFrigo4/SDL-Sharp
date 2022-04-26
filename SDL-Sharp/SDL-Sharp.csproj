@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>SDL_Sharp</RootNamespace>
-    <Platforms>x64;x86</Platforms>
+    <Platforms>x64;x86;AnyCPU</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <Description>is a SDL2 for c#
@@ -12,10 +12,10 @@ The wrapper provides bindings for the following libraries:
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
 - SDL2_ttf (2.0.18)
-and contains the necessary DLLs for the project</Description>
+and contains the necessary DLLs for the project in SDL-Sharp-DLL(x86) and SDL-Sharp-DLL(x64)</Description>
     <PackageReleaseNotes>Fixed Bug MouseButton (uint to byte)</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>1.4.1</Version>
+    <Version>2.0.0</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
   </PropertyGroup>
 
@@ -23,7 +23,15 @@ and contains the necessary DLLs for the project</Description>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
