@@ -13,7 +13,7 @@ The wrapper provides bindings for the following libraries:
 - SDL2_mixer (2.0.4)
 - SDL2_ttf (2.0.18)
 and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
-    <PackageReleaseNotes>Fixed Bug MouseButton (uint to byte)</PackageReleaseNotes>
+    <PackageReleaseNotes>SHARP_SDL2 2.0!!!</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <Version>2.0.0</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
