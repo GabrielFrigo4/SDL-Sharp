@@ -30,7 +30,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SDL-Sharp\SDL-Sharp.csproj" />
+    <ProjectReference Include="..\..\SDL-Sharp\SDL-Sharp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

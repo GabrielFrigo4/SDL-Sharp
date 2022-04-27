@@ -15,7 +15,7 @@ class Program
     {
         //Init SDL/Image/Mixer/Ttf
         SDL.Init(SdlInitFlags.Video);
-        window = SDL.CreateWindow("SDL_PLUS_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
+        window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
         renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
         IMG.Init(ImgInitFlags.Jpg);
         TTF.Init();
