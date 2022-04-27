@@ -12,6 +12,15 @@ public static partial class SDL
 #if NETCOREAPP3_0_OR_GREATER
     static SDL()
     {
+        if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+        {
+            Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path")+";"+Path.GetFullPath("./runtimes/win-x64/native/"));
+        }
+        if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
+        {
+            Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/win-x86/native/"));
+        }
+
         NativeLibrary.SetDllImportResolver(typeof(SDL).Assembly, ResolveDllImport);
     }
 
@@ -23,7 +32,6 @@ public static partial class SDL
         {
             foreach (var path in GetSearchPaths(assembly, libraryName))
             {
-                Console.WriteLine($"procurando {libraryName}: {path}");
                 if (path != null && NativeLibrary.TryLoad(path, out _handle))
                 {
 #if DEBUG
@@ -40,9 +48,6 @@ public static partial class SDL
     private static IEnumerable<string> GetSearchPaths(Assembly assembly, string libraryName)
     {
         string libName = GetNativeLibraryName(libraryName);
-
-        // Try loading from environment variable, if set
-        yield return Environment.GetEnvironmentVariable("SHARPSDL_SDL2");
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
