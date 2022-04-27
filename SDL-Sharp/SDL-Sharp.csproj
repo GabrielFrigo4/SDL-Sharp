@@ -17,6 +17,7 @@ and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <Version>2.0.0</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
+    <Authors>Gabriel Frigo</Authors>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
