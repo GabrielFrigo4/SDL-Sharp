@@ -22,9 +22,9 @@ public static partial class SDL
             {
                 Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/win-x86/native/"));
             }
-
-            NativeLibrary.SetDllImportResolver(typeof(SDL).Assembly, ResolveDllImport);
         }
+
+        NativeLibrary.SetDllImportResolver(typeof(SDL).Assembly, ResolveDllImport);
     }
 
     private static IntPtr ResolveDllImport(string libraryName, Assembly assembly, DllImportSearchPath? searchPath)
@@ -51,11 +51,11 @@ public static partial class SDL
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
-            Path.GetDirectoryName(assembly.Location),
-            "runtimes",
-            GetRuntimeIdentifier(),
-            "native",
-            libName);
+        Path.GetDirectoryName(assembly.Location),
+        "runtimes",
+        GetRuntimeIdentifier(),
+        "native",
+        libName);
 
         // Finally, just try the name of the library
         yield return libName;
@@ -76,6 +76,24 @@ public static partial class SDL
             }
         }
 
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+            {
+                return "linux-x64";
+            }
+
+            if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
+            {
+                return "linux-x86";
+            }
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            return "osx-x64";
+        }
+
         throw new PlatformNotSupportedException();
     }
 
@@ -84,6 +102,16 @@ public static partial class SDL
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
             return $"{baseName}.dll";
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            return $"lib{baseName}-2.0.so.0";
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            return $"lib{baseName}.dylib";
         }
 
         throw new PlatformNotSupportedException();
