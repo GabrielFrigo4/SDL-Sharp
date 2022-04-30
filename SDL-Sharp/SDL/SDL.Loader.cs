@@ -9,7 +9,6 @@ public static partial class SDL
 {
     private const string LibraryName = "SDL2";
 
-#if NETCOREAPP3_0_OR_GREATER
     static SDL()
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
@@ -21,6 +20,26 @@ public static partial class SDL
             if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
             {
                 Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/win-x86/native/"));
+            }
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+            {
+                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/linux-x64/native/"));
+            }
+            if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
+            {
+                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/linux-x86/native/"));
+            }
+        }
+
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
+            {
+                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/osx-x64/native/"));
             }
         }
 
@@ -116,5 +135,4 @@ public static partial class SDL
 
         throw new PlatformNotSupportedException();
     }
-#endif
 }
