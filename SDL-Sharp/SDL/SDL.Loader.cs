@@ -27,11 +27,11 @@ public static partial class SDL
         {
             if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
             {
-                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/linux-x64/native/"));
+                Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath("./runtimes/linux-x64/native/"));
             }
             if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
             {
-                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/linux-x86/native/"));
+                Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath("./runtimes/linux-x86/native/"));
             }
         }
 
@@ -39,7 +39,7 @@ public static partial class SDL
         {
             if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
             {
-                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/osx-x64/native/"));
+                Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath("./runtimes/osx-x64/native/"));
             }
         }
 
