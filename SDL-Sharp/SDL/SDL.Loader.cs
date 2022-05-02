@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using SDL_Sharp.Utility;
 
 namespace SDL_Sharp;
 public static partial class SDL
@@ -11,36 +12,16 @@ public static partial class SDL
 
     static SDL()
     {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
         {
-            if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
-            {
-                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/win-x64/native/"));
-            }
-            if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
-            {
-                Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath("./runtimes/win-x86/native/"));
-            }
+            Utils.WindowsAddEnvironmentPath("./runtimes/win-x64/native/");
+            Utils.LinuxAddEnvironmentPath("./runtimes/linux-x64/native/");
+            Utils.OsxAddEnvironmentPath("./runtimes/osx-x64/native/");
         }
-
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
         {
-            if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
-            {
-                Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath("./runtimes/linux-x64/native/"));
-            }
-            if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
-            {
-                Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath("./runtimes/linux-x86/native/"));
-            }
-        }
-
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-        {
-            if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
-            {
-                Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath("./runtimes/osx-x64/native/"));
-            }
+            Utils.WindowsAddEnvironmentPath("./runtimes/win-x86/native/");
+            Utils.LinuxAddEnvironmentPath("./runtimes/linux-x86/native/");
         }
 
         NativeLibrary.SetDllImportResolver(typeof(SDL).Assembly, ResolveDllImport);

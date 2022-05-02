@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.IO;
+using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
 public partial class Utils
@@ -10,6 +12,12 @@ public partial class Utils
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             SetProcessDpiAwareness(value);
+    }
+
+    public static void WindowsAddEnvironmentPath(string path)
+    {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath(path));
     }
 }
 
