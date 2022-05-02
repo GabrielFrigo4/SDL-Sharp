@@ -14,11 +14,21 @@ class Program
 
     static void Main(string[] args)
     {
-        Utils.WindowsSetDpiAwareness(HighDpiMode.SystemAware);
+        //test save data ;)
+        Utils.SerializeObject("teste", "./unga.html", SerializeType.html);
+        Utils.SerializeObject("teste", "./unga.json", SerializeType.json);
+        Utils.SerializeObject("teste", "./unga.bin", SerializeType.binary);
+
+        Console.WriteLine(Utils.DeSerializeObject<string>("./unga.html", SerializeType.html));
+        Console.WriteLine(Utils.DeSerializeObject<string>("./unga.json", SerializeType.json));
+        Console.WriteLine(Utils.DeSerializeObject<string>("./unga.bin", SerializeType.binary));
+        //test save data ;)
+
+        WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
 
         //Init SDL/Image/Mixer/Ttf
         SDL.Init(SdlInitFlags.Video);
-        window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
+        window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Hidden);
         renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
         IMG.Init(ImgInitFlags.Jpg);
         TTF.Init();
@@ -32,10 +42,9 @@ class Program
         sound.Play(1);
         sound.SetVolume(16);
 
-        //Console.WriteLine(IMG.GetError());
         Texture fegegoso = LoadTexture("./Files/Fedegoso.jpg");
-        //Console.WriteLine(IMG.GetError());
 
+        SDL.ShowWindow(window);
         Event e;
         var running = true;
         while (running)

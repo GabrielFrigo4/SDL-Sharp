@@ -11,7 +11,7 @@ internal class Program
     [Obsolete]
     static void Main()
     {
-        Utils.WindowsSetDpiAwareness(HighDpiMode.SystemAware);
+        WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
 
         SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("teste", SDL.WINDOWPOS_CENTERED, SDL.WINDOWPOS_CENTERED, 800, 600, WindowFlags.OpenGL);

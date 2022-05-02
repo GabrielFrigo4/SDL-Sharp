@@ -3,9 +3,13 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
-public partial class Utils
+public class LinuxUtils
 {
-    public static void LinuxAddEnvironmentPath(string path)
+    /// <summary>
+    /// Add environment path in this process on Linux
+    /// </summary>
+    /// <param name="path"></param>
+    public static void AddEnvironmentPath(string path)
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));

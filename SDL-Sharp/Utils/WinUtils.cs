@@ -3,25 +3,33 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
-public partial class Utils
+public class WinUtils
 {
     [DllImport(dllName: "Shcore", CallingConvention = CallingConvention.Cdecl)]
-    private static extern int SetProcessDpiAwareness(HighDpiMode value);
+    private static extern int SetProcessDpiAwareness(WinHighDpiMode value);
 
-    public static void WindowsSetDpiAwareness(HighDpiMode value)
+    /// <summary>
+    /// Set dpi awareness in Windows
+    /// </summary>
+    /// <param name="value"></param>
+    public static void SetDpiAwareness(WinHighDpiMode value)
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             SetProcessDpiAwareness(value);
     }
 
-    public static void WindowsAddEnvironmentPath(string path)
+    /// <summary>
+    /// Add environment path in this process on Windows
+    /// </summary>
+    /// <param name="path"></param>
+    public static void AddEnvironmentPath(string path)
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath(path));
     }
 }
 
-public enum HighDpiMode
+public enum WinHighDpiMode
 {
     DpiUnaware,
     SystemAware,

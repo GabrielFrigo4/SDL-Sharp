@@ -3,9 +3,13 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
-public partial class Utils
+public class OsxUtils
 {
-    public static void OsxAddEnvironmentPath(string path)
+    /// <summary>
+    /// Add environment path in this process on OSX
+    /// </summary>
+    /// <param name="path"></param>
+    public static void AddEnvironmentPath(string path)
     {
         if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
