@@ -12,10 +12,11 @@ The wrapper provides bindings for the following libraries:
 - SDL2_image (2.0.5)
 - SDL2_mixer (2.0.4)
 - SDL2_ttf (2.0.18)
+-Utils(functions that facilitate the development)
 and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
-    <PackageReleaseNotes>Update Loader to work correctly in osx and linux</PackageReleaseNotes>
+    <PackageReleaseNotes>Add Utils</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.0.1</Version>
+    <Version>2.1.0</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
   </PropertyGroup>
