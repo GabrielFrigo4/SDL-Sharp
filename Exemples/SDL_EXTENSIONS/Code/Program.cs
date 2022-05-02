@@ -1,6 +1,7 @@
 ﻿using SDL_Sharp.Ttf;
 using SDL_Sharp.Image;
 using SDL_Sharp.Mixer;
+using SDL_Sharp.Utility;
 using SDL_Sharp;
 using System;
 
@@ -13,6 +14,8 @@ class Program
 
     static void Main(string[] args)
     {
+        Utils.WindowsSetDpiAwareness(HighDpiMode.SystemAware);
+
         //Init SDL/Image/Mixer/Ttf
         SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);

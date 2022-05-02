@@ -1,4 +1,5 @@
 ﻿using SDL_Sharp;
+using SDL_Sharp.Utility;
 using Silk.NET.OpenGL.Legacy;
 
 namespace ConsoleApp1;
@@ -10,6 +11,8 @@ internal class Program
     [Obsolete]
     static void Main()
     {
+        Utils.WindowsSetDpiAwareness(HighDpiMode.SystemAware);
+
         SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("teste", SDL.WINDOWPOS_CENTERED, SDL.WINDOWPOS_CENTERED, 800, 600, WindowFlags.OpenGL);
         GLContext glContext = SDL.GL_CreateContext(window);
