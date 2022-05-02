@@ -1,8 +1,9 @@
-Is a SDL2 for c#. The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project):
+Is a SDL2 for c#. The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project in SDL-Sharp-DLL):
 - SDL2 (2.0.20) in SDL_Sharp
 - SDL2_image (2.0.5) in SDL_Sharp.Image
 - SDL2_mixer (2.0.4) in SDL_Sharp.Mixer
 - SDL2_ttf (2.0.18) in SDL_Sharp.Ttf
+- Utils(functions that facilitate the development)
 
 To use opengl and openal in SDL we recommend using Silk.NET: https://github.com/dotnet/Silk.NET
 
