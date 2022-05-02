@@ -5,7 +5,22 @@ using Silk.NET.OpenGL.Legacy;
 namespace ConsoleApp1;
 internal class Program
 {
-    static GL gl;
+    static GL? _gl;
+    static GL gl
+    {
+        get
+        {
+            if(_gl is not null)
+                return _gl;
+
+            throw new Exception("OpenGL is not init");
+        }
+
+        set
+        {
+            _gl = value;
+        }
+    }
     static Window window;
 
     [Obsolete]

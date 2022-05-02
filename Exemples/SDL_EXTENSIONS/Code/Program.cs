@@ -49,12 +49,11 @@ class Program
         Texture fegegoso = LoadTexture("./Files/Fedegoso.jpg");
 
         SDL.ShowWindow(window);
-        Event e;
         var running = true;
         while (running)
         {
             Input.Restart();
-            while (SDL.PollEvent(out e) == 1)
+            while (SDL.PollEvent(out Event e) == 1)
             {
                 Input.Update(e);
                 switch (e.Type)

@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SDL_Sharp.Utility;
