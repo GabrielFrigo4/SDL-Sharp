@@ -15,13 +15,17 @@ class Program
     static void Main(string[] args)
     {
         //test save data ;)
-        Utils.SerializeObject("teste", "./unga.html", SerializeType.html);
-        Utils.SerializeObject("teste", "./unga.json", SerializeType.json);
-        Utils.SerializeObject("teste", "./unga.bin", SerializeType.binary);
+        {
+            string[] myData = new string[] { "unga1", "unga2", "unga3" };
 
-        Console.WriteLine(Utils.DeSerializeObject<string>("./unga.html", SerializeType.html));
-        Console.WriteLine(Utils.DeSerializeObject<string>("./unga.json", SerializeType.json));
-        Console.WriteLine(Utils.DeSerializeObject<string>("./unga.bin", SerializeType.binary));
+            Utils.SerializeObject(myData, "./unga.html", SerializeType.html);
+            Utils.SerializeObject(myData, "./unga.json", SerializeType.json);
+            Utils.SerializeObject(myData, "./unga.bin", SerializeType.binary);
+
+            Console.WriteLine(Utils.DeSerializeObject<string[]>("./unga.html", SerializeType.html)[0]);
+            Console.WriteLine(Utils.DeSerializeObject<string[]>("./unga.json", SerializeType.json)[1]);
+            Console.WriteLine(Utils.DeSerializeObject<string[]>("./unga.bin", SerializeType.binary)[2]);
+        }
         //test save data ;)
 
         WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
