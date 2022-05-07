@@ -4,6 +4,7 @@ using SDL_Sharp.Mixer;
 using SDL_Sharp.Utility;
 using SDL_Sharp;
 using System;
+using System.Text.Json.Serialization;
 
 namespace SDL_PLUS_EXTENSIONS;
 class Program
@@ -17,25 +18,21 @@ class Program
         //test save data ;)
         {
             TestData[] data = { 
-                new("data1", 0, 0), new("data2", 1, 0), new("data3", 2, 0)
+                new("data1", 0, 0), new("data2", 1, 0), new("data3", 2, 0),
+                new("data4", 3, 0), new("data5", 4, 0)
             };
 
-            JsonData jsonData = new();
-            jsonData.Name = "jsonData";
-            jsonData.Id = -1;
-            jsonData.Leght = 0;
-
             Utils.SerializeObject(data, "./TestData.html", SerializeType.html);
-            Utils.SerializeObject(jsonData, "./JsonData.html", SerializeType.html);
-            Utils.SerializeObject(jsonData, "./JsonData.json", SerializeType.json);
+            Utils.SerializeObject(data, "./TestData.json", SerializeType.json);
             Utils.SerializeObject(data, "./TestData.bin", SerializeType.binary);
-            Utils.SerializeObject(data, "./TestData.prot", SerializeType.protect);
+            Utils.SerializeObject(data, "./TestData.html.prot", SerializeType.htmlProtect);
+            Utils.SerializeObject(data, "./TestData.json.prot", SerializeType.jsonProtect);
 
-            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.html", SerializeType.html)[0].name);
-            Console.WriteLine(Utils.DeSerializeObject<JsonData> ("./JsonData.html", SerializeType.html).Name);
-            Console.WriteLine(Utils.DeSerializeObject<JsonData>("./JsonData.json", SerializeType.json).Name);
-            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.bin", SerializeType.binary)[1].name);
-            Console.WriteLine(Utils.DeSerializeObject <TestData[]>("./TestData.prot", SerializeType.protect)[2].name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.html", SerializeType.html)[0].Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.json", SerializeType.json)[1].Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.bin", SerializeType.binary)[2].Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.html.prot", SerializeType.htmlProtect)[3].Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.json.prot", SerializeType.jsonProtect)[4].Name);
         }
         //test save data ;)
 
@@ -186,22 +183,14 @@ class Program
 [Serializable]
 public struct TestData
 {
-    public string name;
+    public string Name { get; set; }
     public int id;
     public uint leght;
 
     public TestData(string name, int id, uint leght)
     {
-        this.name = name;
+        this.Name = name;
         this.id = id;
         this.leght = leght;
     }
-}
-
-[Serializable]
-public struct JsonData
-{
-    public string Name { get; set; }
-    public int Id { get; set; }
-    public uint Leght { get; set; }
 }

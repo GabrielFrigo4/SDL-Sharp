@@ -16,6 +16,8 @@ public static class Utils
         0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16
     };
 
+    static readonly JsonSerializerOptions options = new JsonSerializerOptions { IncludeFields = true };
+
     /// <summary>
     /// Add environment path in this process for any operate system
     /// </summary>
@@ -49,8 +51,11 @@ public static class Utils
             case SerializeType.binary:
                 SerializeObjectBinary(serializableObject, fileName);
                 break;
-            case SerializeType.protect:
-                SerializeObjectProtect(serializableObject, fileName);
+            case SerializeType.htmlProtect:
+                SerializeObjectHtmlProtect(serializableObject, fileName);
+                break;
+            case SerializeType.jsonProtect:
+                SerializeObjectJsonProtect(serializableObject, fileName);
                 break;
         }
     }
@@ -82,7 +87,7 @@ public static class Utils
         try
         {
             using FileStream createStream = File.Create(fileName);
-            JsonSerializer.Serialize(createStream, serializableObject);
+            JsonSerializer.Serialize(createStream, serializableObject, options);
             createStream.Dispose();
         }
         catch (Exception ex)
@@ -110,7 +115,7 @@ public static class Utils
         }
     }
 
-    private static void SerializeObjectProtect<T>(T serializableObject, string fileName)
+    private static void SerializeObjectHtmlProtect<T>(T serializableObject, string fileName)
     {
         if (serializableObject == null) return;
 
@@ -143,6 +148,34 @@ public static class Utils
         }
     }
 
+    private static void SerializeObjectJsonProtect<T>(T serializableObject, string fileName)
+    {
+        if (serializableObject == null) return;
+
+        try
+        {
+            using FileStream createStream = File.Create(fileName);
+
+            using Aes aes = Aes.Create();
+            aes.Key = key;
+
+            byte[] iv = aes.IV;
+            createStream.Write(iv, 0, iv.Length);
+
+            using CryptoStream cryptoStream = new(
+                createStream,
+                aes.CreateEncryptor(),
+                CryptoStreamMode.Write);
+            using StreamWriter encryptWriter = new(cryptoStream);
+            string jsonString = JsonSerializer.Serialize(serializableObject, options);
+            encryptWriter.Write(jsonString);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
+
     /// <summary>
     /// Deserializes an xml file into an object list
     /// </summary>
@@ -156,7 +189,8 @@ public static class Utils
             SerializeType.html => DeSerializeObjectHtml<T>(fileName),
             SerializeType.json => DeSerializeObjectJson<T>(fileName),
             SerializeType.binary => DeSerializeObjectBinary<T>(fileName),
-            SerializeType.protect => DeSerializeObjectProtect<T>(fileName),
+            SerializeType.htmlProtect => DeSerializeObjectHtmlProtect<T>(fileName),
+            SerializeType.jsonProtect => DeSerializeObjectJsonProtect<T>(fileName),
             _ => default,
         };
     }
@@ -195,7 +229,7 @@ public static class Utils
         try
         {
             string jsonString = File.ReadAllText(fileName);
-            objectOut = JsonSerializer.Deserialize<T>(jsonString);
+            objectOut = JsonSerializer.Deserialize<T>(jsonString, options);
         }
         catch (Exception ex)
         {
@@ -227,7 +261,7 @@ public static class Utils
         return objectOut;
     }
 
-    private static T DeSerializeObjectProtect<T>(string fileName)
+    private static T DeSerializeObjectHtmlProtect<T>(string fileName)
     {
         if (string.IsNullOrEmpty(fileName)) return default;
         T objectOut = default;
@@ -266,6 +300,44 @@ public static class Utils
 
         return objectOut;
     }
+
+    private static T DeSerializeObjectJsonProtect<T>(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName)) return default;
+        T objectOut = default;
+
+        try
+        {
+            using FileStream fileStream = new(fileName, FileMode.Open);
+            using Aes aes = Aes.Create();
+            byte[] iv = new byte[aes.IV.Length];
+            int numBytesToRead = aes.IV.Length;
+            int numBytesRead = 0;
+            while (numBytesToRead > 0)
+            {
+                int n = fileStream.Read(iv, numBytesRead, numBytesToRead);
+                if (n == 0) break;
+
+                numBytesRead += n;
+                numBytesToRead -= n;
+            }
+
+            using CryptoStream cryptoStream = new(
+               fileStream,
+               aes.CreateDecryptor(key, iv),
+               CryptoStreamMode.Read);
+            using StreamReader decryptReader = new(cryptoStream);
+            string decryptedMessage = decryptReader.ReadToEnd();
+
+            objectOut = JsonSerializer.Deserialize<T>(decryptedMessage, options);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+
+        return objectOut;
+    }
 }
 
 public enum SerializeType
@@ -273,5 +345,6 @@ public enum SerializeType
     html,
     json,
     binary,
-    protect,
+    htmlProtect,
+    jsonProtect,
 }
