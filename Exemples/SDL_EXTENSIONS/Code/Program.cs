@@ -12,22 +12,28 @@ class Program
     static Window window;
     static Renderer renderer;
 
-    static void Main(string[] args)
+    static void Main()
     {
         //test save data ;)
         {
-            TestData[] data = { new("unga1", 0, 0), new("unga2", 1, 0),
-                new("unga3", 2, 0), new("unga4", 3, 0) };
+            TestData[] data = { 
+                new("data1", 0, 0), new("data2", 1, 0), new("data3", 2, 0)
+            };
+
+            JsonData jsonData = new();
+            jsonData.Name = "jsonData";
+            jsonData.Id = -1;
+            jsonData.Leght = 0;
 
             Utils.SerializeObject(data, "./unga.html", SerializeType.html);
-            Utils.SerializeObject(data[1], "./unga.json", SerializeType.json);
+            Utils.SerializeObject(jsonData, "./unga.json", SerializeType.json);
             Utils.SerializeObject(data, "./unga.bin", SerializeType.binary);
-            Utils.SerializeObject(data[3], "./unga.prot", SerializeType.protect);
+            Utils.SerializeObject(data, "./unga.prot", SerializeType.protect);
 
             Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.html", SerializeType.html)[0].name);
-            Console.WriteLine(Utils.DeSerializeObject<TestData>("./unga.json", SerializeType.json).name);
-            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.bin", SerializeType.binary)[2].name);
-            Console.WriteLine(Utils.DeSerializeObject<TestData>("./unga.prot", SerializeType.protect).name);
+            Console.WriteLine(Utils.DeSerializeObject<JsonData>("./unga.json", SerializeType.json).Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.bin", SerializeType.binary)[1].name);
+            Console.WriteLine(Utils.DeSerializeObject <TestData[]>("./unga.prot", SerializeType.protect)[2].name);
         }
         //test save data ;)
 
@@ -188,4 +194,12 @@ public struct TestData
         this.id = id;
         this.leght = leght;
     }
+}
+
+[Serializable]
+public struct JsonData
+{
+    public string Name { get; set; }
+    public int Id { get; set; }
+    public uint Leght { get; set; }
 }

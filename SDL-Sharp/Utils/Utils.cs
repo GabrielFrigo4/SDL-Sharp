@@ -129,7 +129,13 @@ public static class Utils
                 aes.CreateEncryptor(),
                 CryptoStreamMode.Write);
             using StreamWriter encryptWriter = new(cryptoStream);
-            encryptWriter.Write(JsonSerializer.Serialize(serializableObject));
+            XmlDocument xmlDocument = new();
+            XmlSerializer serializer = new(serializableObject.GetType());
+            using MemoryStream stream = new();
+            serializer.Serialize(stream, serializableObject);
+            stream.Position = 0;
+            xmlDocument.Load(stream);
+            encryptWriter.Write(xmlDocument.OuterXml);
         }
         catch (Exception ex)
         {
@@ -248,8 +254,10 @@ public static class Utils
                CryptoStreamMode.Read);
             using StreamReader decryptReader = new(cryptoStream);
             string decryptedMessage = decryptReader.ReadToEnd();
-            objectOut = JsonSerializer.Deserialize<T>(decryptedMessage);
-            Console.WriteLine($"The decrypted original message: {decryptedMessage}");
+
+            XmlSerializer serializer = new(typeof(T));
+            using TextReader reader = new StringReader(decryptedMessage);
+            objectOut = (T)serializer.Deserialize(reader);
         }
         catch (Exception ex)
         {
