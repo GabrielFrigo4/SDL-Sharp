@@ -16,15 +16,18 @@ class Program
     {
         //test save data ;)
         {
-            string[] myData = new string[] { "unga1", "unga2", "unga3" };
+            TestData[] data = { new("unga1", 0, 0), new("unga2", 1, 0),
+                new("unga3", 2, 0), new("unga4", 3, 0) };
 
-            Utils.SerializeObject(myData, "./unga.html", SerializeType.html);
-            Utils.SerializeObject(myData, "./unga.json", SerializeType.json);
-            Utils.SerializeObject(myData, "./unga.bin", SerializeType.binary);
+            Utils.SerializeObject(data, "./unga.html", SerializeType.html);
+            Utils.SerializeObject(data[1], "./unga.json", SerializeType.json);
+            Utils.SerializeObject(data, "./unga.bin", SerializeType.binary);
+            Utils.SerializeObject(data[3], "./unga.prot", SerializeType.protect);
 
-            Console.WriteLine(Utils.DeSerializeObject<string[]>("./unga.html", SerializeType.html)[0]);
-            Console.WriteLine(Utils.DeSerializeObject<string[]>("./unga.json", SerializeType.json)[1]);
-            Console.WriteLine(Utils.DeSerializeObject<string[]>("./unga.bin", SerializeType.binary)[2]);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.html", SerializeType.html)[0].name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData>("./unga.json", SerializeType.json).name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.bin", SerializeType.binary)[2].name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData>("./unga.prot", SerializeType.protect).name);
         }
         //test save data ;)
 
@@ -169,5 +172,20 @@ class Program
     internal static void Render(Texture texture)
     {
         SDL.RenderCopy(renderer, texture, IntPtr.Zero, IntPtr.Zero);
+    }
+}
+
+[Serializable]
+public struct TestData
+{
+    public string name;
+    public int id;
+    public uint leght;
+
+    public TestData(string name, int id, uint leght)
+    {
+        this.name = name;
+        this.id = id;
+        this.leght = leght;
     }
 }

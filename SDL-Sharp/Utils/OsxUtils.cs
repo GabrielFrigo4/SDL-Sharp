@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
-public class OsxUtils
+public static class OsxUtils
 {
     /// <summary>
     /// Add environment path in this process on OSX

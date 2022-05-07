@@ -5,10 +5,17 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Text.Json;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 
 namespace SDL_Sharp.Utility;
-public class Utils
+public static class Utils
 {
+    static readonly byte[] key =
+    {
+        0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
+        0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16
+    };
+
     /// <summary>
     /// Add environment path in this process for any operate system
     /// </summary>
@@ -41,6 +48,9 @@ public class Utils
                 break;
             case SerializeType.binary:
                 SerializeObjectBinary(serializableObject, fileName);
+                break;
+            case SerializeType.protect:
+                SerializeObjectProtect(serializableObject, fileName);
                 break;
         }
     }
@@ -100,6 +110,33 @@ public class Utils
         }
     }
 
+    private static void SerializeObjectProtect<T>(T serializableObject, string fileName)
+    {
+        if (serializableObject == null) return;
+
+        try
+        {
+            using FileStream createStream = File.Create(fileName);
+
+            using Aes aes = Aes.Create();
+            aes.Key = key;
+
+            byte[] iv = aes.IV;
+            createStream.Write(iv, 0, iv.Length);
+
+            using CryptoStream cryptoStream = new(
+                createStream,
+                aes.CreateEncryptor(),
+                CryptoStreamMode.Write);
+            using StreamWriter encryptWriter = new(cryptoStream);
+            encryptWriter.Write(JsonSerializer.Serialize(serializableObject));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
+
     /// <summary>
     /// Deserializes an xml file into an object list
     /// </summary>
@@ -113,6 +150,7 @@ public class Utils
             SerializeType.html => DeSerializeObjectHtml<T>(fileName),
             SerializeType.json => DeSerializeObjectJson<T>(fileName),
             SerializeType.binary => DeSerializeObjectBinary<T>(fileName),
+            SerializeType.protect => DeSerializeObjectProtect<T>(fileName),
             _ => default,
         };
     }
@@ -182,6 +220,44 @@ public class Utils
 
         return objectOut;
     }
+
+    private static T DeSerializeObjectProtect<T>(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName)) return default;
+        T objectOut = default;
+
+        try
+        {
+            using FileStream fileStream = new(fileName, FileMode.Open);
+            using Aes aes = Aes.Create();
+            byte[] iv = new byte[aes.IV.Length];
+            int numBytesToRead = aes.IV.Length;
+            int numBytesRead = 0;
+            while (numBytesToRead > 0)
+            {
+                int n = fileStream.Read(iv, numBytesRead, numBytesToRead);
+                if (n == 0) break;
+
+                numBytesRead += n;
+                numBytesToRead -= n;
+            }
+
+            using CryptoStream cryptoStream = new(
+               fileStream,
+               aes.CreateDecryptor(key, iv),
+               CryptoStreamMode.Read);
+            using StreamReader decryptReader = new(cryptoStream);
+            string decryptedMessage = decryptReader.ReadToEnd();
+            objectOut = JsonSerializer.Deserialize<T>(decryptedMessage);
+            Console.WriteLine($"The decrypted original message: {decryptedMessage}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+
+        return objectOut;
+    }
 }
 
 public enum SerializeType
@@ -189,4 +265,5 @@ public enum SerializeType
     html,
     json,
     binary,
+    protect,
 }

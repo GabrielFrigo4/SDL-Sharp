@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
-public class LinuxUtils
+public static class LinuxUtils
 {
     /// <summary>
     /// Add environment path in this process on Linux

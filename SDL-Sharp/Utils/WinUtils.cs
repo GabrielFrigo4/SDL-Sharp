@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Utility;
-public class WinUtils
+public static class WinUtils
 {
     [DllImport(dllName: "Shcore", CallingConvention = CallingConvention.Cdecl)]
     private static extern int SetProcessDpiAwareness(WinHighDpiMode value);
