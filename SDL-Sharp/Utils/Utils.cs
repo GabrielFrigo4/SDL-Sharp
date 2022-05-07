@@ -16,7 +16,7 @@ public static class Utils
         0x09, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16
     };
 
-    static readonly JsonSerializerOptions options = new JsonSerializerOptions { IncludeFields = true };
+    static readonly JsonSerializerOptions options = new(){ IncludeFields = true };
 
     /// <summary>
     /// Add environment path in this process for any operate system
