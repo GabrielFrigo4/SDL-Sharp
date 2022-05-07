@@ -25,15 +25,17 @@ class Program
             jsonData.Id = -1;
             jsonData.Leght = 0;
 
-            Utils.SerializeObject(data, "./unga.html", SerializeType.html);
-            Utils.SerializeObject(jsonData, "./unga.json", SerializeType.json);
-            Utils.SerializeObject(data, "./unga.bin", SerializeType.binary);
-            Utils.SerializeObject(data, "./unga.prot", SerializeType.protect);
+            Utils.SerializeObject(data, "./TestData.html", SerializeType.html);
+            Utils.SerializeObject(jsonData, "./JsonData.html", SerializeType.html);
+            Utils.SerializeObject(jsonData, "./JsonData.json", SerializeType.json);
+            Utils.SerializeObject(data, "./TestData.bin", SerializeType.binary);
+            Utils.SerializeObject(data, "./TestData.prot", SerializeType.protect);
 
-            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.html", SerializeType.html)[0].name);
-            Console.WriteLine(Utils.DeSerializeObject<JsonData>("./unga.json", SerializeType.json).Name);
-            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./unga.bin", SerializeType.binary)[1].name);
-            Console.WriteLine(Utils.DeSerializeObject <TestData[]>("./unga.prot", SerializeType.protect)[2].name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.html", SerializeType.html)[0].name);
+            Console.WriteLine(Utils.DeSerializeObject<JsonData> ("./JsonData.html", SerializeType.html).Name);
+            Console.WriteLine(Utils.DeSerializeObject<JsonData>("./JsonData.json", SerializeType.json).Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.bin", SerializeType.binary)[1].name);
+            Console.WriteLine(Utils.DeSerializeObject <TestData[]>("./TestData.prot", SerializeType.protect)[2].name);
         }
         //test save data ;)
 
