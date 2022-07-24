@@ -53,6 +53,8 @@ public struct Cursor
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(Cursor cursor)
     {
         return cursor.ptr;

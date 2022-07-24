@@ -1,4 +1,5 @@
 ﻿using SDL_Sharp.Mixer;
+using System;
 
 namespace SDL_PLUS_EXTENSIONS
 {
@@ -15,6 +16,8 @@ namespace SDL_PLUS_EXTENSIONS
         Sound(string path)
         {
             MIX.LoadWAV(path, out chunck);
+            if(chunck.IsNull)
+                throw new Exception("PChunk not create");
             MIX.VolumeChunk(chunck, volume);
         }
 

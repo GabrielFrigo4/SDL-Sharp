@@ -41,7 +41,11 @@ class Program
         //Init SDL/Image/Mixer/Ttf
         SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Hidden);
+        if (window.IsNull)
+            throw new Exception("Window not create");
         renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
+        if (renderer.IsNull)
+            throw new Exception("Renderer not create");
         IMG.Init(ImgInitFlags.Jpg);
         TTF.Init();
 
@@ -55,6 +59,8 @@ class Program
         sound.SetVolume(16);
 
         Texture fegegoso = LoadTexture("./Files/Fedegoso.jpg");
+        if (fegegoso.IsNull)
+            throw new Exception("Texture not create");
 
         SDL.ShowWindow(window);
         var running = true;
@@ -114,39 +120,48 @@ class Program
     public static void DrawText(string text, int x, int y, int size)
     {
         Font _font = TTF.OpenFont("C:/Windows/Fonts/arial.ttf", size);
+        if (_font.IsNull)
+            throw new Exception("Font not create");
 
         Color color;
         color.R = color.G = color.B = color.A = 0;
 
         TTF.RenderText_Solid(_font, text, color, out PSurface surfaceMessage);
 
-        Texture Message = SDL.CreateTextureFromSurface(renderer, surfaceMessage);
+        Texture message = SDL.CreateTextureFromSurface(renderer, surfaceMessage);
+        if (message.IsNull)
+            throw new Exception("Texture not create");
 
         int texW;
         int texH;
-        SDL.QueryTexture(Message, out _, out _, out texW, out texH);
+        SDL.QueryTexture(message, out _, out _, out texW, out texH);
 
         Rect dstrect = new Rect(x, y, texW, texH);
 
         Rect srcrect = new Rect(0, 0, texW, texH);
 
-        SDL.RenderCopy(renderer, Message, ref srcrect, ref dstrect);
+        SDL.RenderCopy(renderer, message, ref srcrect, ref dstrect);
         TTF.CloseFont(_font);
 
         SDL.FreeSurface(surfaceMessage);
-        SDL.DestroyTexture(Message);
+        SDL.DestroyTexture(message);
     }
 
     public static void DrawTextExt(string text, int x, int y, int size, Color color, string font, bool center)
     {
         Font _font = TTF.OpenFont("C:/Windows/Fonts/" + font, size);
+        if (_font.IsNull)
+            throw new Exception("Font not create");
+
         TTF.RenderText_Solid(_font, text, color, out PSurface surfaceMessage);
 
-        Texture Message = SDL.CreateTextureFromSurface(renderer, surfaceMessage);
+        Texture message = SDL.CreateTextureFromSurface(renderer, surfaceMessage);
+        if (message.IsNull)
+            throw new Exception("Texture not create");
 
         int texW;
         int texH;
-        SDL.QueryTexture(Message, out _, out _, out texW, out texH);
+        SDL.QueryTexture(message, out _, out _, out texW, out texH);
 
         Rect dstrect;
 
@@ -161,16 +176,18 @@ class Program
             dstrect = new Rect(x - (texW / 2), y - (texH / 2), texW, texH);
         }
 
-        SDL.RenderCopy(renderer, Message, ref srcrect, ref dstrect);
+        SDL.RenderCopy(renderer, message, ref srcrect, ref dstrect);
         TTF.CloseFont(_font);
 
         SDL.FreeSurface(surfaceMessage);
-        SDL.DestroyTexture(Message);
+        SDL.DestroyTexture(message);
     }
 
     internal static Texture LoadTexture(string path)
     {
         Texture texture = IMG.LoadTexture(renderer, path);
+        if (texture.IsNull)
+            throw new Exception("Texture not create");
         return texture;
     }
 

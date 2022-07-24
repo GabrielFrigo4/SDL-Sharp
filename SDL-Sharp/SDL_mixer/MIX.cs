@@ -614,6 +614,8 @@ public unsafe struct PChunk
         this.ptr = ptr;
     }
 
+	public bool IsNull { get { return ptr is null; } }
+
     public static implicit operator Chunk*(PChunk chunk)
     {
         return chunk.ptr;

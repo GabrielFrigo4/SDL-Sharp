@@ -12,6 +12,8 @@ public struct Music
 		this.ptr = ptr;
 	}
 
+	public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
 	public static implicit operator IntPtr(Music music)
 	{
 		return music.ptr;

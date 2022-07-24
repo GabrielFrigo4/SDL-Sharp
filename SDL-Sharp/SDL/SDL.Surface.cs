@@ -29,6 +29,8 @@ public unsafe struct PSurface
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr is null; } }
+
     public static implicit operator Surface*(PSurface texture)
     {
         return texture.ptr;

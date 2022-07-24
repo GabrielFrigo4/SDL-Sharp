@@ -100,6 +100,8 @@ public struct Window
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(Window window)
     {
         return window.ptr;

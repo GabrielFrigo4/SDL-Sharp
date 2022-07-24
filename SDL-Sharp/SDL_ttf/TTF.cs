@@ -1459,6 +1459,8 @@ public struct Font
 		this.ptr = ptr;
 	}
 
+	public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
 	public static implicit operator IntPtr(Font font)
 	{
 		return font.ptr;

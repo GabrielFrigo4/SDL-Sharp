@@ -30,7 +30,11 @@ internal class Program
 
         SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("teste", SDL.WINDOWPOS_CENTERED, SDL.WINDOWPOS_CENTERED, 800, 600, WindowFlags.OpenGL);
+        if (window.IsNull)
+            throw new Exception("Window not create");
         GLContext glContext = SDL.GL_CreateContext(window);
+        if (glContext.IsNull)
+            throw new Exception("GLContext not create");
         gl = GL.GetApi(SDL.GL_GetProcAddress);
 
         bool running = true;

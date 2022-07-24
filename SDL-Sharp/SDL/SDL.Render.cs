@@ -55,6 +55,8 @@ public struct Renderer
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(Renderer renderer)
     {
         return renderer.ptr;
@@ -75,6 +77,8 @@ public struct Texture
     {
         this.ptr = ptr;
     }
+
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
 
     public static implicit operator IntPtr(Texture texture)
     {

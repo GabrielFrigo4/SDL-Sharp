@@ -12,6 +12,8 @@ public struct GLContext
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(GLContext context)
     {
         return context.ptr;

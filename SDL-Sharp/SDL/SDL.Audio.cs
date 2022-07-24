@@ -148,6 +148,8 @@ public struct RWops
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(RWops ops)
     {
         return ops.ptr;

@@ -51,6 +51,8 @@ public struct Joystick
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(Joystick joystick)
     {
         return joystick.ptr;

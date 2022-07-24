@@ -496,8 +496,7 @@ public static unsafe partial class SDL
 
     public static bool GetEventFilter(out EventFilter filter, out IntPtr userdata)
     {
-        IntPtr ptr;
-        bool result = GetEventFilter(out ptr, out userdata);
+        bool result = GetEventFilter(out IntPtr ptr, out userdata);
         if (result)
             filter = Marshal.GetDelegateForFunctionPointer<EventFilter>(ptr);
         else

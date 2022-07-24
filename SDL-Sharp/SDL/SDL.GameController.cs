@@ -78,6 +78,8 @@ public struct GameController
         this.ptr = ptr;
     }
 
+    public bool IsNull { get { return ptr == IntPtr.Zero; } }
+
     public static implicit operator IntPtr(GameController gameController)
     {
         return gameController.ptr;

@@ -21,6 +21,8 @@ public unsafe struct PAnimation
 		this.ptr = ptr;
 	}
 
+	public bool IsNull { get { return ptr is null; } }
+
 	public static implicit operator Animation*(PAnimation font)
 	{
 		return font.ptr;
