@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp;
@@ -22,7 +23,7 @@ public static unsafe partial class SDL
 
     public static string GetRevisionString()
     {
-        return GetString(GetRevision());
+        return InternalUtils.GetString(GetRevision());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetRevisionNumber", CallingConvention = CallingConvention.Cdecl)]

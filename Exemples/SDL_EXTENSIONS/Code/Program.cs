@@ -46,17 +46,16 @@ class Program
         renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
         if (renderer.IsNull)
             throw new Exception("Renderer not create");
-        IMG.Init(ImgInitFlags.Jpg);
         TTF.Init();
 
-        int audio_rate = 44100, channels = 2, audio_buffer = 4096;
-        ushort audio_format = (ushort)AudioFormatFlags.S16LSB;
+        const int audio_rate = 44100, channels = 2, audio_buffer = 4096;
+        const ushort audio_format = (ushort)AudioFormatFlags.F32SYS;
         MIX.OpenAudio(audio_rate, audio_format, channels, audio_buffer);
         //Init SDL/Image/Mixer/Ttf
 
-        Sound sound = Sound.CreateSound("./Files/sound.wav");
-        sound.Play(1);
-        sound.SetVolume(16);
+        SoundMusic soundMusic = SoundMusic.CreateSoundMusic("./Files/sound.wav");
+        SoundMusic.SetVolume(16);
+        SoundMusic.PlayMusic(soundMusic, -1);
 
         Texture fegegoso = LoadTexture("./Files/Fedegoso.jpg");
         if (fegegoso.IsNull)
@@ -88,7 +87,6 @@ class Program
             SDL.RenderClear(renderer);
             SDL.SetRenderDrawColor(renderer, 135, 206, 235, 255);
             Render(fegegoso);
-            //Console.WriteLine(IMG.GetError());
 
             DrawTextExt("SDL_PLUS_EXTENSIONS", 400, 300, 64, new Color(150, 100, 200, 255), "arial.ttf", true);
 
@@ -112,9 +110,9 @@ class Program
 
         SDL.DestroyRenderer(renderer);
         SDL.DestroyWindow(window);
+        MIX.CloseAudio();
         SDL.Quit();
         TTF.Quit();
-        IMG.Quit();
     }
 
     public static void DrawText(string text, int x, int y, int size)

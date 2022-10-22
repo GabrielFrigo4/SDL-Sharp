@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp;
@@ -8,7 +9,7 @@ public static unsafe partial class SDL
 
     public static string GetErrorString()
     {
-        return GetString(GetError());
+        return InternalUtils.GetString(GetError());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_ClearError", CallingConvention = CallingConvention.Cdecl)]

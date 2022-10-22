@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 
@@ -132,7 +133,7 @@ public static unsafe partial class SDL
 
     public static string JoystickNameString(Joystick joystick)
     {
-        return GetString(JoystickName(joystick));
+        return InternalUtils.GetString(JoystickName(joystick));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_JoystickNameForIndex", CallingConvention = CallingConvention.Cdecl)]
@@ -140,7 +141,7 @@ public static unsafe partial class SDL
 
     public static string JoystickNameForIndexString(int deviceIndex)
     {
-        return GetString(JoystickNameForIndex(deviceIndex));
+        return InternalUtils.GetString(JoystickNameForIndex(deviceIndex));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_JoystickNumAxes", CallingConvention = CallingConvention.Cdecl)]

@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 
@@ -166,7 +167,7 @@ public static unsafe partial class SDL
 
     public static string GetCurrentVideoDriverString()
     {
-        return GetString(GetCurrentVideoDriver());
+        return InternalUtils.GetString(GetCurrentVideoDriver());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetDesktopDisplayMode", CallingConvention = CallingConvention.Cdecl)]
@@ -198,7 +199,7 @@ public static unsafe partial class SDL
 
     public static string GetDisplayNameString(int displayIndex)
     {
-        return GetString(GetDisplayName(displayIndex));
+        return InternalUtils.GetString(GetDisplayName(displayIndex));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayUsableBounds", CallingConvention = CallingConvention.Cdecl)]
@@ -224,7 +225,7 @@ public static unsafe partial class SDL
 
     public static string GetVideoDriverString(int index)
     {
-        return GetString(GetVideoDriver(index));
+        return InternalUtils.GetString(GetVideoDriver(index));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetWindowBordersSize", CallingConvention = CallingConvention.Cdecl)]
@@ -300,7 +301,7 @@ public static unsafe partial class SDL
 
     public static string GetWindowTitleString(Window window)
     {
-        return GetString(GetWindowTitle(window));
+        return InternalUtils.GetString(GetWindowTitle(window));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_HideWindow", CallingConvention = CallingConvention.Cdecl)]

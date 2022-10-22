@@ -25,8 +25,8 @@
  *
  */
 #endregion
-
 #region Using Statements
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 #endregion
@@ -107,7 +107,7 @@ public unsafe static partial class TTF
 	);
 	public static Font OpenFont(string file, int ptsize)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		Font handle = INTERNAL_TTF_OpenFont(
 			utf8File,
 			ptsize
@@ -138,7 +138,7 @@ public unsafe static partial class TTF
 		long index
 	)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		Font handle = INTERNAL_TTF_OpenFontIndex(
 			utf8File,
 			ptsize,
@@ -336,7 +336,7 @@ public unsafe static partial class TTF
 		out int h
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		int result = INTERNAL_TTF_SizeUTF8(
 			font,
 			utf8Text,
@@ -360,7 +360,7 @@ public unsafe static partial class TTF
 		int* h
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		int result = INTERNAL_TTF_SizeUTF8(
 			font,
 			utf8Text,
@@ -431,7 +431,7 @@ public unsafe static partial class TTF
 		out int count
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		int result = INTERNAL_TTF_MeasureUTF8(
 			font,
 			utf8Text,
@@ -458,7 +458,7 @@ public unsafe static partial class TTF
 		int* count
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		int result = INTERNAL_TTF_MeasureUTF8(
 			font,
 			utf8Text,
@@ -535,7 +535,7 @@ public unsafe static partial class TTF
 		Color fg
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		Surface* result = INTERNAL_TTF_RenderUTF8_Solid(
 			font,
 			utf8Text,
@@ -551,7 +551,7 @@ public unsafe static partial class TTF
 		out Surface* surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Solid(
 			font,
 			utf8Text,
@@ -566,7 +566,7 @@ public unsafe static partial class TTF
 		out PSurface surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Solid(
 			font,
 			utf8Text,
@@ -655,7 +655,7 @@ public unsafe static partial class TTF
 		uint wrapLength
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		Surface* result = INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
 			font,
 			utf8Text,
@@ -673,7 +673,7 @@ public unsafe static partial class TTF
 		out Surface* surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
 			font,
 			utf8Text,
@@ -690,7 +690,7 @@ public unsafe static partial class TTF
 		out PSurface surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Solid_Wrapped(
 			font,
 			utf8Text,
@@ -835,7 +835,7 @@ public unsafe static partial class TTF
 		Color bg
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		Surface* result = INTERNAL_TTF_RenderUTF8_Shaded(
 			font,
 			utf8Text,
@@ -853,7 +853,7 @@ public unsafe static partial class TTF
 		out Surface* surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Shaded(
 			font,
 			utf8Text,
@@ -870,7 +870,7 @@ public unsafe static partial class TTF
 		out PSurface surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Shaded(
 			font,
 			utf8Text,
@@ -966,7 +966,7 @@ public unsafe static partial class TTF
 		uint wrapLength
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		Surface* result = INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
 			font,
 			utf8Text,
@@ -986,7 +986,7 @@ public unsafe static partial class TTF
 		out Surface* surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
 			font,
 			utf8Text,
@@ -1005,7 +1005,7 @@ public unsafe static partial class TTF
 		out PSurface surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Shaded_Wrapped(
 			font,
 			utf8Text,
@@ -1153,7 +1153,7 @@ public unsafe static partial class TTF
 		Color fg
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		Surface* result = INTERNAL_TTF_RenderUTF8_Blended(
 			font,
 			utf8Text,
@@ -1169,7 +1169,7 @@ public unsafe static partial class TTF
 		out Surface* surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Blended(
 			font,
 			utf8Text,
@@ -1184,7 +1184,7 @@ public unsafe static partial class TTF
 		out PSurface surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Blended(
 			font,
 			utf8Text,
@@ -1269,7 +1269,7 @@ public unsafe static partial class TTF
 		uint wrapped
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		Surface* result = INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
 			font,
 			utf8Text,
@@ -1287,7 +1287,7 @@ public unsafe static partial class TTF
 		out Surface* surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
 			font,
 			utf8Text,
@@ -1304,7 +1304,7 @@ public unsafe static partial class TTF
 		out PSurface surface
 	)
 	{
-		byte* utf8Text = SDL.Utf8Encode(text);
+		byte* utf8Text = InternalUtils.Utf8Encode(text);
 		surface = INTERNAL_TTF_RenderUTF8_Blended_Wrapped(
 			font,
 			utf8Text,
@@ -1446,7 +1446,11 @@ public unsafe static partial class TTF
 		ushort ch
 	);
 
-	#endregion
+    public static string GetError()
+    {
+        return SDL.GetErrorString();
+    }
+    #endregion
 }
 
 [StructLayout(LayoutKind.Sequential)]

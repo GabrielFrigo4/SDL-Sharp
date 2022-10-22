@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDL_Sharp.Utils;
+using System;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp.Mixer;
@@ -58,7 +59,7 @@ public unsafe static partial class MIX
 	);
 	public static Music LoadMUS(string file)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		Music handle = INTERNAL_Mix_LoadMUS(
 			utf8File
 		);

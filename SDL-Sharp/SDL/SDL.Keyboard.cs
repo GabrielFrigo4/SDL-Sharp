@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 
@@ -24,7 +25,7 @@ public static unsafe partial class SDL
 
     public static string GetKeyNameString(Keycode key)
     {
-        return GetString(GetKeyName(key));
+        return InternalUtils.GetString(GetKeyName(key));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetKeyboardFocus", CallingConvention = CallingConvention.Cdecl)]
@@ -50,7 +51,7 @@ public static unsafe partial class SDL
 
     public static string GetScancodeNameString(Scancode scancode)
     {
-        return GetString(GetScancodeName(scancode));
+        return InternalUtils.GetString(GetScancodeName(scancode));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_HasScreenKeyboardSupport", CallingConvention = CallingConvention.Cdecl)]

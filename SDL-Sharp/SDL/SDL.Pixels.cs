@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp;
@@ -78,7 +79,7 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_GetPixelFormatName", CallingConvention = CallingConvention.Cdecl)]
     public static extern byte* GetPixelFormatName(uint format);
 
-    public static string GetPixelFormatNameString(uint format) => GetString(GetPixelFormatName(format));
+    public static string GetPixelFormatNameString(uint format) => InternalUtils.GetString(GetPixelFormatName(format));
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetRGB", CallingConvention = CallingConvention.Cdecl)]
     public static extern void GetRGB(uint pixel, PixelFormat* format, byte* r, byte* g, byte* b);

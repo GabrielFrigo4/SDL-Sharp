@@ -25,8 +25,8 @@
  *
  */
 #endregion
-
 #region Using Statements
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 #endregion
@@ -91,7 +91,7 @@ public static unsafe partial class IMG
 	);
 	public static Surface* Load(string file)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		Surface* handle = INTERNAL_IMG_Load(
 			utf8File
 		);
@@ -100,7 +100,7 @@ public static unsafe partial class IMG
 	}
 	public static void Load(string file, out Surface* surface)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		surface = INTERNAL_IMG_Load(
 			utf8File
 		);
@@ -108,7 +108,7 @@ public static unsafe partial class IMG
 	}
 	public static void Load(string file, out PSurface surface)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		surface = INTERNAL_IMG_Load(
 			utf8File
 		);
@@ -153,12 +153,12 @@ public static unsafe partial class IMG
 		string type
 	)
 	{
-		int utf8TypeBufSize = SDL.Utf8Size(type);
+		int utf8TypeBufSize = InternalUtils.Utf8Size(type);
 		byte* utf8Type = stackalloc byte[utf8TypeBufSize];
 		return INTERNAL_IMG_LoadTyped_RW(
 			src,
 			freesrc,
-			SDL.Utf8Encode(type, utf8Type, utf8TypeBufSize)
+            InternalUtils.Utf8Encode(type, utf8Type, utf8TypeBufSize)
 		);
 	}
 	public static void LoadTyped_RW(
@@ -168,12 +168,12 @@ public static unsafe partial class IMG
 		out Surface* surface
 	)
 	{
-		int utf8TypeBufSize = SDL.Utf8Size(type);
+		int utf8TypeBufSize = InternalUtils.Utf8Size(type);
 		byte* utf8Type = stackalloc byte[utf8TypeBufSize];
 		surface = INTERNAL_IMG_LoadTyped_RW(
 			src,
 			freesrc,
-			SDL.Utf8Encode(type, utf8Type, utf8TypeBufSize)
+            InternalUtils.Utf8Encode(type, utf8Type, utf8TypeBufSize)
 		);
 	}
 	public static void LoadTyped_RW(
@@ -183,12 +183,12 @@ public static unsafe partial class IMG
 		out PSurface surface
 	)
 	{
-		int utf8TypeBufSize = SDL.Utf8Size(type);
+		int utf8TypeBufSize = InternalUtils.Utf8Size(type);
 		byte* utf8Type = stackalloc byte[utf8TypeBufSize];
 		surface = INTERNAL_IMG_LoadTyped_RW(
 			src,
 			freesrc,
-			SDL.Utf8Encode(type, utf8Type, utf8TypeBufSize)
+            InternalUtils.Utf8Encode(type, utf8Type, utf8TypeBufSize)
 		);
 	}
 
@@ -203,7 +203,7 @@ public static unsafe partial class IMG
 		string file
 	)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		IntPtr handle = INTERNAL_IMG_LoadTexture(
 			renderer,
 			utf8File
@@ -243,7 +243,7 @@ public static unsafe partial class IMG
 		string type
 	)
 	{
-		byte* utf8Type = SDL.Utf8Encode(type);
+		byte* utf8Type = InternalUtils.Utf8Encode(type);
 		Texture handle = INTERNAL_IMG_LoadTextureTyped_RW(
 			renderer,
 			src,
@@ -285,7 +285,7 @@ public static unsafe partial class IMG
 	);
 	public static int SavePNG(Surface* surface, string file)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		int result = INTERNAL_IMG_SavePNG(
 			surface,
 			utf8File
@@ -295,7 +295,7 @@ public static unsafe partial class IMG
 	}
 	public static int SavePNG(PSurface surface, string file)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		int result = INTERNAL_IMG_SavePNG(
 			surface,
 			utf8File
@@ -329,7 +329,7 @@ public static unsafe partial class IMG
 	);
 	public static int SaveJPG(Surface* surface, string file, int quality)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		int result = INTERNAL_IMG_SaveJPG(
 			surface,
 			utf8File,
@@ -340,7 +340,7 @@ public static unsafe partial class IMG
 	}
 	public static int SaveJPG(PSurface surface, string file, int quality)
 	{
-		byte* utf8File = SDL.Utf8Encode(file);
+		byte* utf8File = InternalUtils.Utf8Encode(file);
 		int result = INTERNAL_IMG_SaveJPG(
 			surface,
 			utf8File,
@@ -368,12 +368,12 @@ public static unsafe partial class IMG
 		int quality
 	);
 
-	public unsafe static string GetError()
-	{
+    public static string GetError()
+    {
 		return SDL.GetErrorString();
-	}
+    }
 
-	#endregion
+    #endregion
 }
 
 [Flags]

@@ -1,3 +1,5 @@
+using SDL_Sharp.Utility;
+using SDL_Sharp.Utils;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp;
@@ -5,10 +7,10 @@ public static unsafe partial class SDL
 {
     [DllImport(LibraryName, EntryPoint = "SDL_GetClipboardText", CallingConvention = CallingConvention.Cdecl)]
     public static extern byte* GetClipboardText();
-
+    
     public static string GetClipboardTextString()
     {
-        return GetString(GetClipboardText());
+        return InternalUtils.GetString(GetClipboardText());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_HasClipboardText", CallingConvention = CallingConvention.Cdecl)]

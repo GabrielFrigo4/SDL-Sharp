@@ -60,16 +60,7 @@
     <None Update="libwebp-7.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="runtimes\win-x64\native\libFLAC-8.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x64\native\libjpeg-9.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="runtimes\win-x64\native\libmodplug-1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x64\native\libmpg123-0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="runtimes\win-x64\native\libogg-0.dll">
@@ -81,16 +72,7 @@
     <None Update="runtimes\win-x64\native\libopusfile-0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="runtimes\win-x64\native\libpng16-16.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="runtimes\win-x64\native\libtiff-5.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x64\native\libvorbis-0.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x64\native\libvorbisfile-3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="runtimes\win-x64\native\libwebp-7.dll">
@@ -108,19 +90,7 @@
     <None Update="runtimes\win-x64\native\SDL2_ttf.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="runtimes\win-x64\native\zlib1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\libFLAC-8.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\libjpeg-9.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="runtimes\win-x86\native\libmodplug-1.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\libmpg123-0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="runtimes\win-x86\native\libogg-0.dll">
@@ -132,16 +102,7 @@
     <None Update="runtimes\win-x86\native\libopusfile-0.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="runtimes\win-x86\native\libpng16-16.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="runtimes\win-x86\native\libtiff-5.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\libvorbis-0.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\libvorbisfile-3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="runtimes\win-x86\native\libwebp-7.dll">
@@ -157,9 +118,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="runtimes\win-x86\native\SDL2_ttf.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\zlib1.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="SDL2_image.dll">

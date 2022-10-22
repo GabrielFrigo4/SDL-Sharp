@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using SDL_Sharp.Utils;
 
 namespace SDL_Sharp;
 public static unsafe partial class SDL
@@ -11,7 +12,7 @@ public static unsafe partial class SDL
 	);
 	public static unsafe int Vulkan_LoadLibrary(string path)
 	{
-		byte* utf8Path = Utf8EncodeHeap(path);
+		byte* utf8Path = InternalUtils.Utf8EncodeHeap(path);
 		int result = INTERNAL_SDL_Vulkan_LoadLibrary(
 			utf8Path
 		);

@@ -25,8 +25,8 @@
  *
  */
 #endregion
-
 #region Using Statements
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 #endregion
@@ -506,7 +506,7 @@ public unsafe static partial class MIX
 	);
 	public static int SetMusicCMD(string command)
 	{
-		byte* utf8Cmd = SDL.Utf8Encode(command);
+		byte* utf8Cmd = InternalUtils.Utf8Encode(command);
 		int result = INTERNAL_Mix_SetMusicCMD(
 			utf8Cmd
 		);
@@ -526,7 +526,7 @@ public unsafe static partial class MIX
 	);
 	public static int SetSoundFonts(string paths)
 	{
-		byte* utf8Paths = SDL.Utf8Encode(paths);
+		byte* utf8Paths = InternalUtils.Utf8Encode(paths);
 		int result = INTERNAL_Mix_SetSoundFonts(
 			utf8Paths
 		);
@@ -581,7 +581,12 @@ public unsafe static partial class MIX
 	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_CloseAudio")]
 	public static extern void CloseAudio();
 
-	#endregion
+    public static string GetError()
+    {
+        return SDL.GetErrorString();
+    }
+
+    #endregion
 }
 
 [Flags]

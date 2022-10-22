@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 
@@ -131,7 +132,7 @@ public static unsafe partial class SDL
 
     public static string GameControllerGetStringForAxisString(GameControllerAxis axis)
     {
-        return GetString(GameControllerGetStringForAxis(axis));
+        return InternalUtils.GetString(GameControllerGetStringForAxis(axis));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerGetStringForButton", CallingConvention = CallingConvention.Cdecl)]
@@ -139,7 +140,7 @@ public static unsafe partial class SDL
 
     public static string GameControllerGetStringForButtonString(GameControllerButton button)
     {
-        return GetString(GameControllerGetStringForButton(button));
+        return InternalUtils.GetString(GameControllerGetStringForButton(button));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerMapping", CallingConvention = CallingConvention.Cdecl)]
@@ -147,7 +148,7 @@ public static unsafe partial class SDL
 
     public static string GameControllerMappingString(GameController gameController)
     {
-        return GetString(GameControllerMapping(gameController));
+        return InternalUtils.GetString(GameControllerMapping(gameController));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerMappingForGUID", CallingConvention = CallingConvention.Cdecl)]
@@ -155,7 +156,7 @@ public static unsafe partial class SDL
 
     public static string GameControllerMappingForGUIDString(Guid guid)
     {
-        return GetString(GameControllerMappingForGUID(guid));
+        return InternalUtils.GetString(GameControllerMappingForGUID(guid));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerName", CallingConvention = CallingConvention.Cdecl)]
@@ -163,7 +164,7 @@ public static unsafe partial class SDL
 
     public static string GameControllerNameString(GameController gameController)
     {
-        return GetString(GameControllerName(gameController));
+        return InternalUtils.GetString(GameControllerName(gameController));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerNameForIndex", CallingConvention = CallingConvention.Cdecl)]
@@ -171,7 +172,7 @@ public static unsafe partial class SDL
 
     public static string GameControllerNameForIndexString(int joystickIndex)
     {
-        return GetString(GameControllerNameForIndex(joystickIndex));
+        return InternalUtils.GetString(GameControllerNameForIndex(joystickIndex));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerOpen", CallingConvention = CallingConvention.Cdecl)]

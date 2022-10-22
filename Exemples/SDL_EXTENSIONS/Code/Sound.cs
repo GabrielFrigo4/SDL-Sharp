@@ -1,35 +1,82 @@
 ﻿using SDL_Sharp.Mixer;
 using System;
 
-namespace SDL_PLUS_EXTENSIONS
+namespace SDL_PLUS_EXTENSIONS;
+class SoundChunk
 {
-    class Sound
+    PChunk chunk;
+    int volume = MIX.MAX_VOLUME;
+
+    public static SoundChunk CreateSoundChunk(string path)
     {
-        PChunk chunck;
-        int volume = MIX.MAX_VOLUME;
+        return new SoundChunk(path);
+    }
 
-        public static Sound CreateSound(string path)
-        {
-            return new Sound(path);
-        }
+    SoundChunk(string path)
+    {
+        MIX.LoadWAV(path, out chunk);
+        if(chunk.IsNull)
+            throw new Exception("PChunk not create");
+        MIX.VolumeChunk(chunk, volume);
+    }
 
-        Sound(string path)
+    public void Play(int loop)
+    {
+        if (MIX.PlayChannel(-1, chunk, loop) == -1)
         {
-            MIX.LoadWAV(path, out chunck);
-            if(chunck.IsNull)
-                throw new Exception("PChunk not create");
-            MIX.VolumeChunk(chunck, volume);
+            Console.WriteLine(MIX.GetError());
         }
+    }
 
-        public void Play(int loop)
-        {
-            MIX.PlayChannel(-1, chunck, loop);
-        }
+    public void SetVolume(int volume)
+    {
+        this.volume = volume;
+        MIX.VolumeChunk(chunk, volume);
+    }
 
-        public void SetVolume(int volume)
+    ~SoundChunk()
+    {
+        MIX.FreeChunk(chunk);
+    }
+}
+
+class SoundMusic
+{
+    public Music music;
+    public static SoundMusic CurrentMusic { get; private set; }
+
+    static int volume = MIX.MAX_VOLUME;
+    public static int CurrentVolume { get => volume; }
+
+    public static SoundMusic CreateSoundMusic(string path)
+    {
+        return new SoundMusic(path);
+    }
+
+    SoundMusic(string path)
+    {
+        music = MIX.LoadMUS(path);
+        if (music.IsNull)
+            throw new Exception("Music not create");
+    }
+
+    public static void PlayMusic(SoundMusic music, int loop)
+    {
+        CurrentMusic = music;
+        if (MIX.PlayMusic(music.music, loop) == -1)
         {
-            this.volume = volume;
-            MIX.VolumeChunk(chunck, volume);
+            Console.WriteLine(MIX.GetError());
         }
+    }
+
+    public static void SetVolume(int volume)
+    {
+        SoundMusic.volume = volume;
+        MIX.VolumeMusic(SoundMusic.volume);
+    }
+
+    ~SoundMusic()
+    {
+        MIX.FreeMusic(music);
     }
 }

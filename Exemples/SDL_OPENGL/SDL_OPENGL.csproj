@@ -16,13 +16,4 @@
     <ProjectReference Include="..\..\SDL-Sharp\SDL-Sharp.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="runtimes\win-x64\native\SDL2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="runtimes\win-x86\native\SDL2.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

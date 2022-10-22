@@ -1,3 +1,4 @@
+using SDL_Sharp.Utils;
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -36,30 +37,11 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_Quit", CallingConvention = CallingConvention.Cdecl)]
     public static extern void Quit();
 
-    private static string GetString(byte* ptr)
+    [DllImport(LibraryName, EntryPoint = "SDL_GetBasePath", CallingConvention = CallingConvention.Cdecl)]
+    public static extern byte* GetBasePath();
+
+    public static string GetBasePathString()
     {
-        int count = 0;
-        while (*(ptr + count) != 0)
-        {
-            count += 1;
-        }
-
-        return Encoding.UTF8.GetString(ptr, count);
-    }
-
-    private static unsafe byte* Utf8EncodeHeap(string str)
-    {
-        if (str == null)
-        {
-            return (byte*)0;
-        }
-
-        int bufferSize = Utf8Size(str);
-        byte* buffer = (byte*)Marshal.AllocHGlobal(bufferSize);
-        fixed (char* strPtr = str)
-        {
-            Encoding.UTF8.GetBytes(strPtr, str.Length + 1, buffer, bufferSize);
-        }
-        return buffer;
+        return InternalUtils.GetString(GetBasePath());
     }
 }
