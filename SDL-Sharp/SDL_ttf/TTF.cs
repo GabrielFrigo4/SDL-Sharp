@@ -1450,6 +1450,11 @@ public unsafe static partial class TTF
     {
         return SDL.GetError();
     }
+
+    /* font refers to a TTF_Font*
+	 * Only available in 2.0.18 or higher.
+	 */
+
     #endregion
 }
 
