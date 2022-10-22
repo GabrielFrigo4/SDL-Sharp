@@ -46,7 +46,6 @@ class Program
         if (renderer.IsNull)
             throw new Exception("Renderer not create");
         TTF.Init();
-
         Console.WriteLine(SDL.GetBasePath());
 
         MIX.Init(MixInitFlags.Mod);
@@ -59,7 +58,7 @@ class Program
         SoundMusic.SetVolume(8);
         SoundMusic.PlayMusic(soundMusic, -1);
 
-        SoundChunk soundChunk = SoundChunk.CreateSoundChunk("./Files/RetroGame.wav");
+        SoundChunk soundChunk = SoundChunk.CreateSoundChunk("./Files/SFX.wav");
         soundChunk.SetVolume(32);
         soundChunk.Play(3);
 
