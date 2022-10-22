@@ -54,13 +54,13 @@ public unsafe static partial class MIX
 
 	/* IntPtr refers to a Mix_Music* */
 	[DllImport(NativeLibName, EntryPoint = "Mix_LoadMUS", CallingConvention = CallingConvention.Cdecl)]
-	private static extern Music INTERNAL_Mix_LoadMUS(
+	private static extern Music INTERNAL_LoadMUS(
 		byte* file
 	);
 	public static Music LoadMUS(string file)
 	{
 		byte* utf8File = InternalUtils.Utf8Encode(file);
-		Music handle = INTERNAL_Mix_LoadMUS(
+		Music handle = INTERNAL_LoadMUS(
 			utf8File
 		);
 		Marshal.FreeHGlobal((IntPtr)utf8File);
@@ -72,11 +72,11 @@ public unsafe static partial class MIX
 	public static extern void FreeMusic(Music music);
 
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicDecoder", CallingConvention = CallingConvention.Cdecl)]
-	private static extern Music INTERNAL_Mix_GetMusicDecoder(int index);
+	private static extern Music INTERNAL_GetMusicDecoder(int index);
 	public static string GetMusicDecoder(int index)
 	{
 		return SDL.UTF8_ToManaged(
-			INTERNAL_Mix_GetMusicDecoder(index)
+            INTERNAL_GetMusicDecoder(index)
 		);
 	}
 
@@ -88,11 +88,11 @@ public unsafe static partial class MIX
 	 * Only available in 2.0.5 or higher.
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicTitle", CallingConvention = CallingConvention.Cdecl)]
-	private static extern IntPtr INTERNAL_Mix_GetMusicTitle(Music music);
+	private static extern IntPtr INTERNAL_GetMusicTitle(Music music);
 	public static string GetMusicTitle(Music music)
 	{
 		return SDL.UTF8_ToManaged(
-			INTERNAL_Mix_GetMusicTitle(music)
+            INTERNAL_GetMusicTitle(music)
 		);
 	}
 
@@ -100,11 +100,11 @@ public unsafe static partial class MIX
 	 * Only available in 2.0.5 or higher.
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicTitleTag", CallingConvention = CallingConvention.Cdecl)]
-	private static extern IntPtr INTERNAL_Mix_GetMusicTitleTag(Music music);
+	private static extern IntPtr INTERNAL_GetMusicTitleTag(Music music);
 	public static string GetMusicTitleTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
-			INTERNAL_Mix_GetMusicTitleTag(music)
+            INTERNAL_GetMusicTitleTag(music)
 		);
 	}
 
@@ -112,11 +112,11 @@ public unsafe static partial class MIX
 	 * Only available in 2.0.5 or higher.
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicArtistTag", CallingConvention = CallingConvention.Cdecl)]
-	private static extern IntPtr INTERNAL_Mix_GetMusicArtistTag(Music music);
+	private static extern IntPtr INTERNAL_GetMusicArtistTag(Music music);
 	public static string GetMusicArtistTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
-			INTERNAL_Mix_GetMusicArtistTag(music)
+            INTERNAL_GetMusicArtistTag(music)
 		);
 	}
 
@@ -124,11 +124,11 @@ public unsafe static partial class MIX
 	 * Only available in 2.0.5 or higher.
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicAlbumTag", CallingConvention = CallingConvention.Cdecl)]
-	private static extern IntPtr INTERNAL_Mix_GetMusicAlbumTag(Music music);
+	private static extern IntPtr INTERNAL_GetMusicAlbumTag(Music music);
 	public static string GetMusicAlbumTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
-			INTERNAL_Mix_GetMusicAlbumTag(music)
+            INTERNAL_GetMusicAlbumTag(music)
 		);
 	}
 
@@ -136,11 +136,11 @@ public unsafe static partial class MIX
 	 * Only available in 2.0.5 or higher.
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicCopyrightTag", CallingConvention = CallingConvention.Cdecl)]
-	private static extern IntPtr INTERNAL_Mix_GetMusicCopyrightTag(Music music);
+	private static extern IntPtr INTERNAL_GetMusicCopyrightTag(Music music);
 	public static string GetMusicCopyrightTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
-			INTERNAL_Mix_GetMusicCopyrightTag(music)
+            INTERNAL_GetMusicCopyrightTag(music)
 		);
 	}
 

@@ -178,14 +178,31 @@ public unsafe static partial class MIX
 	}
 
 	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV")]
-	public static extern Chunk* LoadWAV(string file);
+	private static extern Chunk* INTERNAL_LoadWAV(byte* file);
+    public static Chunk* LoadWAV(string file)
+    {
+        byte* utf8File = InternalUtils.Utf8Encode(file);
+        Chunk* handle = INTERNAL_LoadWAV(
+            utf8File
+        );
+        Marshal.FreeHGlobal((IntPtr)utf8File);
+        return handle;
+    }
     public static void LoadWAV(string file, out Chunk* chunk)
     {
-        chunk = LoadWAV(file);
+        byte* utf8File = InternalUtils.Utf8Encode(file);
+        chunk = INTERNAL_LoadWAV(
+            utf8File
+        );
+        Marshal.FreeHGlobal((IntPtr)utf8File);
     }
     public static void LoadWAV(string file, out PChunk chunk)
     {
-        chunk = LoadWAV(file);
+        byte* utf8File = InternalUtils.Utf8Encode(file);
+        chunk = INTERNAL_LoadWAV(
+            utf8File
+        );
+        Marshal.FreeHGlobal((IntPtr)utf8File);
     }
 
     [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]

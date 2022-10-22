@@ -15,7 +15,7 @@ class SoundChunk
     SoundChunk(string path)
     {
         MIX.LoadWAV(path, out chunk);
-        Console.WriteLine(MIX.GetError());
+        //Console.WriteLine(MIX.GetError());
         if (chunk.IsNull)
             throw new Exception("PChunk not create");
         MIX.VolumeChunk(chunk, volume);
