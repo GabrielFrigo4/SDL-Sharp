@@ -38,7 +38,7 @@ class Program
         WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
 
         //Init SDL/Image/Mixer/Ttf
-        SDL.Init(SdlInitFlags.Video);
+        SDL.Init(SdlInitFlags.Video | SdlInitFlags.Video);
         window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Hidden);
         if (window.IsNull)
             throw new Exception("Window not create");
@@ -46,6 +46,7 @@ class Program
         if (renderer.IsNull)
             throw new Exception("Renderer not create");
         TTF.Init();
+        MIX.Init(MixInitFlags.Mod);
 
         Console.WriteLine(SDL.GetBasePath());
 
@@ -55,10 +56,10 @@ class Program
         //Init SDL/Image/Mixer/Ttf
 
         SoundMusic soundMusic = SoundMusic.CreateSoundMusic("./Files/MUSIC.wav");
-        SoundMusic.SetVolume(32);
+        SoundMusic.SetVolume(8);
         SoundMusic.PlayMusic(soundMusic, -1);
 
-        SoundChunk soundChunk = SoundChunk.CreateSoundChunk("./Files/SFX.wav");
+        SoundChunk soundChunk = SoundChunk.CreateSoundChunk("./Files/RetroGame.wav");
         soundChunk.SetVolume(32);
         soundChunk.Play(3);
 
@@ -117,6 +118,7 @@ class Program
         SDL.DestroyRenderer(renderer);
         SDL.DestroyWindow(window);
         MIX.CloseAudio();
+        MIX.Quit();
         SDL.Quit();
         TTF.Quit();
     }
