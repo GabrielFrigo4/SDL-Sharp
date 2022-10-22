@@ -45,8 +45,7 @@ IntPtr window = SDL.SDL_CreateWindow("Window", SDL.SDL_WINDOWPOS_UNDEFINED,
   SDL.SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 
 IntPtr renderer = SDL.SDL_CreateRenderer(window, -1,
-                                      SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
-                                      SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
+  SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED | SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
 ```
                                       
 ////// [exemple 2]
