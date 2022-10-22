@@ -38,24 +38,27 @@ SDL2 code # would look like this:
 
 ////// [exemple 1]
 
+```cs
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
-IntPtr window = SDL.SDL_CreateWindow("Window", SDL.SDL_WINDOWPOS_UNDEFINED, SDL.SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
+IntPtr window = SDL.SDL_CreateWindow("Window", SDL.SDL_WINDOWPOS_UNDEFINED, 
+  SDL.SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 
-IntPtr renderer = SDL.SDL_CreateRenderer(window,
-                                      -1,
+IntPtr renderer = SDL.SDL_CreateRenderer(window, -1,
                                       SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
                                       SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
+```
                                       
 ////// [exemple 2]
 
 And on SDL-Sharp like this:
-
+```cs
 SDL.Init(SdlInitFlags.Video);
 
 Window window = SDL.CreateWindow("Window", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
 
 Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
+```
 
 //////
 
