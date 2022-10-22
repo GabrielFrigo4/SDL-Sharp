@@ -4,7 +4,6 @@ using SDL_Sharp.Mixer;
 using SDL_Sharp.Utility;
 using SDL_Sharp;
 using System;
-using System.Text.Json.Serialization;
 
 namespace SDL_PLUS_EXTENSIONS;
 class Program
@@ -48,14 +47,18 @@ class Program
             throw new Exception("Renderer not create");
         TTF.Init();
 
-        const int audio_rate = 44100, channels = 2, audio_buffer = 4096;
-        const ushort audio_format = (ushort)AudioFormatFlags.F32SYS;
-        MIX.OpenAudio(audio_rate, audio_format, channels, audio_buffer);
+        const int audio_buffer = 4096;
+        MIX.OpenAudio(MIX.DEFAULT_FREQUENCY, MIX.DEFAULT_FORMAT, MIX.DEFAULT_CHANNELS, audio_buffer);
+        MIX.AllocateChannels(MIX.CHANNELS);
         //Init SDL/Image/Mixer/Ttf
 
-        SoundMusic soundMusic = SoundMusic.CreateSoundMusic("./Files/sound.wav");
-        SoundMusic.SetVolume(16);
-        SoundMusic.PlayMusic(soundMusic, -1);
+        SoundMusic soundMusic = SoundMusic.CreateSoundMusic("./Files/MUSIC.wav");
+        SoundMusic.SetVolume(32);
+        //SoundMusic.PlayMusic(soundMusic, -1);
+
+        SoundChunk soundChunk = SoundChunk.CreateSoundChunk("./Files/SFX.wav");
+        soundChunk.SetVolume(32);
+        soundChunk.Play(3);
 
         Texture fegegoso = LoadTexture("./Files/Fedegoso.jpg");
         if (fegegoso.IsNull)

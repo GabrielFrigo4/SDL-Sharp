@@ -22,7 +22,7 @@ class SoundChunk
 
     public void Play(int loop)
     {
-        if (MIX.PlayChannel(-1, chunk, loop) == -1)
+        if (MIX.PlayChannel(0, chunk, loop) == -1)
         {
             Console.WriteLine(MIX.GetError());
         }

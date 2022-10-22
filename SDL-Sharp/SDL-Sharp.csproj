@@ -14,11 +14,9 @@ The wrapper provides bindings for the following libraries:
 - SDL2_ttf (2.20.1)
 -Utils(functions that facilitate the development)
 and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
-    <PackageReleaseNotes>Add MIX/IMG/TTF GetError 
-Add SDL.GetBasePathString()
-Add SDL.GetBasePath()</PackageReleaseNotes>
+    <PackageReleaseNotes>Set Macros to Function</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.2.1</Version>
+    <Version>2.2.2</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
   </PropertyGroup>

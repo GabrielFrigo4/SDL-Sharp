@@ -36,7 +36,10 @@
     <None Update="Files\Fedegoso.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Files\sound.wav">
+    <None Update="Files\MUSIC.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Files\SFX.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="libfreetype-6.dll">

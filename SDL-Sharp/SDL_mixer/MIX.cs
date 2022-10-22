@@ -177,26 +177,19 @@ public unsafe static partial class MIX
 		chunk = LoadWAV_RW(src, freesrc);
 	}
 
-	/* IntPtr refers to a Mix_Chunk* */
-	/* This is an RWops macro in the C header. */
-	public static Chunk* LoadWAV(string file)
-	{
-		RWops rwops = SDL.RWFromFile(file, "rb");
-		return LoadWAV_RW(rwops, 1);
-	}
-	public static void LoadWAV(string file, out Chunk* chunk)
-	{
-		RWops rwops = SDL.RWFromFile(file, "rb");
-		chunk = LoadWAV_RW(rwops, 1);
-	}
-	public static void LoadWAV(string file, out PChunk chunk)
-	{
-		RWops rwops = SDL.RWFromFile(file, "rb");
-		chunk = LoadWAV_RW(rwops, 1);
-	}
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV",
+		CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true, SetLastError = true)]
+	public static extern Chunk* LoadWAV(string file);
+    public static void LoadWAV(string file, out Chunk* chunk)
+    {
+        chunk = LoadWAV(file);
+    }
+    public static void LoadWAV(string file, out PChunk chunk)
+    {
+        chunk = LoadWAV(file);
+    }
 
-	/* IntPtr refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]
 	public static extern Chunk* QuickLoad_WAV(
 		[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1)]
 			byte[] mem
@@ -350,25 +343,23 @@ public unsafe static partial class MIX
 	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupNewer")]
 	public static extern int GroupNewer(int tag);
 
-	/* chunk refers to a Mix_Chunk* */
-	public static int PlayChannel(
-		int channel,
-		Chunk* chunk,
-		int loops
-	)
-	{
-		return PlayChannelTimed(channel, chunk, loops, -1);
-	}
-	public static int PlayChannel(
-		int channel,
-		PChunk chunk,
-		int loops
-	)
-	{
-		return PlayChannelTimed(channel, chunk, loops, -1);
-	}
+    /* chunk* refers to a Mix_Chunk* */
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChanne")]
+    public static extern int PlayChannel(
+        int channel,
+        Chunk* chunk,
+        int loops,
+        int ticks
+    );
 
-	/* chunk refers to a Mix_Chunk* */
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannel")]
+    public static extern int PlayChannel(
+        int channel,
+        PChunk chunk,
+        int loops
+    );
+
+	/* chunk* refers to a Mix_Chunk* */
 	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannelTimed")]
 	public static extern int PlayChannelTimed(
 		int channel,
@@ -385,28 +376,25 @@ public unsafe static partial class MIX
 		int ticks
 	);
 
-	/* chunk refers to a Mix_Chunk* */
-	public static int FadeInChannel(
-		int channel,
-		Chunk* chunk,
-		int loops,
-		int ms
-	)
-	{
-		return FadeInChannelTimed(channel, chunk, loops, ms, -1);
-	}
-	public static int FadeInChannel(
-	int channel,
-	PChunk chunk,
-	int loops,
-	int ms
-	)
-	{
-		return FadeInChannelTimed(channel, chunk, loops, ms, -1);
-	}
+    /* chunk* refers to a Mix_Chunk* */
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannel")]
+    public static extern int FadeInChannel(
+        int channel,
+        Chunk* chunk,
+        int loops,
+        int ms
+    );
 
-	/* chunk refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannel")]
+    public static extern int FadeInChannel(
+        int channel,
+        PChunk chunk,
+        int loops,
+        int ms
+    );
+
+    /* chunk* refers to a Mix_Chunk* */
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
 	public static extern int FadeInChannelTimed(
 		int channel,
 		Chunk* chunk,
