@@ -54,9 +54,7 @@ IntPtr renderer = SDL.SDL_CreateRenderer(window, -1,
 And on SDL-Sharp like this:
 ```cs
 SDL.Init(SdlInitFlags.Video);
-
 Window window = SDL.CreateWindow("Window", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
-
 Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
 ```
 
