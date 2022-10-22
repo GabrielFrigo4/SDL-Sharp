@@ -21,11 +21,11 @@ public static unsafe partial class SDL
     public static extern Keycode GetKeyFromScancode(Scancode scancode);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetKeyName", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetKeyName(Keycode key);
+    private static extern byte* INTERNAL_GetKeyName(Keycode key);
 
-    public static string GetKeyNameString(Keycode key)
+    public static string GetKeyName(Keycode key)
     {
-        return InternalUtils.GetString(GetKeyName(key));
+        return InternalUtils.GetString(INTERNAL_GetKeyName(key));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetKeyboardFocus", CallingConvention = CallingConvention.Cdecl)]
@@ -47,11 +47,11 @@ public static unsafe partial class SDL
     public static extern Scancode GetScancodeFromName(string name);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetScancodeName", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetScancodeName(Scancode scancode);
+    private static extern byte* INTERNAL_GetScancodeName(Scancode scancode);
 
-    public static string GetScancodeNameString(Scancode scancode)
+    public static string GetScancodeName(Scancode scancode)
     {
-        return InternalUtils.GetString(GetScancodeName(scancode));
+        return InternalUtils.GetString(INTERNAL_GetScancodeName(scancode));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_HasScreenKeyboardSupport", CallingConvention = CallingConvention.Cdecl)]

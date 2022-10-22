@@ -370,8 +370,34 @@ public static unsafe partial class IMG
 
     public static string GetError()
     {
-		return SDL.GetErrorString();
+		return SDL.GetError();
     }
+
+    /* music refers to a Mix_Music*
+	* Only available in 2.6.0 or higher.
+	*/
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadSizedSVG_RW")]
+    public static extern Surface* LoadSizedSVG_RW(
+        RWops src,
+		int width,
+		int height
+    );
+
+	public static void LoadSizedSVG_RW(RWops src, int width, int height, out Surface* surface)
+	{
+		surface = LoadSizedSVG_RW(src, width, height);
+    }
+
+    public static void LoadSizedSVG_RW(RWops src, int width, int height, out PSurface surface)
+    {
+        surface = LoadSizedSVG_RW(src, width, height);
+    }
+
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_ReadXPMFromArrayToRGB888")]
+	public static extern Surface* ReadXPMFromArrayToRGB888(
+        [In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]
+            string[] xpm
+    );
 
     #endregion
 }

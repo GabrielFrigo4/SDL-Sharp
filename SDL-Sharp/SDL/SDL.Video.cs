@@ -163,11 +163,11 @@ public static unsafe partial class SDL
     public static extern int GetCurrentDisplayMode(int displayIndex, out DisplayMode mode);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetCurrentVideoDriver", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetCurrentVideoDriver();
+    private static extern byte* INTERNAL_GetCurrentVideoDriver();
 
-    public static string GetCurrentVideoDriverString()
+    public static string GetCurrentVideoDriver()
     {
-        return InternalUtils.GetString(GetCurrentVideoDriver());
+        return InternalUtils.GetString(INTERNAL_GetCurrentVideoDriver());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetDesktopDisplayMode", CallingConvention = CallingConvention.Cdecl)]
@@ -195,11 +195,11 @@ public static unsafe partial class SDL
     public static extern int GetDisplayMode(int displayIndex, int modeIndex, out DisplayMode mode);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayName", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetDisplayName(int displayIndex);
+    private static extern byte* INTERNAL_GetDisplayName(int displayIndex);
 
-    public static string GetDisplayNameString(int displayIndex)
+    public static string GetDisplayName(int displayIndex)
     {
-        return InternalUtils.GetString(GetDisplayName(displayIndex));
+        return InternalUtils.GetString(INTERNAL_GetDisplayName(displayIndex));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetDisplayUsableBounds", CallingConvention = CallingConvention.Cdecl)]
@@ -221,11 +221,11 @@ public static unsafe partial class SDL
     public static extern int GetNumVideoDrivers();
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetVideoDriver", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetVideoDriver(int index);
+    private static extern byte* INTERNAL_GetVideoDriver(int index);
 
-    public static string GetVideoDriverString(int index)
+    public static string GetVideoDriver(int index)
     {
-        return InternalUtils.GetString(GetVideoDriver(index));
+        return InternalUtils.GetString(INTERNAL_GetVideoDriver(index));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetWindowBordersSize", CallingConvention = CallingConvention.Cdecl)]
@@ -297,11 +297,11 @@ public static unsafe partial class SDL
     public static extern int GetWindowID(Window window);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetWindowTitle", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetWindowTitle(Window window);
+    private static extern byte* INTERNAL_GetWindowTitle(Window window);
 
-    public static string GetWindowTitleString(Window window)
+    public static string GetWindowTitle(Window window)
     {
-        return InternalUtils.GetString(GetWindowTitle(window));
+        return InternalUtils.GetString(INTERNAL_GetWindowTitle(window));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_HideWindow", CallingConvention = CallingConvention.Cdecl)]

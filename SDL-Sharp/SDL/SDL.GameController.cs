@@ -128,51 +128,51 @@ public static unsafe partial class SDL
     public static extern Joystick GameControllerGetJoystick(GameController gameController);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerGetStringForAxis", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GameControllerGetStringForAxis(GameControllerAxis axis);
+    private static extern byte* INTERNAL_GameControllerGetStringForAxis(GameControllerAxis axis);
 
-    public static string GameControllerGetStringForAxisString(GameControllerAxis axis)
+    public static string GameControllerGetStringForAxis(GameControllerAxis axis)
     {
-        return InternalUtils.GetString(GameControllerGetStringForAxis(axis));
+        return InternalUtils.GetString(INTERNAL_GameControllerGetStringForAxis(axis));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerGetStringForButton", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GameControllerGetStringForButton(GameControllerButton button);
+    private static extern byte* INTERNAL_GameControllerGetStringForButton(GameControllerButton button);
 
-    public static string GameControllerGetStringForButtonString(GameControllerButton button)
+    public static string GameControllerGetStringForButton(GameControllerButton button)
     {
-        return InternalUtils.GetString(GameControllerGetStringForButton(button));
+        return InternalUtils.GetString(INTERNAL_GameControllerGetStringForButton(button));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerMapping", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GameControllerMapping(GameController gameController);
+    private static extern byte* INTERNAL_GameControllerMapping(GameController gameController);
 
-    public static string GameControllerMappingString(GameController gameController)
+    public static string GameControllerMapping(GameController gameController)
     {
-        return InternalUtils.GetString(GameControllerMapping(gameController));
+        return InternalUtils.GetString(INTERNAL_GameControllerMapping(gameController));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerMappingForGUID", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GameControllerMappingForGUID(Guid guid);
+    private static extern byte* INTERNAL_GameControllerMappingForGUID(Guid guid);
 
-    public static string GameControllerMappingForGUIDString(Guid guid)
+    public static string GameControllerMappingForGUID(Guid guid)
     {
-        return InternalUtils.GetString(GameControllerMappingForGUID(guid));
+        return InternalUtils.GetString(INTERNAL_GameControllerMappingForGUID(guid));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerName", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GameControllerName(GameController gameController);
+    private static extern byte* INTERNAL_GameControllerName(GameController gameController);
 
-    public static string GameControllerNameString(GameController gameController)
+    public static string GameControllerName(GameController gameController)
     {
-        return InternalUtils.GetString(GameControllerName(gameController));
+        return InternalUtils.GetString(INTERNAL_GameControllerName(gameController));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerNameForIndex", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GameControllerNameForIndex(int joystickIndex);
+    private static extern byte* INTERNAL_GameControllerNameForIndex(int joystickIndex);
 
-    public static string GameControllerNameForIndexString(int joystickIndex)
+    public static string GameControllerNameForIndex(int joystickIndex)
     {
-        return InternalUtils.GetString(GameControllerNameForIndex(joystickIndex));
+        return InternalUtils.GetString(INTERNAL_GameControllerNameForIndex(joystickIndex));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GameControllerOpen", CallingConvention = CallingConvention.Cdecl)]

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace SDL_Sharp;

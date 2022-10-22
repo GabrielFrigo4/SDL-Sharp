@@ -38,10 +38,10 @@ public static unsafe partial class SDL
     public static extern void Quit();
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetBasePath", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetBasePath();
+    private static extern byte* INTERNAL_GetBasePath();
 
-    public static string GetBasePathString()
+    public static string GetBasePath()
     {
-        return InternalUtils.GetString(GetBasePath());
+        return InternalUtils.GetString(INTERNAL_GetBasePath());
     }
 }

@@ -177,8 +177,7 @@ public unsafe static partial class MIX
 		chunk = LoadWAV_RW(src, freesrc);
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV",
-		CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true, SetLastError = true)]
+	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV")]
 	public static extern Chunk* LoadWAV(string file);
     public static void LoadWAV(string file, out Chunk* chunk)
     {
@@ -571,7 +570,7 @@ public unsafe static partial class MIX
 
     public static string GetError()
     {
-        return SDL.GetErrorString();
+        return SDL.GetError();
     }
 
     #endregion

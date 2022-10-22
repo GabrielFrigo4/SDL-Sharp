@@ -47,6 +47,8 @@ class Program
             throw new Exception("Renderer not create");
         TTF.Init();
 
+        Console.WriteLine(SDL.GetBasePath());
+
         const int audio_buffer = 4096;
         MIX.OpenAudio(MIX.DEFAULT_FREQUENCY, MIX.DEFAULT_FORMAT, MIX.DEFAULT_CHANNELS, audio_buffer);
         MIX.AllocateChannels(MIX.CHANNELS);
@@ -54,11 +56,12 @@ class Program
 
         SoundMusic soundMusic = SoundMusic.CreateSoundMusic("./Files/MUSIC.wav");
         SoundMusic.SetVolume(32);
-        //SoundMusic.PlayMusic(soundMusic, -1);
+        SoundMusic.PlayMusic(soundMusic, -1);
 
         SoundChunk soundChunk = SoundChunk.CreateSoundChunk("./Files/SFX.wav");
         soundChunk.SetVolume(32);
         soundChunk.Play(3);
+
 
         Texture fegegoso = LoadTexture("./Files/Fedegoso.jpg");
         if (fegegoso.IsNull)

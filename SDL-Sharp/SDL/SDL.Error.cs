@@ -5,11 +5,11 @@ namespace SDL_Sharp;
 public static unsafe partial class SDL
 {
     [DllImport(LibraryName, EntryPoint = "SDL_GetError", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetError();
+    private static extern byte* INTERNAL_GetError();
 
-    public static string GetErrorString()
+    public static string GetError()
     {
-        return InternalUtils.GetString(GetError());
+        return InternalUtils.GetString(INTERNAL_GetError());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_ClearError", CallingConvention = CallingConvention.Cdecl)]

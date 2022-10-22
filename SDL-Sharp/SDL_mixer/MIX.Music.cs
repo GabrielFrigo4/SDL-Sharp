@@ -201,5 +201,5 @@ public unsafe static partial class MIX
 	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicLoopLengthTime")]
 	public static extern double GetMusicLoopLengthTime(Music music);
 
-	#endregion
+    #endregion
 }

@@ -19,11 +19,11 @@ public static unsafe partial class SDL
     public static extern void GetVersion(out Version version);
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetRevision", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* GetRevision();
+    private static extern byte* INTERNAL_GetRevision();
 
     public static string GetRevisionString()
     {
-        return InternalUtils.GetString(GetRevision());
+        return InternalUtils.GetString(INTERNAL_GetRevision());
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_GetRevisionNumber", CallingConvention = CallingConvention.Cdecl)]

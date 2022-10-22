@@ -129,19 +129,19 @@ public static unsafe partial class SDL
     public static extern JoystickID JoystickInstanceID(Joystick joystick);
 
     [DllImport(LibraryName, EntryPoint = "SDL_JoystickName", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* JoystickName(Joystick joystick);
+    private static extern byte* INTERNAL_JoystickName(Joystick joystick);
 
-    public static string JoystickNameString(Joystick joystick)
+    public static string JoystickName(Joystick joystick)
     {
-        return InternalUtils.GetString(JoystickName(joystick));
+        return InternalUtils.GetString(INTERNAL_JoystickName(joystick));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_JoystickNameForIndex", CallingConvention = CallingConvention.Cdecl)]
-    public static extern byte* JoystickNameForIndex(int deviceIndex);
+    private static extern byte* INTERNAL_JoystickNameForIndex(int deviceIndex);
 
-    public static string JoystickNameForIndexString(int deviceIndex)
+    public static string JoystickNameForIndex(int deviceIndex)
     {
-        return InternalUtils.GetString(JoystickNameForIndex(deviceIndex));
+        return InternalUtils.GetString(INTERNAL_JoystickNameForIndex(deviceIndex));
     }
 
     [DllImport(LibraryName, EntryPoint = "SDL_JoystickNumAxes", CallingConvention = CallingConvention.Cdecl)]

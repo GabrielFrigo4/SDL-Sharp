@@ -1448,7 +1448,7 @@ public unsafe static partial class TTF
 
     public static string GetError()
     {
-        return SDL.GetErrorString();
+        return SDL.GetError();
     }
     #endregion
 }
