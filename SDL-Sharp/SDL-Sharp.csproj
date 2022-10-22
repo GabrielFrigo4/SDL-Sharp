@@ -14,8 +14,12 @@ The wrapper provides bindings for the following libraries:
 - SDL2_ttf (2.20.1)
 -Utils(functions that facilitate the development)
 and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
-    <PackageReleaseNotes>Add IMG.LoadSizedSVG_RW()
-Add IMG.ReadXPMFromArrayToRGB888()</PackageReleaseNotes>
+    <PackageReleaseNotes>Add:
+TTF.OpenFontDPI()
+TTF.OpenFontIndexDPI()
+TTF.OpenFontDPIRW()
+TTF.OpenFontIndexDPIRW()
+TTF.SetFontSizeDPI()</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
     <Version>2.2.3</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>

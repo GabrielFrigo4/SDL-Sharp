@@ -28,6 +28,7 @@
 #region Using Statements
 using SDL_Sharp.Utils;
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 #endregion
 
@@ -1454,6 +1455,74 @@ public unsafe static partial class TTF
     /* font refers to a TTF_Font*
 	 * Only available in 2.0.18 or higher.
 	 */
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontDPI")]
+    private static extern Font INTERNAL_OpenFontDPI(
+        byte* file,
+		int ptsize,
+		uint hdpi,
+		uint vdpi
+	);
+	public static Font OpenFontDPI(string file, int ptsize, uint hdpi, uint vdpi)
+	{
+        byte* utf8File = InternalUtils.Utf8Encode(file);
+        Font handle = INTERNAL_OpenFontDPI(
+            utf8File, 
+			ptsize, 
+			hdpi, 
+			vdpi
+        );
+        Marshal.FreeHGlobal((IntPtr)utf8File);
+        return handle;
+    }
+
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontIndexDPI")]
+    private static extern Font INTERNAL_OpenFontIndexDPI(
+		byte* file,
+		int ptsize,
+		long index,
+		uint hdpi,
+		uint vdpi
+	);
+    public static Font OpenFontIndexDPI(string file, int ptsize, long index, uint hdpi, uint vdpi)
+    {
+        byte* utf8File = InternalUtils.Utf8Encode(file);
+        Font handle = INTERNAL_OpenFontIndexDPI(
+            utf8File,
+            ptsize,
+            index,
+            hdpi,
+            vdpi
+        );
+        Marshal.FreeHGlobal((IntPtr)utf8File);
+        return handle;
+    }
+
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontDPIRW")]
+    private static extern Font OpenFontDPIRW(
+        RWops src, 
+		int freesrc, 
+		int ptsize, 
+		uint hdpi,
+		uint vdpi
+    );
+
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_OpenFontIndexDPIRW")]
+    private static extern Font OpenFontIndexDPIRW(
+		RWops src,
+		int freesrc,
+		int ptsize,
+        long index,
+		uint hdpi,
+		uint vdpi
+	);
+
+    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "TTF_SetFontSizeDPI")]
+    private static extern Font SetFontSizeDPI(
+		Font font,
+		int ptsize,
+		uint hdpi,
+		uint vdpi
+    );
 
     #endregion
 }
