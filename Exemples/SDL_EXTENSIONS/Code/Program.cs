@@ -46,10 +46,10 @@ class Program
         if (renderer.IsNull)
             throw new Exception("Renderer not create");
         TTF.Init();
-        MIX.Init(MixInitFlags.Mod);
 
         Console.WriteLine(SDL.GetBasePath());
 
+        MIX.Init(MixInitFlags.Mod);
         const int audio_buffer = 4096;
         MIX.OpenAudio(MIX.DEFAULT_FREQUENCY, MIX.DEFAULT_FORMAT, MIX.DEFAULT_CHANNELS, audio_buffer);
         MIX.AllocateChannels(MIX.CHANNELS);
