@@ -3,7 +3,7 @@ Is a SDL2 for c#. The wrapper provides bindings for the following libraries (con
 - SDL2_image (2.6.2) in SDL_Sharp.Image
 - SDL2_mixer (2.6.2) in SDL_Sharp.Mixer
 - SDL2_ttf (2.20.1) in SDL_Sharp.Ttf
-- Utils(functions that facilitate the development)
+- Utils (functions that facilitate the development)
 
 To use opengl and openal in SDL we recommend using Silk.NET: https://github.com/dotnet/Silk.NET
 
