@@ -18,7 +18,7 @@ class Program
         {
             TestData[] data = { 
                 new("data1", 0, 0), new("data2", 1, 0), new("data3", 2, 0),
-                new("data4", 3, 0), new("data5", 4, 0)
+                new("data4", 3, 0), new("data5", 4, 0), new("data6", 5, 0)
             };
 
             Utils.SerializeObject(data, "./TestData.html", SerializeType.html);
@@ -26,12 +26,14 @@ class Program
             Utils.SerializeObject(data, "./TestData.bin", SerializeType.binary);
             Utils.SerializeObject(data, "./TestData.html.prot", SerializeType.htmlProtect);
             Utils.SerializeObject(data, "./TestData.json.prot", SerializeType.jsonProtect);
+            Utils.SerializeObject(data, "./TestData.bin.prot", SerializeType.binaryProtect);
 
             Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.html", SerializeType.html)[0].Name);
             Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.json", SerializeType.json)[1].Name);
             Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.bin", SerializeType.binary)[2].Name);
             Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.html.prot", SerializeType.htmlProtect)[3].Name);
             Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.json.prot", SerializeType.jsonProtect)[4].Name);
+            Console.WriteLine(Utils.DeSerializeObject<TestData[]>("./TestData.bin.prot", SerializeType.binaryProtect)[5].Name);
         }
         //test save data ;)
 
@@ -205,11 +207,15 @@ class Program
     }
 }
 
-[Serializable]
+[ProtoBuf.ProtoContract]
 public struct TestData
 {
+    [ProtoBuf.ProtoMember(1)]
     public string Name { get; set; }
+
+    [ProtoBuf.ProtoMember(2)]
     public int id;
+    [ProtoBuf.ProtoMember(3)]
     public uint leght;
 
     public TestData(string name, int id, uint leght)

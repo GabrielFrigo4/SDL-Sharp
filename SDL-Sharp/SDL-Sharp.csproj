@@ -56,4 +56,8 @@ TTF.SetFontSizeDPI()</PackageReleaseNotes>
     <None Remove="VulkanCore\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="protobuf-net" Version="3.2.16" />
+  </ItemGroup>
+
 </Project>

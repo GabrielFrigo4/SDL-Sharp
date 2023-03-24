@@ -44,7 +44,7 @@ class SoundChunk
 class SoundMusic
 {
     public Music music;
-    public static SoundMusic CurrentMusic { get; private set; }
+    public static SoundMusic? CurrentMusic { get; private set; }
 
     static int volume = MIX.MAX_VOLUME;
     public static int CurrentVolume { get => volume; }

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Xml;
-using System.Xml.Serialization;
 using System.Text.Json;
-using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
 namespace SDL_Sharp.Utility;
@@ -57,6 +56,11 @@ public static class Utils
             case SerializeType.jsonProtect:
                 SerializeObjectJsonProtect(serializableObject, fileName);
                 break;
+            case SerializeType.binaryProtect:
+                SerializeObjectBinaryProtect(serializableObject, fileName);
+                break;
+            default:
+                return;
         }
     }
 
@@ -102,11 +106,8 @@ public static class Utils
 
         try
         {
-            BinaryFormatter formatter = new();
             FileStream stream = new(fileName, FileMode.Create);
-#pragma warning disable SYSLIB0011 // O tipo ou membro é obsoleto
-            formatter.Serialize(stream, serializableObject);
-#pragma warning restore SYSLIB0011 // O tipo ou membro é obsoleto
+            ProtoBuf.Serializer.Serialize(stream, serializableObject);
             stream.Close();
         }
         catch (Exception ex)
@@ -176,6 +177,35 @@ public static class Utils
         }
     }
 
+    private static void SerializeObjectBinaryProtect<T>(T serializableObject, string fileName)
+    {
+        if (serializableObject == null) return;
+
+        try
+        {
+            using FileStream createStream = File.Create(fileName);
+
+            using Aes aes = Aes.Create();
+            aes.Key = key;
+
+            byte[] iv = aes.IV;
+            createStream.Write(iv, 0, iv.Length);
+
+            using CryptoStream cryptoStream = new(
+                createStream,
+                aes.CreateEncryptor(),
+                CryptoStreamMode.Write);
+            using StreamWriter encryptWriter = new(cryptoStream);
+            using var ms = new MemoryStream();
+            ProtoBuf.Serializer.Serialize(ms, serializableObject);
+            encryptWriter.Write(Convert.ToBase64String(ms.GetBuffer(), 0, (int)ms.Length));
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+    }
+
     /// <summary>
     /// Deserializes an xml file into an object list
     /// </summary>
@@ -191,6 +221,7 @@ public static class Utils
             SerializeType.binary => DeSerializeObjectBinary<T>(fileName),
             SerializeType.htmlProtect => DeSerializeObjectHtmlProtect<T>(fileName),
             SerializeType.jsonProtect => DeSerializeObjectJsonProtect<T>(fileName),
+            SerializeType.binaryProtect => DeSerializeObjectBinaryProtect<T>(fileName),
             _ => default,
         };
     }
@@ -246,11 +277,8 @@ public static class Utils
 
         try
         {
-            BinaryFormatter formatter = new();
             FileStream stream = new(fileName, FileMode.Open);
-#pragma warning disable SYSLIB0011 // O tipo ou membro é obsoleto
-            objectOut = (T)formatter.Deserialize(stream);
-#pragma warning restore SYSLIB0011 // O tipo ou membro é obsoleto
+            objectOut = ProtoBuf.Serializer.Deserialize<T>(stream);
             stream.Close();
         }
         catch (Exception ex)
@@ -338,6 +366,46 @@ public static class Utils
 
         return objectOut;
     }
+
+    private static T DeSerializeObjectBinaryProtect<T>(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName)) return default;
+        T objectOut = default;
+
+        try
+        {
+            using FileStream fileStream = new(fileName, FileMode.Open);
+            using Aes aes = Aes.Create();
+            byte[] iv = new byte[aes.IV.Length];
+            int numBytesToRead = aes.IV.Length;
+            int numBytesRead = 0;
+            while (numBytesToRead > 0)
+            {
+                int n = fileStream.Read(iv, numBytesRead, numBytesToRead);
+                if (n == 0) break;
+
+                numBytesRead += n;
+                numBytesToRead -= n;
+            }
+
+            using CryptoStream cryptoStream = new(
+               fileStream,
+               aes.CreateDecryptor(key, iv),
+               CryptoStreamMode.Read);
+            using StreamReader decryptReader = new(cryptoStream);
+            string decryptedMessage = decryptReader.ReadToEnd();
+
+            var arr = Convert.FromBase64String(decryptedMessage);
+            using var ms = new MemoryStream(arr);
+            objectOut = ProtoBuf.Serializer.Deserialize<T>(ms);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+
+        return objectOut;
+    }
 }
 
 public enum SerializeType
@@ -347,4 +415,5 @@ public enum SerializeType
     binary,
     htmlProtect,
     jsonProtect,
+    binaryProtect,
 }
