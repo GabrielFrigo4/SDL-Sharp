@@ -11,7 +11,7 @@ public static class OsxUtils
     /// <param name="path"></param>
     public static void AddEnvironmentPath(string path)
     {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
+        if (!RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) return;
+        Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
     }
 }
