@@ -4,6 +4,8 @@ using SDL_Sharp.Mixer;
 using SDL_Sharp.Utility;
 using SDL_Sharp;
 using System;
+using SDL_EXTENSIONS.Code;
+using System.Runtime.InteropServices;
 
 namespace SDL_PLUS_EXTENSIONS;
 class Program
@@ -68,6 +70,17 @@ class Program
             throw new Exception("Texture not create");
 
         SDL.ShowWindow(window);
+
+        if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) unsafe
+        {
+            SysWMInfo wmInfo;
+            SDL.GetVersion(&wmInfo.Version);
+            SDL.GetWindowWMInfo(window, &wmInfo);
+            nint hwnd = wmInfo.Info.Win.Window;
+
+            WinDark.SetTheme(hwnd);
+        }
+
         var running = true;
         while (running)
         {
