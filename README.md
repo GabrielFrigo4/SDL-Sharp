@@ -45,7 +45,7 @@ This project aims to make SDL2 non-aggressive in c#
 
 SDL2 code # would look like this:
 
-////// [exemple 1]
+# Exemple 1 (SDL2 #)
 
 ```cs
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
@@ -58,7 +58,7 @@ IntPtr renderer = SDL.SDL_CreateRenderer(window, -1,
   SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
 ```
                                       
-////// [exemple 2]
+# Exemple 2 (SDL-Sharp)
 
 And on SDL-Sharp like this:
 ```cs
@@ -67,7 +67,7 @@ Window window = SDL.CreateWindow("Window", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPO
 Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
 ```
 
-//////
+# About this Project
 
 In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
 
