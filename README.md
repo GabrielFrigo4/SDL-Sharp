@@ -43,10 +43,9 @@ With some modifications in both
 This project aims to make SDL2 non-aggressive in c#
 
 
-SDL2 code # would look like this:
-
 # Exemple 1 (SDL2 #)
 
+SDL2 code # would look like this:
 ```cs
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
