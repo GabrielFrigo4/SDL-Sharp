@@ -57,7 +57,7 @@ With some modifications in both
 
 # Exemple 1 (SDL2 #)
 
-SDL2 code # would look like this:
+SDL2 # code would look like this:
 ```cs
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
