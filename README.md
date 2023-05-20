@@ -7,15 +7,15 @@ Is a SDL2 for c#. The wrapper provides bindings for the following libraries (con
 - SDL2_ttf (2.20.1) in SDL_Sharp.Ttf
 - Utils (functions that facilitate the development)
 
-To use opengl and openal in SDL we recommend using Silk.NET: https://github.com/dotnet/Silk.NET
+To use opengl and openal in SDL we recommend using [Silk.NET](https://github.com/dotnet/Silk.NET) and [OpenTK](https://github.com/opentk/opentk)
 
-new nuget(
-nuget Sharp-SDL: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp.svg?style=flat-square)](https://www.nuget.org/packages//SDL-Sharp/)
-nuget Sharp-SDL-DLL: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp-DLL.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp-DLL/))
+### New Nuget
+ - [SDL-Sharp](https://www.nuget.org/packages//SDL-Sharp/): [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp.svg?style=flat-square)](https://www.nuget.org/packages//SDL-Sharp/)
+ - [SDL-Sharp-DLL](https://www.nuget.org/packages//SDL-Sharp-DLL/): [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp-DLL.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp-DLL/)
 
-nuget obsolete(
-nuget 32-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
-nuget 64-bits: [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/))
+### Nuget Obsolete
+ - [32-bits](https://www.nuget.org/packages/SDL-Sharp_32-bits/): [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_32-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_32-bits/)
+ - [64-bits](https://www.nuget.org/packages/SDL-Sharp_64-bits/): [![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SDL-Sharp_64-bits.svg?style=flat-square)](https://www.nuget.org/packages/SDL-Sharp_64-bits/)
 
 ```
 Note1: All extensions have all functions (or should have) updated, and nuget has updated DLLs. 
@@ -24,24 +24,36 @@ I'm working to go adding these functions until the latest update, in case it's (
 Note2: News are coming in this project, it has been updated again!!!!!
 ```
 
-the project was made based on other projects
+# How to setup
+First install [SDL-Sharp](https://www.nuget.org/packages//SDL-Sharp/)  nuget in your .NET project
 
-the SharpSDL (https://github.com/hasali19/SharpSDL)
+### Linux
+Just install the sdl using a package manager of your system that [SDL-Sharp](https://www.nuget.org/packages//SDL-Sharp/)  will already use the sdl binaries
 
-and the SDL2 # (https://github.com/flibitijibibo/SDL2-CS)
+### Windows
+Just install [SDL-Sharp-DLL](https://www.nuget.org/packages//SDL-Sharp-DLL/) nuget in yot .NET project
 
-and the SharpFont (https://github.com/Robmaister/SharpFont)
+# Base projects for SDL-Sharp
 
-and the OpenTK (https://github.com/opentk/opentk)
+The SDL-Sharp project was made based on other projects:
 
-and the Pencil.Gaming (https://github.com/andykorth/Pencil.Gaming)
-
-and the Silk.NET (https://github.com/dotnet/Silk.NET)
+ - [SharpSDL](https://github.com/hasali19/SharpSDL)
+ - [SDL2 #](https://github.com/flibitijibibo/SDL2-CS)
+ - [SharpFont](https://github.com/Robmaister/SharpFont)
+ - [OpenTK](https://github.com/opentk/opentk)
+ - [Pencil.Gaming](https://github.com/andykorth/Pencil.Gaming)
+ - [Silk.NET](https://github.com/dotnet/Silk.NET)
 
 With some modifications in both
 
-This project aims to make SDL2 non-aggressive in c#
+# About this Project
 
+ - This project aims to make SDL2 non-aggressive in c#
+
+ - In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr. So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
+ - However Surface, Chunk and others are not pointers, so the functions return a Surface* or PSurface (example), in these cases there are P(Structure name) such as PChunk, PSurface...
+(P of pointer)
+ - To be able to use pointers in C#, you have to enable Unsafe Code and use these pointers (void*) inside an unsafe { //Pointers here// }
 
 # Exemple 1 (SDL2 #)
 
@@ -65,14 +77,3 @@ SDL.Init(SdlInitFlags.Video);
 Window window = SDL.CreateWindow("Window", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
 Renderer renderer = SDL.CreateRenderer(window, -1, RendererFlags.Accelerated | RendererFlags.PresentVsync);
 ```
-
-# About this Project
-
-In SDL-Sharp Window, Renderer, Texture, Font and Music are pointers same as IntPtr
-
-So the SDL.CreateWindow() function returns a Window and not a Window* (exemple)
-
-However Surface, Chunk and others are not pointers, so the functions return a Surface* or PSurface (example), in these cases there are P(Structure name) such as PChunk, PSurface...
-(P of pointer)
-
-to be able to use pointers in C#, you have to enable Unsafe Code and use these pointers (void*) inside an unsafe { //Pointers here// }
