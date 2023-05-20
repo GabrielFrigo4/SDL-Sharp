@@ -57,7 +57,7 @@ With some modifications in both
 
 # Exemple 1 (SDL2#)
 
-SDL2# code would look like this:
+[SDL2#](https://github.com/flibitijibibo/SDL2-CS) code would look like this:
 ```cs
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
@@ -71,7 +71,7 @@ IntPtr renderer = SDL.SDL_CreateRenderer(window, -1,
                                       
 # Exemple 2 (SDL-Sharp)
 
-And on SDL-Sharp like this:
+And on [SDL-Sharp](https://github.com/GabrielFrigo4/SDL-Sharp) like this:
 ```cs
 SDL.Init(SdlInitFlags.Video);
 Window window = SDL.CreateWindow("Window", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Shown);
