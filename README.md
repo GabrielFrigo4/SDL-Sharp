@@ -38,7 +38,7 @@ Just install [SDL-Sharp-DLL](https://www.nuget.org/packages//SDL-Sharp-DLL/) nug
 The SDL-Sharp project was made based on other projects:
 
  - [SharpSDL](https://github.com/hasali19/SharpSDL)
- - [SDL2 #](https://github.com/flibitijibibo/SDL2-CS)
+ - [SDL2#](https://github.com/flibitijibibo/SDL2-CS)
  - [SharpFont](https://github.com/Robmaister/SharpFont)
  - [OpenTK](https://github.com/opentk/opentk)
  - [Pencil.Gaming](https://github.com/andykorth/Pencil.Gaming)
@@ -55,9 +55,9 @@ With some modifications in both
 (P of pointer)
  - To be able to use pointers in C#, you have to enable Unsafe Code and use these pointers (void*) inside an unsafe { //Pointers here// }
 
-# Exemple 1 (SDL2 #)
+# Exemple 1 (SDL2#)
 
-SDL2 # code would look like this:
+SDL2# code would look like this:
 ```cs
 SDL.SDL_Init(SDL.SDL_INIT_VIDEO);
 
