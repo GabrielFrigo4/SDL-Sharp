@@ -1,6 +1,6 @@
 # SDL-Sharp
 
-Is a SDL2 for c#. The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project in SDL-Sharp-DLL):
+Is a SDL2 for c#. The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project in [SDL-Sharp-DLL](https://www.nuget.org/packages//SDL-Sharp-DLL/)):
 - SDL2 (2.24.1) in SDL_Sharp
 - SDL2_image (2.6.2) in SDL_Sharp.Image
 - SDL2_mixer (2.6.2) in SDL_Sharp.Mixer
