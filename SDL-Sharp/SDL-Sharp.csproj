@@ -8,20 +8,18 @@
     <NeutralLanguage>en</NeutralLanguage>
     <Description>is a SDL2 for c#
 The wrapper provides bindings for the following libraries:
-- SDL2 (2.24.1)
-- SDL2_image (2.6.2)
-- SDL2_mixer (2.6.2)
-- SDL2_ttf (2.20.1)
+- SDL2 (2.28.5)
+- SDL2_image (2.6.3)
+- SDL2_mixer (2.6.3)
+- SDL2_ttf (2.20.2)
 -Utils(functions that facilitate the development)
 and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
     <PackageReleaseNotes>Add:
-TTF.OpenFontDPI()
-TTF.OpenFontIndexDPI()
-TTF.OpenFontDPIRW()
-TTF.OpenFontIndexDPIRW()
-TTF.SetFontSizeDPI()</PackageReleaseNotes>
+Fix:
+AudioSpec
+AudioFormatFlags</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.2.3</Version>
+    <Version>2.2.4beta</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
   </PropertyGroup>

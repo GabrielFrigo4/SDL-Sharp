@@ -27,7 +27,7 @@ namespace SDL_Sharp;
 *  \name Audio flags
 */
 /* @{ */
-public enum AudioFlags : uint
+public enum AudioFlags : ushort
 {
     Bitsize = 0xFF,
     Datatype = (1 << 8),
@@ -41,7 +41,7 @@ public enum AudioFlags : uint
 *  Defaults to LSB byte order.
 */
 /* @{ */
-public enum AudioFormatFlags : uint
+public enum AudioFormatFlags : ushort
 {
     U8 = 0x0008,  /**< Unsigned 8-bit samples */
     S8 = 0x8008,  /**< Signed 8-bit samples */
@@ -117,15 +117,14 @@ public unsafe delegate void AudioCallback(void* userdata, byte* stream, int len)
 public unsafe struct AudioSpec
 {
     public int Frequency;       /* DSP frequency -- samples per second */
-    public short Format;        /* Audio data format */
+    public ushort Format;       /* Audio data format */
     public byte Channels;       /* Number of channels: 1 mono; 2 stereo */
     public byte Silence;        /* Audio buffer silence value (calculated) */
-    public short Samples;       /* Audio buffer size in sample FRAMES (total samples divided by channel count) */
-    public short Padding;       /* Necessary for some compile environments */
-    public ulong Size;          /* Audio buffer size in bytes (calculated) */
+    public ushort Samples;      /* Audio buffer size in sample FRAMES (total samples divided by channel count) */
+    //public ushort Padding;    /* Necessary for some compile environments */
+    public uint Size;           /* Audio buffer size in bytes (calculated) */
     public IntPtr Callback;     /* Callback that feeds the audio device (NULL to use SDL_QueueAudio()). */
     public void* UserData;      /* Userdata passed to callback (ignored for NULL callbacks). */
-
 }
 
 [StructLayout(LayoutKind.Sequential)]
