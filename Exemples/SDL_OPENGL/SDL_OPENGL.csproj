@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Silk.NET.OpenGL.Legacy" Version="2.16.0" />
+    <PackageReference Include="Silk.NET.OpenGL.Legacy" Version="2.19.0" />
   </ItemGroup>
 
   <ItemGroup>

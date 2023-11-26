@@ -19,7 +19,7 @@ Fix:
 AudioSpec
 AudioFormatFlags</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.2.4beta</Version>
+    <Version>2.2.3-beta1</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
   </PropertyGroup>
