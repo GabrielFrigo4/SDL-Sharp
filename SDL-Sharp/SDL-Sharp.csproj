@@ -19,7 +19,7 @@ Fix:
 AudioSpec
 AudioFormatFlags</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.2.3-beta1</Version>
+    <Version>2.2.3-beta2</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
   </PropertyGroup>
@@ -55,7 +55,7 @@ AudioFormatFlags</PackageReleaseNotes>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="protobuf-net" Version="3.2.16" />
+    <PackageReference Include="protobuf-net" Version="3.2.30" />
   </ItemGroup>
 
 </Project>

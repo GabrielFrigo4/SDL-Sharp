@@ -116,15 +116,15 @@ public unsafe delegate void AudioCallback(void* userdata, byte* stream, int len)
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct AudioSpec
 {
-    public int Frequency;       /* DSP frequency -- samples per second */
-    public ushort Format;       /* Audio data format */
-    public byte Channels;       /* Number of channels: 1 mono; 2 stereo */
-    public byte Silence;        /* Audio buffer silence value (calculated) */
-    public ushort Samples;      /* Audio buffer size in sample FRAMES (total samples divided by channel count) */
-    //public ushort Padding;    /* Necessary for some compile environments */
-    public uint Size;           /* Audio buffer size in bytes (calculated) */
-    public IntPtr Callback;     /* Callback that feeds the audio device (NULL to use SDL_QueueAudio()). */
-    public void* UserData;      /* Userdata passed to callback (ignored for NULL callbacks). */
+    public int Frequency;           /* DSP frequency -- samples per second */
+    public ushort Format;           /* Audio data format */
+    public byte Channels;           /* Number of channels: 1 mono; 2 stereo */
+    public byte Silence;            /* Audio buffer silence value (calculated) */
+    public ushort Samples;          /* Audio buffer size in sample FRAMES (total samples divided by channel count) */
+    public ushort Padding;          /* Necessary for some compile environments */
+    public uint Size;               /* Audio buffer size in bytes (calculated) */
+    public IntPtr Callback;         /* Callback that feeds the audio device (NULL to use SDL_QueueAudio()). */
+    public void* UserData;          /* Userdata passed to callback (ignored for NULL callbacks). */
 }
 
 [StructLayout(LayoutKind.Sequential)]
