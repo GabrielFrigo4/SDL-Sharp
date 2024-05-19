@@ -330,10 +330,10 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_SetWindowBrightness", CallingConvention = CallingConvention.Cdecl)]
     public static extern int SetWindowBrightness(Window window, float brightness);
 
-    [DllImport(LibraryName, EntryPoint = "SDL_SetWindowIcon", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+    [DllImport(LibraryName, EntryPoint = "SDL_SetWindowIcon", CallingConvention = CallingConvention.Cdecl]
     public static extern void SetWindowIcon(Window window, Surface* icon);
 
-    [DllImport(LibraryName, EntryPoint = "SDL_SetWindowIcon", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+    [DllImport(LibraryName, EntryPoint = "SDL_SetWindowIcon", CallingConvention = CallingConvention.Cdecl]
     public static extern void SetWindowIcon(Window window, PSurface icon);
 
     [DllImport(LibraryName, EntryPoint = "SDL_SetWindowData", CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
