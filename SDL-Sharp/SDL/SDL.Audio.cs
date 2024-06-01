@@ -221,6 +221,15 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_GetTicks", CallingConvention = CallingConvention.Cdecl)]
     public static extern uint GetTicks();
 
+    [DllImport(LibraryName, EntryPoint = "SDL_GetTicks64", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ulong GetTicks64();
+
+    [DllImport(LibraryName, EntryPoint = "SDL_GetPerformanceCounter", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ulong GetPerformanceCounter();
+
+    [DllImport(LibraryName, EntryPoint = "SDL_GetPerformanceFrequency", CallingConvention = CallingConvention.Cdecl)]
+    public static extern ulong GetPerformanceFrequency();
+
     [DllImport(LibraryName, EntryPoint = "SDL_memcpy", SetLastError = true)]
     public static extern void* MemCopy(IntPtr dst, IntPtr src, int len);
 
