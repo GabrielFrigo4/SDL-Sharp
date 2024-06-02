@@ -9,8 +9,6 @@
     <Description>
       is a SDL2 for c#
       The wrapper provides bindings for the following libraries:
-      is a DLLs for SDL2 + Extensions
-      Contains the necessary DLLs for SDL-Sharp:
       - SDL2 (2.30.3)
       - SDL2_image (2.8.2)
       - SDL2_mixer (2.8.0)
