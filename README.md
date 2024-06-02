@@ -1,10 +1,10 @@
 # SDL-Sharp
 
 Is a SDL2 for c#. The wrapper provides bindings for the following libraries (contains the necessary DLLs for the project in [SDL-Sharp-DLL](https://www.nuget.org/packages//SDL-Sharp-DLL/)):
-- [SDL2](https://github.com/libsdl-org/SDL/releases) (2.24.1) in SDL_Sharp
-- [SDL2_image](https://github.com/libsdl-org/SDL_Image/releases) (2.6.2) in SDL_Sharp.Image
-- [SDL2_mixer](https://github.com/libsdl-org/SDL_Mixer/releases) (2.6.2) in SDL_Sharp.Mixer
-- [SDL2_ttf](https://github.com/libsdl-org/SDL_Ttf/releases) (2.20.1) in SDL_Sharp.Ttf
+- [SDL2](https://github.com/libsdl-org/SDL/releases) (2.30.3) in SDL_Sharp
+- [SDL2_image](https://github.com/libsdl-org/SDL_Image/releases) (2.8.2) in SDL_Sharp.Image
+- [SDL2_mixer](https://github.com/libsdl-org/SDL_Mixer/releases) (2.8.0) in SDL_Sharp.Mixer
+- [SDL2_ttf](https://github.com/libsdl-org/SDL_Ttf/releases) (2.22.0) in SDL_Sharp.Ttf
 - Utils (functions that facilitate the development)
 
 To use opengl and openal in SDL we recommend using [Silk.NET](https://github.com/dotnet/Silk.NET) and [OpenTK](https://github.com/opentk/opentk)

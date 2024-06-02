@@ -40,7 +40,7 @@ class Program
         WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
 
         //Init SDL/Image/Mixer/Ttf
-        SDL.Init(SdlInitFlags.Video | SdlInitFlags.Video);
+        SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("SDL_EXTENSIONS", SDL.WINDOWPOS_UNDEFINED, SDL.WINDOWPOS_UNDEFINED, 800, 600, WindowFlags.Hidden);
         if (window.IsNull)
             throw new Exception("Window not create");
