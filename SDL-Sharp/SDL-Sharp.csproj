@@ -7,14 +7,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <NeutralLanguage>en</NeutralLanguage>
     <Description>
-      is a SDL2 for c#
+      Is a SDL2 for c#
       The wrapper provides bindings for the following libraries:
       - SDL2 (2.30.3)
       - SDL2_image (2.8.2)
       - SDL2_mixer (2.8.0)
       - SDL2_ttf (2.22.0)
       -Utils(functions that facilitate the development)
-      and contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
+      And contains the necessary DLLs for the project in SDL-Sharp-DLL
+    </Description>
     <PackageReleaseNotes>
       Add Functions:
       SDL.SetWindowIcon()
