@@ -51,7 +51,7 @@ public static partial class SDL
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
-        Path.GetDirectoryName(assembly.Location),
+        AppContext.BaseDirectory,
         "runtimes",
         GetRuntimeIdentifier(),
         "native",

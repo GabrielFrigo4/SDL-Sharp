@@ -5,6 +5,8 @@
     <RootNamespace>SDL_Sharp</RootNamespace>
     <Platforms>x64;AnyCPU;x86</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsAotCompatible>true</IsAotCompatible>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NeutralLanguage>en</NeutralLanguage>
     <Description>
       Is a SDL2 for c#
@@ -57,10 +59,6 @@
     <Compile Remove="VulkanCore\**" />
     <EmbeddedResource Remove="VulkanCore\**" />
     <None Remove="VulkanCore\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="protobuf-net" Version="3.2.30" />
   </ItemGroup>
 
 </Project>
