@@ -480,7 +480,7 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_GetEventFilter", CallingConvention = CallingConvention.Cdecl)]
     public static extern bool GetEventFilter(IntPtr* filter, void** userdata);
 
-    public static bool GetEventFilter(out EventFilter filter, void** userdata)
+    public static bool GetEventFilter(out EventFilter? filter, void** userdata)
     {
         IntPtr ptr;
         bool result = GetEventFilter(&ptr, userdata);
@@ -494,7 +494,7 @@ public static unsafe partial class SDL
     [DllImport(LibraryName, EntryPoint = "SDL_GetEventFilter", CallingConvention = CallingConvention.Cdecl)]
     public static extern bool GetEventFilter(out IntPtr filter, out IntPtr userdata);
 
-    public static bool GetEventFilter(out EventFilter filter, out IntPtr userdata)
+    public static bool GetEventFilter(out EventFilter? filter, out IntPtr userdata)
     {
         bool result = GetEventFilter(out IntPtr ptr, out userdata);
         if (result)

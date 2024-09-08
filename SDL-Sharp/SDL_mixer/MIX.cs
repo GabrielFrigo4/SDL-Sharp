@@ -262,7 +262,7 @@ public unsafe static partial class MIX
 
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetChunkDecoder", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_Mix_GetChunkDecoder(int index);
-	public static string GetChunkDecoder(int index)
+	public static string? GetChunkDecoder(int index)
 	{
 		return SDL.UTF8_ToManaged(
 			INTERNAL_Mix_GetChunkDecoder(index)
@@ -537,7 +537,7 @@ public unsafe static partial class MIX
 
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetSoundFonts", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_Mix_GetSoundFonts();
-	public static string GetSoundFonts()
+	public static string? GetSoundFonts()
 	{
 		return SDL.UTF8_ToManaged(
 			INTERNAL_Mix_GetSoundFonts()
@@ -560,7 +560,7 @@ public unsafe static partial class MIX
 	/* Only available in 2.0.5 or later. */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetTimidityCfg", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_Mix_GetTimidityCfg();
-	public static string GetTimidityCfg()
+	public static string? GetTimidityCfg()
 	{
 		return SDL.UTF8_ToManaged(
 			INTERNAL_Mix_GetTimidityCfg()
