@@ -71,10 +71,7 @@ public static unsafe partial class IMG
 	{
 		Version result;
 		IntPtr result_ptr = INTERNAL_IMG_Linked_Version();
-		result = (Version)Marshal.PtrToStructure(
-			result_ptr,
-			typeof(Version)
-		);
+		result = Marshal.PtrToStructure<Version>(result_ptr);
 		return result;
 	}
 

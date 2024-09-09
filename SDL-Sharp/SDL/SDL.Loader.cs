@@ -33,7 +33,7 @@ public static partial class SDL
 
         if (_handle == IntPtr.Zero)
         {
-            foreach (var path in GetSearchPaths(assembly, libraryName))
+            foreach (var path in GetSearchPaths(libraryName))
             {
                 if (path != null && NativeLibrary.TryLoad(path, out _handle))
                 {
@@ -45,13 +45,13 @@ public static partial class SDL
         return _handle;
     }
 
-    private static IEnumerable<string> GetSearchPaths(Assembly assembly, string libraryName)
+    private static IEnumerable<string> GetSearchPaths(string libraryName)
     {
         string libName = GetNativeLibraryName(libraryName);
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
-        Path.GetDirectoryName(assembly.Location),
+        AppContext.BaseDirectory,
         "runtimes",
         GetRuntimeIdentifier(),
         "native",

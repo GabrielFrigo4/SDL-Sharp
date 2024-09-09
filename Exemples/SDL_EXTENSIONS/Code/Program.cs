@@ -4,6 +4,7 @@ using SDL_Sharp.Mixer;
 using SDL_Sharp.Utility;
 using SDL_Sharp;
 using System;
+using SDL_EXTENSIONS.Utils;
 
 namespace SDL_PLUS_EXTENSIONS;
 class Program

@@ -87,10 +87,7 @@ public unsafe static partial class TTF
 	{
 		Version result;
 		IntPtr result_ptr = INTERNAL_TTF_LinkedVersion();
-		result = (Version)Marshal.PtrToStructure(
-			result_ptr,
-			typeof(Version)
-		);
+		result = Marshal.PtrToStructure<Version>(result_ptr);
 		return result;
 	}
 

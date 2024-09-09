@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Xml;
-using System.Text.Json;
-using System.Xml.Serialization;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Text.Json;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace SDL_Sharp.Utility;
+namespace SDL_EXTENSIONS.Utils;
+
 public static class Utils
 {
     static readonly byte[] key =

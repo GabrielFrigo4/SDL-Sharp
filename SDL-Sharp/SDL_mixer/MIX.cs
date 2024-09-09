@@ -116,10 +116,7 @@ public unsafe static partial class MIX
 	{
 		Version result;
 		IntPtr result_ptr = INTERNAL_MIX_Linked_Version();
-		result = (Version)Marshal.PtrToStructure(
-			result_ptr,
-			typeof(Version)
-		);
+		result = Marshal.PtrToStructure<Version>(result_ptr);
 		return result;
 	}
 
