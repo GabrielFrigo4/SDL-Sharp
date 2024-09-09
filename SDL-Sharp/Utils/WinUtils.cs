@@ -44,7 +44,8 @@ public unsafe static class WinUtils
     public static void AddEnvironmentPath(string path)
     {
         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) return;
-        Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath(path));
+        string win_path = path.Replace(@"/", @"\");
+        Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath(win_path));
     }
 }
 

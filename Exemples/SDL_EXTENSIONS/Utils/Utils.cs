@@ -19,20 +19,6 @@ public static class Utils
     static readonly JsonSerializerOptions options = new(){ IncludeFields = true };
 
     /// <summary>
-    /// Add environment path in this process for any operate system
-    /// </summary>
-    /// <param name="path"></param>
-    public static void AddEnvironmentPath(string path)
-    {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath(path));
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
-    }
-
-    /// <summary>
     /// Serializes an object.
     /// </summary>
     /// <typeparam name="T"></typeparam>

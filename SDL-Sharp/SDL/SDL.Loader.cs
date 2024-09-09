@@ -14,14 +14,14 @@ public static partial class SDL
     {
         if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
         {
-            WinUtils.AddEnvironmentPath("./runtimes/win-x64/native/");
-            LinuxUtils.AddEnvironmentPath("./runtimes/linux-x64/native/");
-            OsxUtils.AddEnvironmentPath("./runtimes/osx-x64/native/");
+            WinUtils.AddEnvironmentPath(@".\runtimes\win-x64\native\");
+            LinuxUtils.AddEnvironmentPath(@"./runtimes/linux-x64/native/");
+            OsxUtils.AddEnvironmentPath(@"./runtimes/osx-x64/native/");
         }
         if (RuntimeInformation.ProcessArchitecture == Architecture.X86)
         {
-            WinUtils.AddEnvironmentPath("./runtimes/win-x86/native/");
-            LinuxUtils.AddEnvironmentPath("./runtimes/linux-x86/native/");
+            WinUtils.AddEnvironmentPath(@".\runtimes\win-x86\native\");
+            LinuxUtils.AddEnvironmentPath(@"./runtimes/linux-x86/native/");
         }
 
         NativeLibrary.SetDllImportResolver(typeof(SDL).Assembly, ResolveDllImport);

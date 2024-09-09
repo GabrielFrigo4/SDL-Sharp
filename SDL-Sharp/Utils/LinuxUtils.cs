@@ -12,6 +12,7 @@ public static class LinuxUtils
     public static void AddEnvironmentPath(string path)
     {
         if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) return;
-        Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
+        string linux_path = path.Replace(@"\", @"/");
+        Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(linux_path));
     }
 }
