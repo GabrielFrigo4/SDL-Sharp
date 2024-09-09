@@ -6,6 +6,7 @@
     <Platforms>x64;AnyCPU;x86</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsAotCompatible>true</IsAotCompatible>
+    <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NeutralLanguage>en</NeutralLanguage>
     <Description>

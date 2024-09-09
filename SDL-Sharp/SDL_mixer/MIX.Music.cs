@@ -73,7 +73,7 @@ public unsafe static partial class MIX
 
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicDecoder", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Music INTERNAL_GetMusicDecoder(int index);
-	public static string GetMusicDecoder(int index)
+	public static string? GetMusicDecoder(int index)
 	{
 		return SDL.UTF8_ToManaged(
             INTERNAL_GetMusicDecoder(index)
@@ -89,7 +89,7 @@ public unsafe static partial class MIX
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicTitle", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_GetMusicTitle(Music music);
-	public static string GetMusicTitle(Music music)
+	public static string? GetMusicTitle(Music music)
 	{
 		return SDL.UTF8_ToManaged(
             INTERNAL_GetMusicTitle(music)
@@ -101,7 +101,7 @@ public unsafe static partial class MIX
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicTitleTag", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_GetMusicTitleTag(Music music);
-	public static string GetMusicTitleTag(Music music)
+	public static string? GetMusicTitleTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
             INTERNAL_GetMusicTitleTag(music)
@@ -113,7 +113,7 @@ public unsafe static partial class MIX
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicArtistTag", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_GetMusicArtistTag(Music music);
-	public static string GetMusicArtistTag(Music music)
+	public static string? GetMusicArtistTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
             INTERNAL_GetMusicArtistTag(music)
@@ -125,7 +125,7 @@ public unsafe static partial class MIX
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicAlbumTag", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_GetMusicAlbumTag(Music music);
-	public static string GetMusicAlbumTag(Music music)
+	public static string? GetMusicAlbumTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
             INTERNAL_GetMusicAlbumTag(music)
@@ -137,7 +137,7 @@ public unsafe static partial class MIX
 	 */
 	[DllImport(NativeLibName, EntryPoint = "Mix_GetMusicCopyrightTag", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_GetMusicCopyrightTag(Music music);
-	public static string GetMusicCopyrightTag(Music music)
+	public static string? GetMusicCopyrightTag(Music music)
 	{
 		return SDL.UTF8_ToManaged(
             INTERNAL_GetMusicCopyrightTag(music)

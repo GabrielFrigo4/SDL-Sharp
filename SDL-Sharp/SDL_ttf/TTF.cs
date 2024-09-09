@@ -226,7 +226,7 @@ public unsafe static partial class TTF
 	private static extern IntPtr INTERNAL_TTF_FontFaceFamilyName(
 		Font font
 	);
-	public static string FontFaceFamilyName(Font font)
+	public static string? FontFaceFamilyName(Font font)
 	{
 		return SDL.UTF8_ToManaged(
 			INTERNAL_TTF_FontFaceFamilyName(font)
@@ -238,7 +238,7 @@ public unsafe static partial class TTF
 	private static extern IntPtr INTERNAL_TTF_FontFaceStyleName(
 		Font font
 	);
-	public static string FontFaceStyleName(Font font)
+	public static string? FontFaceStyleName(Font font)
 	{
 		return SDL.UTF8_ToManaged(
 			INTERNAL_TTF_FontFaceStyleName(font)

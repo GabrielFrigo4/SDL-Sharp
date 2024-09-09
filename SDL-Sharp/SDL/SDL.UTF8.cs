@@ -10,7 +10,7 @@ public static unsafe partial class SDL
 	static extern void Free(IntPtr memblock);
 
 	/* This is public because SDL_DropEvent needs it! */
-	public static unsafe string UTF8_ToManaged(IntPtr s, bool freePtr = false)
+	public static unsafe string? UTF8_ToManaged(IntPtr s, bool freePtr = false)
 	{
 		if (s == IntPtr.Zero)
 		{
