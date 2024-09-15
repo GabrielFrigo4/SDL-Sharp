@@ -1,12 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Xml;
-using System.Text.Json;
-using System.Xml.Serialization;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Text.Json;
+using System.Xml;
+using System.Xml.Serialization;
 
-namespace SDL_Sharp.Utility;
+namespace SDL_EXTENSIONS.Utils;
+
 public static class Utils
 {
     static readonly byte[] key =
@@ -16,20 +17,6 @@ public static class Utils
     };
 
     static readonly JsonSerializerOptions options = new(){ IncludeFields = true };
-
-    /// <summary>
-    /// Add environment path in this process for any operate system
-    /// </summary>
-    /// <param name="path"></param>
-    public static void AddEnvironmentPath(string path)
-    {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            Environment.SetEnvironmentVariable("Path", Environment.GetEnvironmentVariable("Path") + ";" + Path.GetFullPath(path));
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
-        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ":" + Path.GetFullPath(path));
-    }
 
     /// <summary>
     /// Serializes an object.
