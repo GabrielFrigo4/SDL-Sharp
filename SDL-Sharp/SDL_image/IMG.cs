@@ -37,7 +37,7 @@ public static unsafe partial class IMG
 	#region SDL2# Variables
 
 	/* Used by DllImport to load the native library. */
-	private const string NativeLibName = "SDL2_image";
+	private const string LibraryName = "SDL2_image";
 
 	#endregion
 
@@ -65,7 +65,7 @@ public static unsafe partial class IMG
 		X->Patch = PATCHLEVEL;
 	}
 
-	[DllImport(NativeLibName, EntryPoint = "IMG_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_IMG_Linked_Version();
 	public static Version Linked_Version()
 	{
@@ -78,14 +78,14 @@ public static unsafe partial class IMG
 		return result;
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Init")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Init")]
 	public static extern int Init(ImgInitFlags flags);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Quit")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Quit")]
 	public static extern void Quit();
 
 	/* IntPtr refers to an SDL_Surface* */
-	[DllImport(NativeLibName, EntryPoint = "IMG_Load", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_Load", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_IMG_Load(
 		byte* file
 	);
@@ -117,7 +117,7 @@ public static unsafe partial class IMG
 
 	/* src refers to an SDL_RWops*, IntPtr to an SDL_Surface* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Load_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_Load_RW")]
 	public static extern Surface* Load_RW(
 		RWops src,
 		int freesrc
@@ -141,7 +141,7 @@ public static unsafe partial class IMG
 
 	/* src refers to an SDL_RWops*, IntPtr to an SDL_Surface* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, EntryPoint = "IMG_LoadTyped_RW", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_LoadTyped_RW", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Surface* INTERNAL_IMG_LoadTyped_RW(
 		RWops src,
 		int freesrc,
@@ -193,7 +193,7 @@ public static unsafe partial class IMG
 	}
 
 	/* IntPtr refers to an SDL_Texture*, renderer to an SDL_Renderer* */
-	[DllImport(NativeLibName, EntryPoint = "IMG_LoadTexture", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_LoadTexture", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Texture INTERNAL_IMG_LoadTexture(
 		Renderer renderer,
 		byte* file
@@ -217,7 +217,7 @@ public static unsafe partial class IMG
 	 * IntPtr to an SDL_Texture*.
 	 */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadTexture_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadTexture_RW")]
 	public static extern Texture LoadTexture_RW(
 		Renderer renderer,
 		RWops src,
@@ -229,7 +229,7 @@ public static unsafe partial class IMG
 	 * IntPtr to an SDL_Texture*.
 	 */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, EntryPoint = "IMG_LoadTextureTyped_RW", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_LoadTextureTyped_RW", CallingConvention = CallingConvention.Cdecl)]
 	private static extern Texture INTERNAL_IMG_LoadTextureTyped_RW(
 		Renderer renderer,
 		RWops src,
@@ -255,7 +255,7 @@ public static unsafe partial class IMG
 	}
 
 	/* IntPtr refers to an SDL_Surface* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_ReadXPMFromArray")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_ReadXPMFromArray")]
 	public static extern Surface* ReadXPMFromArray(
 		[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]
 			string[] xpm
@@ -278,7 +278,7 @@ public static unsafe partial class IMG
 	}
 
 	/* surface refers to an SDL_Surface* */
-	[DllImport(NativeLibName, EntryPoint = "IMG_SavePNG", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_SavePNG", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_IMG_SavePNG(
 		Surface* surface,
 		byte* file
@@ -306,14 +306,14 @@ public static unsafe partial class IMG
 
 	/* surface refers to an SDL_Surface*, dst to an SDL_RWops* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SavePNG_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SavePNG_RW")]
 	public static extern int SavePNG_RW(
 		Surface* surface,
 		RWops dst,
 		int freedst
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SavePNG_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SavePNG_RW")]
 	public static extern int SavePNG_RW(
 		PSurface surface,
 		RWops dst,
@@ -321,7 +321,7 @@ public static unsafe partial class IMG
 	);
 
 	/* surface refers to an SDL_Surface* */
-	[DllImport(NativeLibName, EntryPoint = "IMG_SaveJPG", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "IMG_SaveJPG", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_IMG_SaveJPG(
 		Surface* surface,
 		byte* file,
@@ -352,7 +352,7 @@ public static unsafe partial class IMG
 
 	/* surface refers to an SDL_Surface*, dst to an SDL_RWops* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SaveJPG_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SaveJPG_RW")]
 	public static extern int SaveJPG_RW(
 		Surface* surface,
 		RWops dst,
@@ -360,7 +360,7 @@ public static unsafe partial class IMG
 		int quality
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SaveJPG_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_SaveJPG_RW")]
 	public static extern int SaveJPG_RW(
 		PSurface surface,
 		RWops dst,
@@ -376,7 +376,7 @@ public static unsafe partial class IMG
     /* music refers to a Mix_Music*
 	* Only available in 2.6.0 or higher.
 	*/
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadSizedSVG_RW")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadSizedSVG_RW")]
     public static extern Surface* LoadSizedSVG_RW(
         RWops src,
 		int width,
@@ -393,7 +393,7 @@ public static unsafe partial class IMG
         surface = LoadSizedSVG_RW(src, width, height);
     }
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_ReadXPMFromArrayToRGB888")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_ReadXPMFromArrayToRGB888")]
 	public static extern Surface* ReadXPMFromArrayToRGB888(
         [In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.LPStr)]
             string[] xpm

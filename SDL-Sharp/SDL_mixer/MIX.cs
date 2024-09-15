@@ -37,7 +37,7 @@ public unsafe static partial class MIX
 	#region SDL2# Variables
 
 	/* Used by DllImport to load the native library. */
-	private const string NativeLibName = "SDL2_mixer";
+	private const string LibraryName = "SDL2_mixer";
 
 	#endregion
 
@@ -110,7 +110,7 @@ public unsafe static partial class MIX
 		X->Patch = PATCHLEVEL;
 	}
 
-	[DllImport(NativeLibName, EntryPoint = "MIX_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "MIX_Linked_Version", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_MIX_Linked_Version();
 	public static Version Linked_Version()
 	{
@@ -123,13 +123,13 @@ public unsafe static partial class MIX
 		return result;
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Init")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Init")]
 	public static extern int Init(MixInitFlags flags);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Quit")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Quit")]
 	public static extern void Quit();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_OpenAudio")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_OpenAudio")]
 	public static extern int OpenAudio(
 		int frequency,
 		ushort format,
@@ -137,16 +137,16 @@ public unsafe static partial class MIX
 		int chunksize
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_AllocateChannels")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_AllocateChannels")]
 	public static extern int AllocateChannels(int numchans);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuerySpec")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuerySpec")]
 	public static extern int QuerySpec(
 		out int frequency,
 		out ushort format,
 		out int channels
 	);
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuerySpec")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuerySpec")]
 	public static extern int QuerySpec(
 		int* frequency,
 		ushort* format,
@@ -155,7 +155,7 @@ public unsafe static partial class MIX
 
 	/* src refers to an SDL_RWops*, IntPtr to a Mix_Chunk* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV_RW")]
 	public static extern Chunk* LoadWAV_RW(
 		RWops src,
 		int freesrc
@@ -177,7 +177,7 @@ public unsafe static partial class MIX
 		chunk = LoadWAV_RW(src, freesrc);
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_LoadWAV")]
 	private static extern Chunk* INTERNAL_LoadWAV(byte* file);
     public static Chunk* LoadWAV(string file)
     {
@@ -205,7 +205,7 @@ public unsafe static partial class MIX
         Marshal.FreeHGlobal((IntPtr)utf8File);
     }
 
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_WAV")]
 	public static extern Chunk* QuickLoad_WAV(
 		[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1)]
 			byte[] mem
@@ -228,7 +228,7 @@ public unsafe static partial class MIX
 	}
 
 	/* IntPtr refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_RAW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_QuickLoad_RAW")]
 	public static extern Chunk* QuickLoad_RAW(
 		[In()] [MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U1, SizeParamIndex = 1)]
 			byte[] mem,
@@ -254,16 +254,16 @@ public unsafe static partial class MIX
 	}
 
 	/* chunk refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeChunk")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeChunk")]
 	public static extern void FreeChunk(Chunk* chunk);
 	
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeChunk")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FreeChunk")]
 	public static extern void FreeChunk(PChunk chunk);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetNumChunkDecoders")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetNumChunkDecoders")]
 	public static extern int GetNumChunkDecoders();
 
-	[DllImport(NativeLibName, EntryPoint = "Mix_GetChunkDecoder", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "Mix_GetChunkDecoder", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_Mix_GetChunkDecoder(int index);
 	public static string GetChunkDecoder(int index)
 	{
@@ -272,36 +272,36 @@ public unsafe static partial class MIX
 		);
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetNumMusicDecoders")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetNumMusicDecoders")]
 	public static extern int GetNumMusicDecoders();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPostMix")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPostMix")]
 	public static extern void SetPostMix(
 		MixFuncDelegate mix_func,
 		IntPtr arg // void*
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HookMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HookMusic")]
 	public static extern void HookMusic(
 		MixFuncDelegate mix_func,
 		IntPtr arg // void*
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HookMusicFinished")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HookMusicFinished")]
 	public static extern void HookMusicFinished(
 		MusicFinishedDelegate music_finished
 	);
 
 	/* IntPtr refers to a void* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicHookData")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetMusicHookData")]
 	public static extern IntPtr GetMusicHookData();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ChannelFinished")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ChannelFinished")]
 	public static extern void ChannelFinished(
 		ChannelFinishedDelegate channel_finished
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_RegisterEffect")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_RegisterEffect")]
 	public static extern int RegisterEffect(
 		int chan,
 		Mix_EffectFunc_t f,
@@ -309,58 +309,58 @@ public unsafe static partial class MIX
 		IntPtr arg // void*
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_UnregisterEffect")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_UnregisterEffect")]
 	public static extern int UnregisterEffect(
 		int channel,
 		Mix_EffectFunc_t f
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_UnregisterAllEffects")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_UnregisterAllEffects")]
 	public static extern int UnregisterAllEffects(int channel);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPanning")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPanning")]
 	public static extern int SetPanning(
 		int channel,
 		byte left,
 		byte right
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPosition")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetPosition")]
 	public static extern int SetPosition(
 		int channel,
 		short angle,
 		byte distance
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetDistance")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetDistance")]
 	public static extern int SetDistance(int channel, byte distance);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetReverseStereo")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetReverseStereo")]
 	public static extern int SetReverseStereo(int channel, int flip);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ReserveChannels")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ReserveChannels")]
 	public static extern int ReserveChannels(int num);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupChannel")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupChannel")]
 	public static extern int GroupChannel(int which, int tag);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupChannels")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupChannels")]
 	public static extern int GroupChannels(int from, int to, int tag);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupAvailable")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupAvailable")]
 	public static extern int GroupAvailable(int tag);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupCount")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupCount")]
 	public static extern int GroupCount(int tag);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupOldest")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupOldest")]
 	public static extern int GroupOldest(int tag);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupNewer")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GroupNewer")]
 	public static extern int GroupNewer(int tag);
 
     /* chunk* refers to a Mix_Chunk* */
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChanne")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChanne")]
     public static extern int PlayChannel(
         int channel,
         Chunk* chunk,
@@ -368,7 +368,7 @@ public unsafe static partial class MIX
         int ticks
     );
 
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannel")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannel")]
     public static extern int PlayChannel(
         int channel,
         PChunk chunk,
@@ -376,7 +376,7 @@ public unsafe static partial class MIX
     );
 
 	/* chunk* refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannelTimed")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannelTimed")]
 	public static extern int PlayChannelTimed(
 		int channel,
 		Chunk* chunk,
@@ -384,7 +384,7 @@ public unsafe static partial class MIX
 		int ticks
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannelTimed")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayChannelTimed")]
 	public static extern int PlayChannelTimed(
 		int channel,
 		PChunk chunk,
@@ -393,7 +393,7 @@ public unsafe static partial class MIX
 	);
 
     /* chunk* refers to a Mix_Chunk* */
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannel")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannel")]
     public static extern int FadeInChannel(
         int channel,
         Chunk* chunk,
@@ -401,7 +401,7 @@ public unsafe static partial class MIX
         int ms
     );
 
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannel")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannel")]
     public static extern int FadeInChannel(
         int channel,
         PChunk chunk,
@@ -410,7 +410,7 @@ public unsafe static partial class MIX
     );
 
     /* chunk* refers to a Mix_Chunk* */
-    [DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
+    [DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
 	public static extern int FadeInChannelTimed(
 		int channel,
 		Chunk* chunk,
@@ -419,7 +419,7 @@ public unsafe static partial class MIX
 		int ticks
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeInChannelTimed")]
 	public static extern int FadeInChannelTimed(
 		int channel,
 		PChunk chunk,
@@ -428,83 +428,83 @@ public unsafe static partial class MIX
 		int ticks
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Volume")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Volume")]
 	public static extern int Volume(int channel, int volume);
 
 	/* chunk refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeChunk")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeChunk")]
 	public static extern int VolumeChunk(
 		Chunk* chunk,
 		int volume
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeChunk")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeChunk")]
 	public static extern int VolumeChunk(
 		PChunk chunk,
 		int volume
 	);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_VolumeMusic")]
 	public static extern int VolumeMusic(int volume);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltChannel")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltChannel")]
 	public static extern int HaltChannel(int channel);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltGroup")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltGroup")]
 	public static extern int HaltGroup(int tag);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_HaltMusic")]
 	public static extern int HaltMusic();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ExpireChannel")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ExpireChannel")]
 	public static extern int ExpireChannel(int channel, int ticks);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeOutChannel")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeOutChannel")]
 	public static extern int FadeOutChannel(int which, int ms);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeOutGroup")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeOutGroup")]
 	public static extern int FadeOutGroup(int tag, int ms);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeOutMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadeOutMusic")]
 	public static extern int FadeOutMusic(int ms);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadingMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadingMusic")]
 	public static extern Fading FadingMusic();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadingChannel")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_FadingChannel")]
 	public static extern Fading FadingChannel(int which);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Pause")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Pause")]
 	public static extern void Pause(int channel);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Resume")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Resume")]
 	public static extern void Resume(int channel);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Paused")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Paused")]
 	public static extern int Paused(int channel);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PauseMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PauseMusic")]
 	public static extern void PauseMusic();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ResumeMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_ResumeMusic")]
 	public static extern void ResumeMusic();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_RewindMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_RewindMusic")]
 	public static extern void RewindMusic();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PausedMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PausedMusic")]
 	public static extern int PausedMusic();
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetMusicPosition")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetMusicPosition")]
 	public static extern int SetMusicPosition(double position);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Playing")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_Playing")]
 	public static extern int Playing(int channel);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayingMusic")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_PlayingMusic")]
 	public static extern int PlayingMusic();
 
-	[DllImport(NativeLibName, EntryPoint = "Mix_SetMusicCMD", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "Mix_SetMusicCMD", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_Mix_SetMusicCMD(
 		byte* command
 	);
@@ -518,13 +518,13 @@ public unsafe static partial class MIX
 		return result;
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetSynchroValue")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetSynchroValue")]
 	public static extern int SetSynchroValue(int value);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetSynchroValue")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetSynchroValue")]
 	public static extern int GetSynchroValue();
 
-	[DllImport(NativeLibName, EntryPoint = "Mix_SetSoundFonts", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "Mix_SetSoundFonts", CallingConvention = CallingConvention.Cdecl)]
 	private static extern int INTERNAL_Mix_SetSoundFonts(
 		byte* paths
 	);
@@ -538,7 +538,7 @@ public unsafe static partial class MIX
 		return result;
 	}
 
-	[DllImport(NativeLibName, EntryPoint = "Mix_GetSoundFonts", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "Mix_GetSoundFonts", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_Mix_GetSoundFonts();
 	public static string GetSoundFonts()
 	{
@@ -547,21 +547,21 @@ public unsafe static partial class MIX
 		);
 	}
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_EachSoundFont")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_EachSoundFont")]
 	public static extern int EachSoundFont(
 		SoundFontDelegate function,
 		IntPtr data // void*
 	);
 
 	/* Only available in 2.0.5 or later. */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetTimidityCfg")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_SetTimidityCfg")]
 	public static extern int SetTimidityCfg(
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
 			string path
 	);
 
 	/* Only available in 2.0.5 or later. */
-	[DllImport(NativeLibName, EntryPoint = "Mix_GetTimidityCfg", CallingConvention = CallingConvention.Cdecl)]
+	[DllImport(LibraryName, EntryPoint = "Mix_GetTimidityCfg", CallingConvention = CallingConvention.Cdecl)]
 	private static extern IntPtr INTERNAL_Mix_GetTimidityCfg();
 	public static string GetTimidityCfg()
 	{
@@ -571,7 +571,7 @@ public unsafe static partial class MIX
 	}
 
 	/* IntPtr refers to a Mix_Chunk* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetChunk")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_GetChunk")]
 	public static extern Chunk* GetChunk(int channel);
 	public static void GetChunk(int channel, out Chunk* chunk)
 	{
@@ -582,7 +582,7 @@ public unsafe static partial class MIX
 		chunk = GetChunk(channel);
     }
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_CloseAudio")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Mix_CloseAudio")]
 	public static extern void CloseAudio();
 
     public static string GetError()

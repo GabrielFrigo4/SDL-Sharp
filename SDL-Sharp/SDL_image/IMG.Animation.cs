@@ -41,7 +41,7 @@ public static unsafe partial class IMG
 	/* This region is only available in 2.0.6 or higher. */
 
 	/* IntPtr refers to an IMG_Animation* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimation")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimation")]
 	public unsafe static extern Animation* LoadAnimation(
 		[In()] [MarshalAs(UnmanagedType.LPStr)]
 			string file
@@ -65,7 +65,7 @@ public static unsafe partial class IMG
 
 	/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimation_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimation_RW")]
 	public static extern Animation* LoadAnimation_RW(
 		RWops src,
 		int freesrc
@@ -89,7 +89,7 @@ public static unsafe partial class IMG
 
 	/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimationTyped_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadAnimationTyped_RW")]
 	public static extern Animation* LoadAnimationTyped_RW(
 		RWops src,
 		int freesrc,
@@ -118,15 +118,15 @@ public static unsafe partial class IMG
 	}
 
 	/* anim refers to an IMG_Animation* */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_FreeAnimation")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_FreeAnimation")]
 	public static extern void FreeAnimation(Animation* anim);
 
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_FreeAnimation")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_FreeAnimation")]
 	public static extern void FreeAnimation(PAnimation anim);
 
 	/* IntPtr refers to an IMG_Animation*, src to an SDL_RWops* */
 	/* THIS IS A PUBLIC RWops FUNCTION! */
-	[DllImport(NativeLibName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadGIFAnimation_RW")]
+	[DllImport(LibraryName, CallingConvention = CallingConvention.Cdecl, EntryPoint = "IMG_LoadGIFAnimation_RW")]
 	public static extern Animation* LoadGIFAnimation_RW(RWops src);
 	public static void LoadGIFAnimation_RW(RWops src, out Animation* animation)
     {
