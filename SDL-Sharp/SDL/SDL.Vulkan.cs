@@ -7,13 +7,13 @@ public static unsafe partial class SDL
 {
 	/* Only available in 2.0.6 or higher. */
 	[DllImport(LibraryName, EntryPoint = "SDL_Vulkan_LoadLibrary", CallingConvention = CallingConvention.Cdecl)]
-	private static extern unsafe int INTERNAL_SDL_Vulkan_LoadLibrary(
+	private static extern unsafe int INTERNAL_Vulkan_LoadLibrary(
 		byte* path
 	);
 	public static unsafe int Vulkan_LoadLibrary(string path)
 	{
 		byte* utf8Path = InternalUtils.Utf8EncodeHeap(path);
-		int result = INTERNAL_SDL_Vulkan_LoadLibrary(
+		int result = INTERNAL_Vulkan_LoadLibrary(
 			utf8Path
 		);
 		Marshal.FreeHGlobal((IntPtr)utf8Path);

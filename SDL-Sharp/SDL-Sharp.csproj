@@ -9,27 +9,20 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NeutralLanguage>en</NeutralLanguage>
-    <Description>
-      Is a SDL2 for c#
-      The wrapper provides bindings for the following libraries:
-      - SDL2 (2.30.3)
-      - SDL2_image (2.8.2)
-      - SDL2_mixer (2.8.0)
-      - SDL2_ttf (2.22.0)
-      -Utils(functions that facilitate the development)
-      And contains the necessary DLLs for the project in SDL-Sharp-DLL
-    </Description>
-    <PackageReleaseNotes>
-      Add Functions:
-      SDL.SetWindowIcon()
-      SDL.GetPerformanceCounter()
-      SDL.GetPerformanceFrequency()
-      SDL.GetPerformanceFrequency()
-    </PackageReleaseNotes>
+    <Description>Is a SDL2 for c#
+The wrapper provides bindings for the following libraries:
+ - SDL2 (2.30.7)
+ - SDL2_image (2.8.2)
+ - SDL2_mixer (2.8.0)
+ - SDL2_ttf (2.22.0)
+ - Utils (functions that facilitate the development)
+And contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
+    <PackageReleaseNotes>Add SDL_Hint</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.2.3</Version>
+    <Version>2.2.4</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
+    <Copyright>MIT</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

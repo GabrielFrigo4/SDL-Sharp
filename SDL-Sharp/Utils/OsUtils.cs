@@ -8,7 +8,7 @@ public static class OsUtils
     /// <summary>
     /// Get operating system platform
     /// </summary>
-    public OSPlatform OSPlatform
+    public static OSPlatform OSPlatform
     {
         get 
         {
@@ -20,6 +20,8 @@ public static class OsUtils
                 return OSPlatform.OSX;
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.FreeBSD))
                 return OSPlatform.FreeBSD;
+            else
+                throw new NotImplementedException();
         }
     }
 
@@ -29,19 +31,13 @@ public static class OsUtils
     /// <param name="path"></param>
     public static void AddEnvironmentPath(string path)
     {
-        switch (OSPlatform) {
-            case OSPlatform.Windows:
-                WinUtils.AddEnvironmentPath(path);
-                break;
-            case OSPlatform.Linux:
-                LinuxUtils.AddEnvironmentPath(path);
-                break;
-            case OSPlatform.OSX:
-                OsxUtils.AddEnvironmentPath(path);
-                break;
-            case OSPlatform.FreeBSD:
-                FreeBdsUtils.AddEnvironmentPath(path);
-                break;
-        }
+        if (OSPlatform == OSPlatform.Windows)
+            WinUtils.AddEnvironmentPath(path);
+        if (OSPlatform == OSPlatform.Linux)
+            LinuxUtils.AddEnvironmentPath(path);
+        if (OSPlatform == OSPlatform.OSX)
+            OsxUtils.AddEnvironmentPath(path);
+        if (OSPlatform == OSPlatform.FreeBSD)
+            FreeBdsUtils.AddEnvironmentPath(path);
     }
 }
