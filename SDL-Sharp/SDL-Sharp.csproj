@@ -23,6 +23,8 @@ And contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
     <Copyright>MIT</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -53,6 +55,17 @@ And contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
     <Compile Remove="VulkanCore\**" />
     <EmbeddedResource Remove="VulkanCore\**" />
     <None Remove="VulkanCore\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
