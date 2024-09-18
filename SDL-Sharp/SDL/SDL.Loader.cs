@@ -10,7 +10,12 @@ public static partial class SDL
 {
     private const string LibraryName = "SDL2";
 
-    static SDL()
+    /// <summary>
+    /// Default DllImportResolver for the SDL library.
+    /// Currently, supports Windows, Linux, and OSX. Only x64 and x86 architectures are supported for now.
+    /// </summary>
+    /// <exception cref="PlatformNotSupportedException">When the current platform is not supported</exception>
+    public static void DefaultDllImport()
     {
         if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
         {
@@ -51,11 +56,11 @@ public static partial class SDL
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
-        AppContext.BaseDirectory,
-        "runtimes",
-        GetRuntimeIdentifier(),
-        "native",
-        libName);
+            AppContext.BaseDirectory,
+            "runtimes",
+            GetRuntimeIdentifier(),
+            "native",
+            libName);
 
         // Finally, just try the name of the library
         yield return libName;

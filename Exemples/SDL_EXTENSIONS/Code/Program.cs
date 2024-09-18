@@ -39,6 +39,7 @@ class Program
         //test save data ;)
 
         WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
+        SDL.DefaultDllImport();
 
         //Init SDL/Image/Mixer/Ttf
         SDL.Init(SdlInitFlags.Video);
