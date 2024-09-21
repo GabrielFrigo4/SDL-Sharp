@@ -17,9 +17,9 @@ The wrapper provides bindings for the following libraries:
  - SDL2_ttf (2.22.0)
  - Utils (functions that facilitate the development)
 And contains the necessary DLLs for the project in SDL-Sharp-DLL</Description>
-    <PackageReleaseNotes>Add SDL_Hint</PackageReleaseNotes>
+    <PackageReleaseNotes>Add SdlLoader</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/GabrielFrigo4/SDL-Sharp</PackageProjectUrl>
-    <Version>2.2.4</Version>
+    <Version>2.2.5</Version>
     <RepositoryUrl>https://github.com/GabrielFrigo4/SDL-Sharp</RepositoryUrl>
     <Authors>Gabriel Frigo</Authors>
     <Copyright>MIT</Copyright>
