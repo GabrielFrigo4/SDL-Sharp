@@ -22,6 +22,8 @@ public enum SdlInitFlags : uint
 
 public static unsafe partial class SDL
 {
+    private const string LibraryName = "SDL2";
+
     [DllImport(LibraryName, EntryPoint = "SDL_Init", CallingConvention = CallingConvention.Cdecl)]
     public static extern int Init(SdlInitFlags flags);
 
