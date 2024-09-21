@@ -1,4 +1,5 @@
 ﻿using SDL_Sharp;
+using SDL_Sharp.Loader;
 using SDL_Sharp.Utility;
 using Silk.NET.OpenGL.Legacy;
 
@@ -27,6 +28,7 @@ internal class Program
     static void Main()
     {
         WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
+        SdlLoader.LoadDefault();
 
         SDL.Init(SdlInitFlags.Video);
         window = SDL.CreateWindow("teste", SDL.WINDOWPOS_CENTERED, SDL.WINDOWPOS_CENTERED, 800, 600, WindowFlags.OpenGL);

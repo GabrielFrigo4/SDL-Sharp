@@ -27,6 +27,8 @@ Note2: News are coming in this project, it has been updated again!!!!!
 # How to setup
 First install [SDL-Sharp](https://www.nuget.org/packages//SDL-Sharp/)  nuget in your .NET project
 
+Before using any SDL function, consider calling [`SdlLoader.LoadDefault();`](SDL-Sharp/Loader/SdlLoader.cs), this function will load the necessary DLLs for the project. Otherwise, you will have to load the DLLs manually.
+
 ### Linux
 Just install the sdl using a package manager of your system that [SDL-Sharp](https://www.nuget.org/packages//SDL-Sharp/)  will already use the sdl binaries
 

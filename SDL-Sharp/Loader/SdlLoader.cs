@@ -5,12 +5,18 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using SDL_Sharp.Utility;
 
-namespace SDL_Sharp;
-public static partial class SDL
-{
-    private const string LibraryName = "SDL2";
+namespace SDL_Sharp.Loader;
 
-    static SDL()
+public static class SdlLoader
+{
+    /// <summary>
+    /// Default Dll Import Resolver for the SDL-Sharp library.
+    /// Currently, supports Windows, Linux, and OSX. Only x64 and x86 architectures are supported for now.
+    /// 
+    /// Consider calling this method before using any SDL-Sharp functionality. Otherwise you can load them manually yourself.
+    /// </summary>
+    /// <exception cref="PlatformNotSupportedException">When the current platform is not supported</exception>
+    public static void LoadDefault()
     {
         if (RuntimeInformation.ProcessArchitecture == Architecture.X64)
         {
@@ -51,11 +57,11 @@ public static partial class SDL
 
         // Try loading from runtimes/<rid>/native/<lib-name>
         yield return Path.Combine(
-        AppContext.BaseDirectory,
-        "runtimes",
-        GetRuntimeIdentifier(),
-        "native",
-        libName);
+            AppContext.BaseDirectory,
+            "runtimes",
+            GetRuntimeIdentifier(),
+            "native",
+            libName);
 
         // Finally, just try the name of the library
         yield return libName;

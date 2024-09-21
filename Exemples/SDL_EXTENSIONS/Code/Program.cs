@@ -5,6 +5,7 @@ using SDL_Sharp.Utility;
 using SDL_Sharp;
 using System;
 using SDL_EXTENSIONS.Utils;
+using SDL_Sharp.Loader;
 
 namespace SDL_PLUS_EXTENSIONS;
 class Program
@@ -39,6 +40,7 @@ class Program
         //test save data ;)
 
         WinUtils.SetDpiAwareness(WinHighDpiMode.SystemAware);
+        SdlLoader.LoadDefault();
 
         //Init SDL/Image/Mixer/Ttf
         SDL.Init(SdlInitFlags.Video);
